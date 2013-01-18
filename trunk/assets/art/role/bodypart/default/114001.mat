@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+  <instance name="114001">
+    <technique type="meta" source_m="art\meta\default.mat" meta_name="default"/>
+    <var name="diffuse_map" type="texture" value="art\role\bodypart\default\114001001_d.tga" />
+  </instance>
+</ola_material>

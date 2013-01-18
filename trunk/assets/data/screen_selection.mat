@@ -1,0 +1,5 @@
+<ola_material version="1.0">
+	<instance name="screen_selection">
+		<technique type="shader" source_v="shaders\screen_selection.vert" source_f="shaders\screen_selection.frag"/>
+	</instance>
+</ola_material>

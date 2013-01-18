@@ -1,0 +1,6 @@
+vld - vertex light diffuse
+plds - pixel lightting diffuse spec
+pp - postprocess
+at - alpha test
+smp - shadow mapping
+bump - bump mapping

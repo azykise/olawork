@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{964F7E0D-DA15-40B5-B1C8-1412DC2140A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>scene</RootNamespace>
+    <AssemblyName>scene</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\plugins\editor\domains\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\plugins\editor\domains\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ebase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\plugins\editor\ebase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ecommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\plugins\editor\ecommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ewrapper, Version=1.0.4466.20670, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\plugins\editor\ewrapper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sharp3D.Math, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\plugins\editor\Sharp3D.Math.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="component\EntityCreateComponent.cs" />
+    <Compile Include="component\EntityListComponent.cs" />
+    <Compile Include="component\EntityPropertyComponent.cs" />
+    <Compile Include="core\Entity.cs" />
+    <Compile Include="core\SceneEditorDoc.cs" />
+    <Compile Include="core\View.cs" />
+    <Compile Include="core\World.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SceneEditor.cs" />
+    <Compile Include="SceneEditor_Form.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SceneEditor_Form.Designer.cs">
+      <DependentUpon>SceneEditor_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\EntityCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ui\EntityCreate.designer.cs">
+      <DependentUpon>EntityCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\EntityList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ui\EntityList.designer.cs">
+      <DependentUpon>EntityList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\EntityProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ui\EntityProperty.designer.cs">
+      <DependentUpon>EntityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\UICreatePrimitive.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ui\UICreatePrimitive.Designer.cs">
+      <DependentUpon>UICreatePrimitive.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SceneEditor_Form.resx">
+      <DependentUpon>SceneEditor_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\EntityCreate.resx">
+      <DependentUpon>EntityCreate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\EntityList.resx">
+      <DependentUpon>EntityList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\EntityProperty.resx">
+      <DependentUpon>EntityProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\UICreatePrimitive.resx">
+      <DependentUpon>UICreatePrimitive.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

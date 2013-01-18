@@ -1,0 +1,4 @@
+<ola_model>
+	<geometry resource="art\common\waitingroom001_teapoy001.ase"/>
+	<material resource="art\common\waitingroom001_teapoy001.mat"/>
+</ola_model>

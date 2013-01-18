@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+	<instance name="simple_shadowreceive">
+		<technique type="shader" source_v="shaders\vld_smp.vert" source_f="shaders\vld_smp.frag"/>
+		<var name="diffuse_map" type="texture" value="default.tga"/> 
+	</instance>
+</ola_material>

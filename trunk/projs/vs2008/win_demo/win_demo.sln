@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win_demo", "win_demo.vcproj", "{013CA1D1-1D65-4038-9818-70A90E3B572D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26A5902A-312B-45F6-B573-650F8C7AC76E} = {26A5902A-312B-45F6-B573-650F8C7AC76E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ola_render", "..\render\ola_render.vcproj", "{26A5902A-312B-45F6-B573-650F8C7AC76E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		engine_debug|Win32 = engine_debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.Debug|Win32.Build.0 = Debug|Win32
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.engine_debug|Win32.ActiveCfg = Release|Win32
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.engine_debug|Win32.Build.0 = Release|Win32
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.Release|Win32.ActiveCfg = Release|Win32
+		{013CA1D1-1D65-4038-9818-70A90E3B572D}.Release|Win32.Build.0 = Release|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Debug|Win32.Build.0 = Debug|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.engine_debug|Win32.ActiveCfg = engine_debug|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.engine_debug|Win32.Build.0 = engine_debug|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Release|Win32.ActiveCfg = Release|Win32
+		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

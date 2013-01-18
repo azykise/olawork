@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etest", "..\..\source\autotest\etest\etest.csproj", "{8C0974D5-B3C1-4F3A-AB6D-0C700E2BD6AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{77FE930F-4682-4BCA-8B99-20748C6448A3} = {77FE930F-4682-4BCA-8B99-20748C6448A3}
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62} = {4DA94235-C9E7-45DE-B346-07A9926C3D62}
+		{7C80DABA-A808-4A63-A533-B11718133E8D} = {7C80DABA-A808-4A63-A533-B11718133E8D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tframework", "..\..\source\autotest\tframework\tframework.csproj", "{7C80DABA-A808-4A63-A533-B11718133E8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common_cases", "..\..\source\autotest\common_cases\common_cases.csproj", "{77FE930F-4682-4BCA-8B99-20748C6448A3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62} = {4DA94235-C9E7-45DE-B346-07A9926C3D62}
+		{7C80DABA-A808-4A63-A533-B11718133E8D} = {7C80DABA-A808-4A63-A533-B11718133E8D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "editor_tools", "..\..\source\autotest\editor_tools\editor_tools.csproj", "{4DA94235-C9E7-45DE-B346-07A9926C3D62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C80DABA-A808-4A63-A533-B11718133E8D} = {7C80DABA-A808-4A63-A533-B11718133E8D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C0974D5-B3C1-4F3A-AB6D-0C700E2BD6AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C0974D5-B3C1-4F3A-AB6D-0C700E2BD6AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C0974D5-B3C1-4F3A-AB6D-0C700E2BD6AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C0974D5-B3C1-4F3A-AB6D-0C700E2BD6AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C80DABA-A808-4A63-A533-B11718133E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C80DABA-A808-4A63-A533-B11718133E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C80DABA-A808-4A63-A533-B11718133E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C80DABA-A808-4A63-A533-B11718133E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77FE930F-4682-4BCA-8B99-20748C6448A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77FE930F-4682-4BCA-8B99-20748C6448A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77FE930F-4682-4BCA-8B99-20748C6448A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77FE930F-4682-4BCA-8B99-20748C6448A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA94235-C9E7-45DE-B346-07A9926C3D62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

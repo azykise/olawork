@@ -1,0 +1,4 @@
+<ola_model>
+	<geometry resource="art\role\bodypart\default\114001.ase"/>
+	<material resource="art\role\bodypart\default\114001.mat"/>
+</ola_model>

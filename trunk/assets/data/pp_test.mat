@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+	<instance name="pp_test">
+		<technique type="shader" source_s="shaders\engine_fx\pp_test.glsl" sys="true"/>
+		<var name="diffuse_map" type="texture" value="test.tga"/> 
+	</instance>
+</ola_material>

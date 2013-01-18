@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+  <instance name="prim_line">
+    <technique type="shader" source_s="shaders\engine_fx\prim_line.glsl" sys="true"/>
+    <var name="user_color0" type="vec4" value="(1.0,1.0,1.0,1.0)" />
+  </instance>
+</ola_material>

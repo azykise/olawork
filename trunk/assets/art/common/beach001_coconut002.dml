@@ -1,0 +1,4 @@
+<ola_model>
+	<geometry resource="art\common\beach001_coconut002.ase"/>
+	<material resource="art\common\beach001_coconut002.mat"/>
+</ola_model>

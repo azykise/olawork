@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+	<instance name="default">
+		<technique type="shader" source_s="shaders\default.glsl"/>
+		<var name="diffuse_map" type="texture" value="art\default.tga"/> 
+	</instance>
+</ola_material>

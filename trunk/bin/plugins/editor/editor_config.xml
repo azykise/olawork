@@ -1,0 +1,4 @@
+<EditorConfig version="0.1">
+  <Plugin path="./plugins/editor/domains" main="ModelView"/>
+  <Config path="./plugins/editor/configs"/>
+</EditorConfig>

@@ -1,0 +1,8 @@
+<ola_material version="1.0">
+  <instance name="waitingroom001_teapoy001">
+    <technique type="shader" source_s="shaders\common_obj.glsl"/>
+    <var name="diffuse_map" type="texture" value="art\common\waitingroom001_teapoy001_d.tga" />
+    <var name="normal_map" type="texture" value="art\common\waitingroom001_teapoy001_n.tga" />
+    <var name="specular_map" type="texture" value="art\common\waitingroom001_teapoy001_s.tga" />
+  </instance>
+</ola_material>

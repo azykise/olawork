@@ -1,0 +1,5 @@
+<ola_material version="1.0">
+	<instance name="simple_shadowcast">
+		<technique type="shader" source_s="shaders\engine_fx\simple_shadowcast.glsl" sys="true"/>
+	</instance>
+</ola_material>

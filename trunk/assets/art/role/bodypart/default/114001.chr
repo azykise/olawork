@@ -1,0 +1,6 @@
+<ola_character>
+	<geometry resource="art\role\bodypart\default\114001.ase"/>
+	<material resource="art\role\bodypart\default\114001.mat"/>
+	<skeleton resource="art\role\skeleton\girl_skeleton.ase"/>
+	<animation resource="art\role\skeleton\girl_skeleton.ase"/>
+</ola_character>

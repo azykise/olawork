@@ -1,0 +1,5 @@
+<ola_material version="1.0">
+  <instance name="skydome">
+    <technique type="shader" source_v="shaders\skydome.vert" source_f="shaders\skydome.frag"/>
+  </instance>
+</ola_material>

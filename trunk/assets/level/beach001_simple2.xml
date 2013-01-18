@@ -1,0 +1,363 @@
+<ola_scene version="1.0">
+  <resources num="21">
+    <resource name="beach001_sky001.ase" />
+    <resource name="beach001_yuanjing001.ase" />
+    <resource name="beach001_sea001.ase" />
+    <resource name="beach001_ground001.ase" />
+    <resource name="beach001_coconut003.ase" />
+    <resource name="beach001_coconut002.ase" />
+    <resource name="beach001_fangb001.ase" />
+    <resource name="beach001_fangc001.ase" />
+    <resource name="beach001_fangd001.ase" />
+    <resource name="beach001_coconut001.ase" />
+    <resource name="beach001_sanwei002.ase" />
+    <resource name="beach001_sanwei001.ase" />
+    <resource name="beach001_fl001.ase" />
+    <resource name="beach001_tt001.ase" />
+    <resource name="beach001_tt002.ase" />
+    <resource name="beach001_rc001.ase" />
+    <resource name="beach001_rc002.ase" />
+    <resource name="beach001_hibiscus001.ase" />
+    <resource name="beach001_guibei001.ase" />
+    <resource name="beach001_stone001.ase" />
+    <resource name="beach001_rc003.ase" />
+  </resources>
+  <nodes num="154">
+    <node name="beach001_yuanjing001" type="model">
+      <position>0.000 0.000 0.000</position>
+      <rotation>0.000 0.000 0.000 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_yuanjing001.ase</resource>
+    </node>
+    <node name="beach001_ground001" type="model">
+      <position>0.000 0.000 0.000</position>
+      <rotation>0.000 0.000 0.000 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_ground001.ase</resource>
+    </node>
+    <node name="beach001_coconut003" type="model">
+      <position>116.817 147.102 -0.343</position>
+      <rotation>0.000 0.000 -0.000 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut002" type="model">
+      <position>112.527 146.864 0.289</position>
+      <rotation>0.000 0.000 0.000 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut09" type="model">
+      <position>145.801 83.875 1.963</position>
+      <rotation>-0.103 0.553 0.392 0.729</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut001.ase</resource>
+    </node>
+    <node name="beach001_coconut10" type="model">
+      <position>120.479 187.758 -0.302</position>
+      <rotation>0.000 0.000 0.000 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut11" type="model">
+      <position>157.064 70.610 2.502</position>
+      <rotation>0.000 0.000 -0.402 0.916</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut22" type="model">
+      <position>126.846 48.990 1.986</position>
+      <rotation>0.000 0.000 -0.622 0.783</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut25" type="model">
+      <position>130.791 17.774 2.537</position>
+      <rotation>0.000 0.000 0.431 0.902</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut26" type="model">
+      <position>76.532 33.597 0.289</position>
+      <rotation>0.000 0.000 -0.100 0.995</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut27" type="model">
+      <position>-10.454 -82.231 -0.064</position>
+      <rotation>0.000 0.000 0.338 0.941</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut28" type="model">
+      <position>-25.970 -97.976 -2.042</position>
+      <rotation>0.000 0.000 -0.823 0.568</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut07" type="model">
+      <position>110.582 193.127 -0.805</position>
+      <rotation>0.000 0.000 -0.712 0.702</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut12" type="model">
+      <position>122.147 191.200 -0.343</position>
+      <rotation>0.000 0.000 0.688 0.726</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut14" type="model">
+      <position>152.217 65.462 2.514</position>
+      <rotation>0.000 0.000 -0.661 0.751</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut17" type="model">
+      <position>119.975 40.312 2.084</position>
+      <rotation>0.000 0.000 0.998 -0.068</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut19" type="model">
+      <position>132.459 21.215 2.484</position>
+      <rotation>0.000 0.000 0.504 0.864</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut20" type="model">
+      <position>78.199 37.039 -0.343</position>
+      <rotation>0.000 0.000 0.899 0.438</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut23" type="model">
+      <position>-8.787 -78.789 -0.343</position>
+      <rotation>0.000 0.000 0.997 0.081</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut24" type="model">
+      <position>132.893 151.497 -0.343</position>
+      <rotation>0.000 0.000 0.833 0.554</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut30" type="model">
+      <position>29.951 -50.607 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut31" type="model">
+      <position>-4.459 -58.630 -2.042</position>
+      <rotation>0.000 0.000 -0.087 0.996</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut32" type="model">
+      <position>64.516 13.352 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut33" type="model">
+      <position>-37.482 -127.644 -2.042</position>
+      <rotation>0.000 0.000 -0.057 0.998</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut34" type="model">
+      <position>124.657 60.895 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut35" type="model">
+      <position>174.835 -19.294 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut36" type="model">
+      <position>129.003 -80.242 -2.042</position>
+      <rotation>0.000 0.000 -0.167 0.986</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut37" type="model">
+      <position>-18.639 -128.710 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut38" type="model">
+      <position>38.140 -128.798 -2.042</position>
+      <rotation>0.000 0.000 -0.298 0.955</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut39" type="model">
+      <position>11.050 -142.719 -2.042</position>
+      <rotation>0.000 0.000 -0.024 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut40" type="model">
+      <position>61.222 -122.906 -2.042</position>
+      <rotation>0.000 0.000 -0.308 0.951</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut41" type="model">
+      <position>59.230 -53.597 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut42" type="model">
+      <position>-15.276 -76.413 -2.042</position>
+      <rotation>0.000 0.000 -0.253 0.967</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut43" type="model">
+      <position>73.249 -93.340 -2.042</position>
+      <rotation>0.000 0.000 -0.366 0.931</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut45" type="model">
+      <position>104.230 -94.413 -2.042</position>
+      <rotation>0.000 0.000 0.031 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut46" type="model">
+      <position>89.456 -107.293 -2.042</position>
+      <rotation>0.000 0.000 0.122 0.993</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut47" type="model">
+      <position>-22.609 -86.115 -2.042</position>
+      <rotation>0.000 0.000 -0.211 0.977</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut48" type="model">
+      <position>28.287 -89.132 -2.042</position>
+      <rotation>0.000 0.000 0.259 0.966</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut49" type="model">
+      <position>57.903 -81.336 -2.042</position>
+      <rotation>0.000 0.000 -0.435 0.900</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut50" type="model">
+      <position>-10.876 -101.706 -2.042</position>
+      <rotation>0.000 0.000 0.603 0.798</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut51" type="model">
+      <position>74.105 93.645 -2.042</position>
+      <rotation>0.000 0.000 0.136 0.991</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut53" type="model">
+      <position>65.962 -35.085 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut54" type="model">
+      <position>171.639 114.515 -2.042</position>
+      <rotation>0.000 0.000 0.474 0.881</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut55" type="model">
+      <position>61.866 -64.765 -2.042</position>
+      <rotation>0.000 0.000 -0.023 1.000</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut56" type="model">
+      <position>130.201 -33.520 -2.042</position>
+      <rotation>0.000 0.000 0.976 -0.219</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut57" type="model">
+      <position>115.972 -48.567 -2.042</position>
+      <rotation>0.000 0.000 -0.639 0.770</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut58" type="model">
+      <position>143.491 -67.814 -3.184</position>
+      <rotation>0.000 0.000 -0.285 0.958</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut59" type="model">
+      <position>135.951 -47.340 -0.871</position>
+      <rotation>0.000 0.000 -0.373 0.928</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut60" type="model">
+      <position>106.586 -86.130 2.484</position>
+      <rotation>0.000 0.000 0.504 0.864</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut61" type="model">
+      <position>88.713 -48.722 2.484</position>
+      <rotation>0.000 0.000 0.504 0.864</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut62" type="model">
+      <position>11.855 -129.464 2.484</position>
+      <rotation>0.000 0.000 0.923 0.384</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut63" type="model">
+      <position>2.874 -44.286 2.484</position>
+      <rotation>0.000 0.000 0.504 0.864</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut64" type="model">
+      <position>31.919 -86.809 2.484</position>
+      <rotation>0.000 0.000 0.933 0.360</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut65" type="model">
+      <position>100.485 116.390 -0.343</position>
+      <rotation>0.000 0.000 0.997 0.081</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut003.ase</resource>
+    </node>
+    <node name="beach001_coconut67" type="model">
+      <position>83.302 97.202 -2.042</position>
+      <rotation>0.000 0.000 -0.823 0.568</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+    <node name="beach001_coconut68" type="model">
+      <position>98.818 112.948 -0.064</position>
+      <rotation>0.000 0.000 0.338 0.941</rotation>
+      <scale>1.000 1.000 1.000</scale>
+      <resource>beach001_coconut002.ase</resource>
+    </node>
+  </nodes>
+</ola_scene>

@@ -1,0 +1,8 @@
+<ola_material version="1.0">
+  <instance name="beach001_coconut002">
+    <technique type="meta" source_m="art\meta\simple_alphatest.mat" meta_name="simple_alphatest"/>
+    <var name="diffuse_map" type="texture" value="\art\common\beach001_coconut001_d.tga" />
+    <var name="no_cullface" type="bool" value="true" />
+    <var name="cast_shadow" type="bool" value="true" />
+  </instance>
+</ola_material>

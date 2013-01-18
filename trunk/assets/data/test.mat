@@ -1,0 +1,6 @@
+<ola_material version="1.0">
+	<instance name="test">
+		<technique type="shader" source_v="shaders\test.vert" source_f="shaders\test.frag"/>
+		<var name="diffuse_map" type="texture" value="test.tga"/> 
+	</instance>
+</ola_material>
