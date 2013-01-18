@@ -1,0 +1,105 @@
+APEX
+
+功能的可伸缩性：
+表现在可以在各种平台上进行各种程度上的物理模拟 CPU, CPU+PPU, CPU+GPU, PS3, Xbox360，
+在具备物理模拟增强能力的平台上运行的会更加出色。
+
+APEX素材（Asset）：
+APEX的素材是在游戏创作时创建的一个数据结构，它可以被持久化然后在运行的时候被APEX载入，用来创建actor。
+
+APEX可编辑对象（Authorable Object）：
+可编辑对象用来描述一个APEX素材，指定了这个素材可以以何种方式编辑，以及具有哪些功能。
+一个具体的可编辑对象需要由用户app来定义，一般一个用户app至少应该具备一个素材描述类，一个素材类，和一个actor类。
+
+APEX模组（Module）：
+一个APEX模组是一个用户app中的一个组件，由一系列相关联的APEX可编辑对象构成。
+一般需要使用一个APEX模组的话需要一个运行组件和一个编辑组件。
+每一个APEX模组的运行组件被转换为独立的lib或dll。编辑组件可能由一个或者多个工具模块来提供。
+
+APEX框架（Framework）
+APEX的框架包括了所有非模组的APEX部分，也会带有一些authorable对象。
+
+APEX功能（Feathure）
+APEX Feathure是一组相关的APEX可编辑对象，它们被用创建某种特殊的物理内容。
+一种APEX功能可能会跨越多个APEX模组或集成一系列模组。
+
+
+authorable object：
+一个apex模组由一个或者多个authorable对象组成，
+并由一个module类描述，这个类需要实现素材编辑类和素材类对象的创建接口。
+一个authorable对象由素材数据，素材编辑类，素材描述类，actor类四部分来描述。
+
+authoring class：面向编辑工具的接口，
+编辑工具可以通过authoring class的setXXX和serializer方法来设置和保存出一份素材数据。
+authoring class 从NxApexAssetAuthoring类派生出来，这个类提供了一系列方法来编辑素材数据。
+NxApexAssetAuthoring类提供了一系列完备的素材编辑方法。
+一些基本参数可以通过NxParameterized asset类来获取。
+
+asset class：是面向引擎的接口，
+引擎可以通过它的deserializer读取素材数据，然后通过它的createactor接口创建出apex actor对象。
+这个类从NxApexAsset类派生出来，对于legacy素材，需要实现deserialize方法，createApexActor方法也必须实现。
+素材的数据都有assetclass来保存（通过成员变量和NxParamenterized类保存）。
+所有的素材都必须有一个名字。当一个素材被创建或者加载的时候，素材的名字都必须和这个素材的指针一起被注册。
+这样可以允许这个素材被其他的素材通过名字引用到。
+
+素材的共享：
+素材有的时候需要被其它的素材所包含，例如一个rendermesh会包含在一个碎片或者布料素材中。
+
+
+actor class
+一个NxApexActor代表了一个运行时刻一个authorabledata的实例。
+对于一个actor来说，All data that can be authored must come from the Asset or the engine like position etc.
+创建Actor所需要的 Run time data should be provided in an NxParameterized descriptor class passed to the createApexActor() 方法，创建actor时不需要的run time data应该通过setxxx方法来设定。
+
+所有创建出的actor都被创建它们的素材所拥有，因此素材类拥有createActor的方法。
+
+
+Actor Context：
+All instances of the Actor class also have a “context”.
+context和owner不同。
+context是actor实例化的一个参数，被传递给createApexActor方法的。
+通常来说一个actor的context是一个scene，有的时候一个actor的context可能是另外一个actor。
+context拥有removeallactors的方法。
+
+NxParamenterized：
+apex使用一个叫做nxparamenterized的框架来存储素材和actor的数据。
+NxParamenterized对象对它内部的各个参数提供了一个反射机制，这样可以在序列花的时候提供方便。
+NxParamenterized将数据存放在c++类中，这些数据都是通过特殊的desc语言描述，然后自动生成成为C++类的。
+desc文件包含了internal layout and various high-level metadata of corresponding classes and their members的信息。所有自动生成的类都需要implement special interface for run time reflection and modification of data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+apex 可以认为是在physx之上的一个framework。
+通过apex可以更方便的将physx整合到engine中，以便更加高效的完成复杂的物理效果模拟。
+
+apex结构：
+高层：DCC插件 | 布料制作工具 | 用户应用
+中层：碎片系统 | 布料系统 | 植物系统
+中层：apex核心 | 
+底层：apex渲染器 | physxSDK
+底层：cpu | gpu | ppu
+
+apex布料系统：
+可以混合物理模拟和蒙皮布料
+DCC插件支持制作过程中的预览
+针对布料模拟和渲染过程中的LOD
+动画混合
+布料约束
+灵活跨平台
+
+apex基于physx开发 | 在游戏中两者并存 | 两者都不参与渲染
+创建apex的同时会创建出physxSDK | CookingInterface | Allocator ...
+apex创建功能模组（碎片/布料/粒子），本质上就是载入dll
+apex创建scene的时候会创建出physx的scene
+apex的simulate和fetchResults更具有优势，应该用来代替physx的s/f
+
+apex提供了一个rendermesh
+用来存储需要表现出物理效果的网格（一般是布料）
+rendermesh一般被用来做素材，或者被其它的素材引用
+它支持很多网格顶点的属性（位置法线切线副法线骨骼id颜色4层UV...）
+带有rendermesh的nxactor会被apex自动更新
+带有rendermesh的actor会通过renderResourceInferface向引擎传递renderResourceBuffer
+renderResourceInterface的一部分需要使用者自己实现
