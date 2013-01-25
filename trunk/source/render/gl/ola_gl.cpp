@@ -469,11 +469,11 @@ void OlaGLDevice::setSwapBuffer( OlaSwapBuffer* swb )
 	}
 }
 
-void OlaGLDevice::init(unsigned int h)
+extern unsigned int* G_DEVICE_ENVIRONMENT_DATA;
+void OlaGLDevice::init()
 {
-#if defined WIN32
+	unsigned int h = G_DEVICE_ENVIRONMENT_DATA[0];
 	_createGLRenderContext(h);
-#endif
 }
 
 void OlaGLDevice::setViewport( int x,int y,int w,int h )

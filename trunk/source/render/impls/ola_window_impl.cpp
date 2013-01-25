@@ -24,7 +24,7 @@ int OlaWindowImpl::height()
 	throw std::exception("The method or operation is not implemented.");
 }
 
-void OlaWindowImpl::setBackgroundColor( float r,float g,float b,float a )
+void OlaWindowImpl::setBackColor( float r,float g,float b,float a )
 {
 
 }
@@ -56,7 +56,7 @@ bool OlaWindowImpl::isActived()
 	return mActive;
 }
 
-ola::ICamera* OlaWindowImpl::cameras( int* num )
+ola::IViewFrustum* OlaWindowImpl::cameras( int* num )
 {
 	*num = 0;
 	return 0;

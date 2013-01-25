@@ -5,22 +5,13 @@
 
 namespace ola
 {
-	struct RenderWindowInfo
-	{
-		char name[128];
-		unsigned int hwnd;
-		int width;
-		int height;
-		bool full;
-	};
-
 	class IRenderCoreObj //由外部管理生命的对象
 	{
 	public:
 		virtual ~IRenderCoreObj(){}
 	};
 
-	class ICamera : public IRenderCoreObj
+	class IViewFrustum : public IRenderCoreObj
 	{
 	public:
 		virtual void setPrespect(float fovy,float aspect,float n,float f) = 0;
@@ -31,13 +22,10 @@ namespace ola
 		virtual void getProjMatrix(float* mat44) = 0;
 	};
 
-	class IRenderWindow : public IRenderCoreObj
+	class IDrawSurface : public IRenderCoreObj
 	{
 	public:	
-		virtual void setBackgroundColor(float r,float g,float b,float a) = 0;
-
-		virtual void setActive(bool a) = 0;
-		virtual bool isActived() = 0;
+		virtual void setBackColor(float r,float g,float b,float a) = 0;
 
 		virtual void resize(int w,int h) = 0;
 
@@ -136,19 +124,37 @@ namespace ola
 		virtual void getTargetPos(tVec3* out_pos) = 0;
 	};
 
+	enum HARDWARE_TYPE
+	{
+		HWT_GL,
+		HWT_GLES,
+		HWT_D3D
+	};
+
+	class IHardwareEnvironment
+	{
+		virtual void setHardwareHandle(unsigned int hwnd) = 0;
+		virtual HARDWARE_TYPE hardwareType() = 0;
+	};
+
 	class IRenderCore
 	{
 	public:
 		virtual ~IRenderCore(){};
 
-		virtual bool initialize(unsigned int hwnd) = 0;
-		virtual void release() = 0;
+		virtual IHardwareEnvironment* createHardware(HARDWARE_TYPE hwt) = 0;
+
+		virtual bool initialize() = 0;
+		virtual void release() = 0;		
+
+		virtual void setDrawSurface(IDrawSurface* suf) = 0;	
+		virtual IViewFrustum* viewfrustum() = 0;
 
 		virtual void beginDraw() = 0;
 		virtual void drawScene() = 0;
 		virtual void endDraw() = 0;
 
-		virtual IRenderWindow* createWindow(RenderWindowInfo* info) = 0;
+		virtual IDrawSurface* createDrawSurface() = 0;
 
 		virtual IGeometry* createGeometry() = 0;
 		virtual IMaterial* createMaterial() = 0;

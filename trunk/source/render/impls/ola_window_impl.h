@@ -5,14 +5,14 @@
 
 class OlaRenderCore;
 class OlaSwapBuffer;
-class OlaWindowImpl : public ola::IRenderWindow
+class OlaWindowImpl : public ola::IDrawSurface
 {
 public:
 	OlaWindowImpl(OlaRenderCore* parent);
 
 	virtual ~OlaWindowImpl();
 
-	virtual void setBackgroundColor(float r,float g,float b,float a);
+	virtual void setBackColor(float r,float g,float b,float a);
 
 	virtual void resize( int w,int h );
 
@@ -26,7 +26,7 @@ public:
 
 	virtual bool isActived();
 
-	virtual ola::ICamera* cameras( int* num );
+	virtual ola::IViewFrustum* cameras( int* num );
 
 protected:
 

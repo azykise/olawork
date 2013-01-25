@@ -13,22 +13,27 @@ OlaRenderDevice* GetRenderDevice()
 }
 
 OlaRenderCoreImpl::OlaRenderCoreImpl():
-mRender(0)
+mRender(0),
+mDeviceEnv(0)
 {
-
+	mDeviceEnv = new OlaHardwareEnvImpl();
 }
 
 OlaRenderCoreImpl::~OlaRenderCoreImpl()
 {
-
+	if(mDeviceEnv)
+	{
+		delete mDeviceEnv;
+		mDeviceEnv = 0;
+	}
 }
 
 const int DEFAULT_W = 320;
 const int DEFAULT_H = 480;
-bool OlaRenderCoreImpl::initialize( unsigned int hwnd )
+bool OlaRenderCoreImpl::initialize()
 {
 	gDevice = SpawnGLRenderDevice();
-	gDevice->init(hwnd);
+	gDevice->init();
 
 	mRender = new OlaRender();
 	mRender->onInitRender(DEFAULT_W,DEFAULT_H,gDevice);
@@ -66,7 +71,7 @@ void OlaRenderCoreImpl::endDraw()
 	throw std::exception("The method or operation is not implemented.");
 }
 
-IRenderWindow* OlaRenderCoreImpl::createWindow( RenderWindowInfo* info )
+IDrawSurface* OlaRenderCoreImpl::createDrawSurface( )
 {
 	throw std::exception("The method or operation is not implemented.");
 }
@@ -118,5 +123,26 @@ int OlaRenderCoreImpl::resourceNum( const char* res_name )
 	throw std::exception("The method or operation is not implemented.");
 }
 
+IHardwareEnvironment* OlaRenderCoreImpl::createHardware( HARDWARE_TYPE hwt )
+{
+	return mDeviceEnv;
+}
 
+
+extern unsigned int* G_DEVICE_ENVIRONMENT_DATA;
+
+void OlaHardwareEnvImpl::setHardwareHandle( unsigned int hwnd )
+{
+	G_DEVICE_ENVIRONMENT_DATA[0] = hwnd;
+}
+
+ola::HARDWARE_TYPE OlaHardwareEnvImpl::hardwareType()
+{
+	throw std::exception("The method or operation is not implemented.");
+}
+
+OlaHardwareEnvImpl::~OlaHardwareEnvImpl()
+{
+
+}
 

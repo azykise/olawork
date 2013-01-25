@@ -28,7 +28,7 @@ namespace ola
 	class IGameCamera : public IGameEntity
 	{
 	public:
-		virtual ICamera* camera() = 0;
+		virtual IViewFrustum* camera() = 0;
 	};
 
 	class IGameActor : public IGameEntity

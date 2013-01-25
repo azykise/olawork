@@ -48,7 +48,7 @@ namespace ola
 
 		virtual void attachCell(ISceneCell* cell) = 0;
  
-		virtual void setCamera(ICamera* cam) = 0;
+		virtual void setCamera(IViewFrustum* cam) = 0;
 
 		virtual void update() = 0;
 

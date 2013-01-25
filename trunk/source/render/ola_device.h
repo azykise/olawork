@@ -9,6 +9,7 @@ class OlaTexture;
 class OlaShaderFX;
 class OlaRenderOp;
 class OlaRenderTarget;
+class OlaHardwareEnvImpl;
 struct OlaGlobalFXConst;
 
 class OlaSwapBuffer
@@ -28,7 +29,7 @@ public:
 	OlaRenderDevice(){};
 	virtual ~OlaRenderDevice(){};
 
-	virtual void init(unsigned int h){};
+	virtual void init(){};
 
 	virtual OlaVB* spawnVB() = 0;
 	virtual OlaIB* spawnIB() = 0;

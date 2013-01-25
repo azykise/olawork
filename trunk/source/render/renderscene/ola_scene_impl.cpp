@@ -35,7 +35,7 @@ void OlaSceneImpl::attachCell( ISceneCell* cell )
 	mScene->attachCell(cell_impl);
 }
 
-void OlaSceneImpl::setCamera( ICamera* cam )
+void OlaSceneImpl::setCamera( IViewFrustum* cam )
 {
 	throw std::exception("The method or operation is not implemented.");
 }

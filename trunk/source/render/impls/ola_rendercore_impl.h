@@ -11,6 +11,16 @@ using namespace ola;
 class OlaRenderableImpl;
 class OlaRender;
 
+class OlaHardwareEnvImpl : public ola::IHardwareEnvironment
+{
+public:
+	virtual ~OlaHardwareEnvImpl();
+
+	virtual void setHardwareHandle( unsigned int hwnd );
+
+	virtual ola::HARDWARE_TYPE hardwareType();
+};
+
 class OlaRenderCoreImpl : public ola::IRenderCore
 {
 public:
@@ -19,9 +29,11 @@ public:
 
 	OlaRenderCoreImpl();
 
+	virtual IHardwareEnvironment* createHardware( HARDWARE_TYPE hwt );
+
 	virtual ~OlaRenderCoreImpl();
 
-	virtual bool initialize( unsigned int hwnd );
+	virtual bool initialize();
 
 	virtual void release();
 
@@ -31,7 +43,7 @@ public:
 
 	virtual void endDraw();
 
-	virtual IRenderWindow* createWindow( RenderWindowInfo* info );
+	virtual IDrawSurface* createDrawSurface();
 
 	virtual IPrimitive* createPrimitive( PrimitiveType type );
 
@@ -51,9 +63,10 @@ public:
 
 	virtual int resourceNum( const char* res_name );
 
-	inline RenderableList& renderables(){return mRenderables;}
+	inline RenderableList& renderables(){return mRenderables;}	
 
 protected:
+	OlaHardwareEnvImpl* mDeviceEnv;
 	RenderableList mRenderables;
 	OlaRender* mRender;
 };

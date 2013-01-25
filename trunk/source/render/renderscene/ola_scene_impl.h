@@ -19,7 +19,7 @@ public:
 
 	virtual void attachCell( ISceneCell* cell );
 
-	virtual void setCamera( ICamera* cam );
+	virtual void setCamera( IViewFrustum* cam );
 
 	virtual void update();
 
