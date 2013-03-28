@@ -22,7 +22,7 @@ class CModel;
 #include "ola_renderqueue.h"
 #include "ola_fxconst.h"
 
-class OlaSceneBase;
+class OlaRenderScene;
 
 class OlaPipeLineParam
 {
@@ -53,7 +53,8 @@ public:
 	virtual void release(){};
 
 	virtual void notify(OlaPipeLineParam::NOTIFY_TYPE type,void* var0,void* var1){};
-	
+
+	virtual void pushToRender(CModel* model);
 	virtual void pushToRender(OlaRenderOp* op);
 	virtual void pushToRender(OlaPrimitive* pri);
 
@@ -61,7 +62,7 @@ public:
 
 	virtual void resize(int w,int h){};
 
-	virtual void setCurrentScene(OlaSceneBase* s){mCurrentScene = s;}
+	virtual void setCurrentScene(OlaRenderScene* s){mCurrentScene = s;}
 
 	void setMatrix(OlaRenderPipeLine::MATRIX_TYPE type,olaMat4& mat);
 	void pushMatrix(OlaRenderPipeLine::MATRIX_TYPE type,olaMat4& mat);
@@ -83,7 +84,7 @@ protected:
 
 	OlaGlobalFXConst mGlobalShaderConst;
 
-	OlaSceneBase* mCurrentScene;
+	OlaRenderScene* mCurrentScene;
 	OlaRenderTarget* mGLOrgRT;
 };
 

@@ -70,7 +70,7 @@ void OlaVFrustum::updateProj()
 	m_proj_mat[3][3] = 0;
 }
 
-void OlaVFrustum::toViewParam(tViewParams* vp)
+void OlaVFrustum::toViewParam(tViewParam* vp)
 {
 	vp->pos[0] = m_eyePt.x;
 	vp->pos[1] = m_eyePt.y;
@@ -86,7 +86,7 @@ void OlaVFrustum::toViewParam(tViewParams* vp)
 	vp->fovy = m_fovy;	
 }
 
-void OlaVFrustum::fromViewParam(tViewParams* vp)
+void OlaVFrustum::fromViewParam(tViewParam* vp)
 {
 	m_eyePt.x = vp->pos[0];
 	m_eyePt.y = vp->pos[1];

@@ -26,7 +26,7 @@ public:
 	typedef std::vector<CModel*> ModelList;
 	typedef std::vector<OlaPrimitive*> PrimitiveList;
 	typedef std::vector<OlaSkeletonModel*> SkeletonModelList;	
-	typedef OlaArray<OlaSceneBase*> SceneList;
+	typedef OlaArray<OlaRenderScene*> SceneList;
 
 	enum SCENE_TYPE
 	{
@@ -45,11 +45,11 @@ public:
 
 	void loadScene(const char* filename);
 
-	void setRenderScene(OlaSceneBase* scene);
-	OlaSceneBase* scene(){return mCurrentScene;};
-	OlaSceneBase* scene(const char* name);
+	void setRenderScene(OlaRenderScene* scene);
+	OlaRenderScene* scene(){return mCurrentScene;};
+	OlaRenderScene* scene(const char* name);
 
-	OlaSceneBase* createScene(const char* name,SCENE_TYPE t);
+	OlaRenderScene* createScene(const char* name,SCENE_TYPE t);
 
 	CModel* loadModelFromDML(const char* filename);
 
@@ -69,8 +69,8 @@ public:
 	PrimitiveList mPrims;
 	SkeletonModelList mSkeletonModels;
 	
-	OlaSceneBase* mCurrentScene;
-	OlaSceneBase* mScene0;
+	OlaRenderScene* mCurrentScene;
+	OlaRenderScene* mScene0;
 
 	OlaSkeleton* mGirlSkeleton;
 	OlaRender* mRender;

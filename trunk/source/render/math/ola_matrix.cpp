@@ -1526,11 +1526,6 @@ olaMat4::olaMat4( const float src[ 4 ][ 4 ] ) {
 	memcpy( mat, src, 4 * 4 * sizeof( float ) );
 }
 
-void olaMat4::Set(const float* m44)
-{
-	memcpy( mat, m44, 4 * 4 * sizeof( float ) );
-}
-
 const olaVec4 &olaMat4::operator[]( int index ) const {
 	//assert( ( index >= 0 ) && ( index < 4 ) );
 	return mat[ index ];

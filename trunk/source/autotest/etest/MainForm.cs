@@ -237,7 +237,6 @@ namespace etest
 
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            e.Node.Checked = true;
             if (e.Node.Parent != null)
             {
                 foreach (TreeNode s_node in e.Node.Parent.Nodes)

@@ -9,7 +9,6 @@ class OlaTexture;
 class OlaShaderFX;
 class OlaRenderOp;
 class OlaRenderTarget;
-class OlaHardwareEnvImpl;
 struct OlaGlobalFXConst;
 
 class OlaSwapBuffer
@@ -17,6 +16,7 @@ class OlaSwapBuffer
 public:
 	virtual ~OlaSwapBuffer(){};
 
+	virtual void setScreenHandle(void* ph) = 0;
 	virtual void resize(int x,int y) = 0;
 	virtual void swapBuffer() = 0;
 
@@ -29,7 +29,7 @@ public:
 	OlaRenderDevice(){};
 	virtual ~OlaRenderDevice(){};
 
-	virtual void init(){};
+	virtual void init(unsigned int h){};
 
 	virtual OlaVB* spawnVB() = 0;
 	virtual OlaIB* spawnIB() = 0;
@@ -42,8 +42,6 @@ public:
 	virtual void clearViewport(float r,float g,float b,float a) = 0;
 
 	virtual void setRenderTarget(OlaRenderTarget* rt) = 0;
-
-	//muse called when switch to rendering on another window,before any device api called
 	virtual void setSwapBuffer(OlaSwapBuffer* swb) = 0;
 
 	//switch render state ; set global vars : worldmat viewmat etc

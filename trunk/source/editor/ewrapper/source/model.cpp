@@ -12,7 +12,7 @@ namespace Engine
 		Name = name;
 		RenderSys = rendersys;
 
-		const ola::tAABB* paabb = model->aabb();
+		const ola::aabb* paabb = model->aabb();
 		float w = paabb->maxv.x - paabb->minv.x;
 		float l = paabb->maxv.y - paabb->minv.y;
 		float h = paabb->maxv.z - paabb->minv.z;

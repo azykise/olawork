@@ -18,11 +18,37 @@ public:
 
 	virtual ~CModel();
 
+	void setWorldTransform(olaMat4& m){mWorldMat = m;}
+
+	void setScale(float x,float y,float z);
+	void setRotation(float x,float y,float z,float w);
+	void setPostition(float x,float y,float z);
+
+	void setScale(olaVec3& sca);	
+	void setRotation(olaQuat& quat);	
+	void setPostition(olaVec3& pos);
+
+	olaMat4& getWorldTransform(){return mWorldMat;}
+
 	RenderOpList& renderops() {return mRenderOps;} 
 
-	OlaMesh* mesh(){return mMesh;}	
+	OlaMesh* mesh(){return mMesh;}
+
+	const char* name(){return mName.c_str();}
+
+protected:
+
+	void _setWorldTransform();
+
+	olastring mName;	
+
+	olaMat4 mWorldMat;
 
 	OlaMesh* mMesh;
+
+	olaVec3 mPosition;
+	olaVec3 mScale;
+	olaQuat mRotation;
 
 	RenderOpList mRenderOps;
 };

@@ -43,21 +43,6 @@ public:
 	}
 };
 
-template<class T>
-class OlaList : public std::list<T>
-{
-public:
-	OlaList():std::list<T>(){}
-};
-
-template<class T>
-class OlaQueue : public std::queue<T>
-{
-public:
-	OlaQueue():std::queue<T>(){}
-
-};
-
 template <class T1,class T2,class _pr = std::less<T1> >
 class OlaMap:public std::map<T1,T2,_pr>
 {

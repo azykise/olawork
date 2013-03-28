@@ -3,7 +3,7 @@
 
 #include "math/ola_math.h"
 
-struct tViewParams
+struct tViewParam
 {
 	float pos[3];
 	float lookat[3];
@@ -39,8 +39,8 @@ public:
 
 	olaVec3 getCorner(int n)			{return n>=0 && n < 8 ? m_corners[n] : olaVec3(0,0,0);}
 
-	void toViewParam(tViewParams* vp);
-	void fromViewParam(tViewParams* vp);
+	void toViewParam(tViewParam* vp);
+	void fromViewParam(tViewParam* vp);
 
 protected:
 

@@ -1,8 +1,13 @@
 #include "ola_smallscene.h"
 #include "../ola_light.h"
 
-OlaSmallScene::OlaSmallScene( const char* name ):
-OlaSceneBase(name)
+OlaRenderScene* newSmallScene(const char* name,OlaRenderSceneMng* mng)
+{
+	return new OlaSmallScene(name,mng);
+}
+
+OlaSmallScene::OlaSmallScene( const char* name,OlaRenderSceneMng* mng ):
+OlaRenderScene(name,mng)
 {
 
 }
@@ -12,34 +17,53 @@ OlaSmallScene::~OlaSmallScene()
 
 }
 
-void OlaSmallScene::attachCell( OlaSceneCellImpl* cell )
+void OlaSmallScene::attachObj( ISpatialObj* obj )
 {
-	if(!mRoot->cells().contains(cell))
+	unsigned int f = obj->flags();
+
+	if (f & SPATIAL_OBJPARAM::OBJFLAG_LIGHT)
 	{
-		mRoot->cells().add(cell);
-	}				
+		OlaLight* l = dynamic_cast<OlaLight*>(obj);
+		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
+		OlaRenderScene* ls = l->scene();
+		if (ls && ls != this)
+		{
+			ls->detachObj(l);
+		}
+		l->setScene(this);
+		mLights.add(l);
+	}		
 }
 
-void OlaSmallScene::detachCell( OlaSceneCellImpl* cell )
+void OlaSmallScene::detachObj( ISpatialObj* obj )
 {
-	if(mRoot->cells().contains(cell))
+	unsigned int f = obj->flags();
+
+	if (f & SPATIAL_OBJPARAM::OBJFLAG_LIGHT)
 	{
-		mRoot->cells().remove(cell);
+		OlaLight* l = dynamic_cast<OlaLight*>(obj);
+		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
+		if (mLights.contains(l))
+		{
+			l->setScene(0);
+			mLights.remove(l);
+		}
 	}
 }
 
 void OlaSmallScene::initialize()
 {
-	OlaSceneBase::initialize();
+	OlaRenderScene::initialize();
 	mRoot = new OlaSceneNode("Root",0);
 }
 
 void OlaSmallScene::release()
 {
-	OlaSceneBase::release();
+	OlaRenderScene::release();
+	mLights.clear();
 }
 
-CellList& OlaSmallScene::visibleCells()
+const OlaRenderScene::LightList* OlaSmallScene::lights( bool all /*= false */ )
 {
-	return mRoot->cells();
+	return &mLights;
 }

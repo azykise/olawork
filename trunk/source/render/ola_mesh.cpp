@@ -158,7 +158,7 @@ bool OlaMesh::load(OlaAsset* asset)
 
 OlaSubMesh::OlaSubMesh(const char* name):
 mName(name),
-mOrgMaterial(0),
+mMaterial(0),
 mVB(0),
 mIB(0)
 {
@@ -189,10 +189,10 @@ void OlaSubMesh::clear()
 	mVB->release();
 	mIB->release();
 
-	if (mOrgMaterial)
+	if (mMaterial)
 	{
-		mOrgMaterial->delRef();
-		mOrgMaterial = 0;
+		mMaterial->delRef();
+		mMaterial = 0;
 	}
 
 	for (size_t i = 0 ; i < mSkeletonBones.size() ; i++)
@@ -206,7 +206,7 @@ void OlaSubMesh::copyTo(OlaSubMesh* submesh,OlaVBParam::VBO_TYPE vb_type)
 {
 	submesh->clear();
 
-	submesh->setOrgMaterial(mOrgMaterial);
+	submesh->setMaterial(mMaterial);
 	if(mVertexSkinInfos.size() != 0)
 	{
 		submesh->mVertexSkinInfos.resize(mVertexSkinInfos.size());
@@ -423,13 +423,13 @@ bool OlaSubMesh::load(OlaASE::geomobj* geo0,MeshFaceList& faces)
 	return true;
 }
 
-void OlaSubMesh::setOrgMaterial( OlaMaterial* mat )
+void OlaSubMesh::setMaterial( OlaMaterial* mat )
 {
-	if (mOrgMaterial)	
-		mOrgMaterial->delRef();	
+	if (mMaterial)	
+		mMaterial->delRef();	
 
-	mOrgMaterial = mat;
-	mOrgMaterial->addRef();
+	mMaterial = mat;
+	mMaterial->addRef();
 }
 
 //bool OlaSubMesh::attachSkeleton(OlaSkeleton* skel)

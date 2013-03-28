@@ -3,29 +3,30 @@
 
 #include "ola_scenemng.h"
 
-OlaSceneBase* OlaRenderSceneMng::scene( const char* name )
+OlaRenderScene* OlaRenderSceneMng::scene( const char* name )
 {
 	return mScene0;
 }
 
-OlaSceneBase::OlaSceneBase( const char* name):
+OlaRenderScene::OlaRenderScene( const char* name, OlaRenderSceneMng* mng ):
 mName(name),
+mParent(mng),
 mRoot(0)
 {
 	
 }
 
-OlaSceneBase::~OlaSceneBase()
+OlaRenderScene::~OlaRenderScene()
 {
 	
 }
 
-void OlaSceneBase::initialize()
+void OlaRenderScene::initialize()
 {
 	release();	
 }
 
-void OlaSceneBase::release()
+void OlaRenderScene::release()
 {
 	if (mRoot)
 	{
@@ -34,7 +35,12 @@ void OlaSceneBase::release()
 	}
 }
 
-OlaSceneNode* OlaSceneBase::findNode( const char* name )
+const OlaRenderScene::LightList* OlaRenderScene::lights( bool all /*= false*/ )
+{
+	return 0;
+}
+
+OlaSceneNode* OlaRenderScene::findNode( const char* name )
 {	
 	if (!strcmp(name,mRoot->name().c_str()))	
 		return mRoot;	

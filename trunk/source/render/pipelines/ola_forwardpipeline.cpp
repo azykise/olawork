@@ -50,8 +50,8 @@ void OlaForwardPipeline::initialize()
     float h = mRender->getScreenH();
 
 	mLightVFrustum = new OlaVFrustum();
-	tViewParams vp;
-	memset(&vp,0,sizeof(tViewParams));
+	tViewParam vp;
+	memset(&vp,0,sizeof(tViewParam));
 	vp.aspect = 1.0f;
 	vp.far_dist = 1001.f;
 	vp.near_dist = 1.0f;
@@ -97,14 +97,14 @@ void OlaForwardPipeline::execute()
 
 	mGlobalShaderConst.EyePos.Set(mGlobalShaderConst.ViewMat[0][3],mGlobalShaderConst.ViewMat[1][3],mGlobalShaderConst.ViewMat[2][3]);
 
-	//const OlaSceneBase::LightList& dir_lights = *(mCurrentScene->lights());
+	const OlaRenderScene::LightList& dir_lights = *(mCurrentScene->lights());
 
-	//mGlobalShaderConst.LightNum = dir_lights.size();
-	//for(int i = 0 ; i < dir_lights.size() ; i++)
-	//{
-	//	mGlobalShaderConst.LightParam[i].pos.Set(dir_lights[i]->position()->x,dir_lights[i]->position()->y,dir_lights[i]->position()->z);
-	//	mGlobalShaderConst.LightParam[i].dst.Set(dir_lights[i]->lookatPT()->x,dir_lights[i]->lookatPT()->y,dir_lights[i]->lookatPT()->z);
-	//}
+	mGlobalShaderConst.LightNum = dir_lights.size();
+	for(int i = 0 ; i < dir_lights.size() ; i++)
+	{
+		mGlobalShaderConst.LightParam[i].pos.Set(dir_lights[i]->position()->x,dir_lights[i]->position()->y,dir_lights[i]->position()->z);
+		mGlobalShaderConst.LightParam[i].dst.Set(dir_lights[i]->lookatPT()->x,dir_lights[i]->lookatPT()->y,dir_lights[i]->lookatPT()->z);
+	}
 
 	_renderGroupedModels();
 

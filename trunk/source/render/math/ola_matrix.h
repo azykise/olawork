@@ -259,7 +259,6 @@ public:
 
 	void			CopyToFloatArrayColumn(float* m44);
 	void			FromFloatsColumnMajor(float* pOut);
-	void			Set(const float* m44);
 private:
 	olaVec4			mat[ 4 ];
 };

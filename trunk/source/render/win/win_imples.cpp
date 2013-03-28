@@ -131,7 +131,7 @@ void OlaRenderableImpl::clear()
 	mRenderOps.clear();
 }
 
-ola::tAABB* OlaStaticModelImpl::aabb()
+ola::aabb* OlaStaticModelImpl::aabb()
 {
 	mAABB.minv.x = mAABB.minv.y = mAABB.minv.z = olaMath::INFINITY;
 	mAABB.maxv.x = mAABB.maxv.y = mAABB.maxv.z = -1.0f * olaMath::INFINITY;
@@ -225,7 +225,7 @@ ola::IRenderable* OlaCharacterImpl::renderer()
 	return mRenderer;
 }
 
-ola::tAABB* OlaCharacterImpl::aabb()
+ola::aabb* OlaCharacterImpl::aabb()
 {
 	return 0;
 }
@@ -291,7 +291,7 @@ public:
 
 	}	
 
-	virtual void getPosition(ola::tVec3* out_pos) 
+	virtual void getPosition(ola::vec3* out_pos) 
 	{
 		out_pos->x = mLight->position()->x;
 		out_pos->y = mLight->position()->y;
@@ -304,7 +304,7 @@ public:
 		mLight->setPosition(p);
 	}
 
-	virtual void getRotation(ola::tQuat* out_rot) 
+	virtual void getRotation(ola::quat* out_rot) 
 	{
 		
 	}
@@ -376,7 +376,7 @@ void OlaLightImpl::setTargetPos( float x,float y,float z )
 	mLight->setLookAtPT(p);
 }
 
-void OlaLightImpl::getTargetPos( ola::tVec3* out_pos )
+void OlaLightImpl::getTargetPos( ola::vec3* out_pos )
 {
 	out_pos->x = mLight->lookatPT()->x;
 	out_pos->y = mLight->lookatPT()->y;

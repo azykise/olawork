@@ -6,11 +6,10 @@
 class OlaEGLBufferWin : public OlaSwapBuffer
 {
 public:
-	OlaEGLBufferWin(void* ph, OlaGLDevice* device);
-
+	OlaEGLBufferWin(OlaGLDevice* device);
 	virtual ~OlaEGLBufferWin();
 
-//	virtual void setScreenHandle( void* ph );
+	virtual void setScreenHandle( void* ph );
 
 	virtual void resize( int x,int y );
 

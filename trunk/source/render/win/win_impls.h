@@ -196,12 +196,12 @@ public:
 
 	virtual ola::ITransform* transform(){return 0;}
 
-	virtual ola::tAABB* aabb();	
+	virtual ola::aabb* aabb();	
 
 	OlaGeometryImpl* mGeometry;
 	OlaResourceMng* mResourceMng;
 
-	ola::tAABB mAABB;
+	ola::aabb mAABB;
 };
 
 class OlaCharacterImpl : public ola::ICharacter
@@ -212,7 +212,7 @@ public:
 
 	virtual ~OlaCharacterImpl();
 
-	virtual ola::tAABB* aabb();
+	virtual ola::aabb* aabb();
 
 	virtual void setPassedTime(float t);
 
@@ -246,12 +246,12 @@ public:
 
 	virtual ~OlaLightImpl();
 
-	virtual ola::tAABB* aabb() {return 0;}
+	virtual ola::aabb* aabb() {return 0;}
 
 	virtual ola::ITransform* transform();
 
 	virtual void setTargetPos(float x,float y,float z);
-	virtual void getTargetPos(ola::tVec3* out_pos);
+	virtual void getTargetPos(ola::vec3* out_pos);
 
 	virtual ola::ISceneEntry* entry();
 

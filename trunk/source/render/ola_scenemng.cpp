@@ -41,11 +41,11 @@ OlaRenderSceneMng::~OlaRenderSceneMng()
 
 void OlaRenderSceneMng::initialize()
 {
-	//mScene0 = newSmallScene("scene0",this);
-	//mScene0->initialize();
-	//mCurrentScene = mScene0;
+	mScene0 = newSmallScene("scene0",this);
+	mScene0->initialize();
+	mCurrentScene = mScene0;
 
-	//mGirlSkeleton = mRender->getResourceMng()->getSkeleton("girl_skeleton","art\\role\\skeleton\\girl_skeleton.ase");
+	mGirlSkeleton = mRender->getResourceMng()->getSkeleton("girl_skeleton","art\\role\\skeleton\\girl_skeleton.ase");
 }
 
 
@@ -252,7 +252,6 @@ const char DML_MAT[] = "material";
 const char DML_RESOURCE[] = "resource";
 CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 {
-	/*
 	OlaRender* render = mRender;
 	OlaAsset* xml_asset = render->getLoader()->load(filename);
 	const char* p_xml = xml_asset->data;
@@ -298,8 +297,7 @@ CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 
 	delete xml;
 
-	return model;*/
-	return 0;
+	return model;
 }
 
 const char CHR_ROOT[] = "ola_character";
@@ -310,7 +308,7 @@ const char CHR_ANI[] = "animation";
 const char CHR_NAME[] = "name";
 const char CHR_RESOURCE[] = "resource";
 OlaSkeletonModel* OlaRenderSceneMng::loadSkeletonModelFromCHR(const char* filename )
-{/*
+{
 	OlaAsset* xml_asset = mRender->getLoader()->load(filename);
 	const char* p_xml = xml_asset->data;
 	TiXmlDocument xml;
@@ -367,24 +365,22 @@ OlaSkeletonModel* OlaRenderSceneMng::loadSkeletonModelFromCHR(const char* filena
 	mSkeletonModels.push_back(model);
 
 	return model;
-	*/
-	return 0;
 }
 
-OlaSceneBase* OlaRenderSceneMng::createScene( const char* name,SCENE_TYPE t )
+OlaRenderScene* OlaRenderSceneMng::createScene( const char* name,SCENE_TYPE t )
 {
-	OlaSceneBase* scene = 0;
-	//switch(t)
-	//{
-	//case SCENE_SMALL:
-	//	scene = newSmallScene(name,this);
-	//	scene->initialize();
-	//	break;
-	//}
+	OlaRenderScene* scene = 0;
+	switch(t)
+	{
+	case SCENE_SMALL:
+		scene = newSmallScene(name,this);
+		scene->initialize();
+		break;
+	}
 	return scene;
 }
 
-void OlaRenderSceneMng::setRenderScene( OlaSceneBase* scene )
+void OlaRenderSceneMng::setRenderScene( OlaRenderScene* scene )
 {
 	mCurrentScene = scene ? scene : mScene0;
 }

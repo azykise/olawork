@@ -4,7 +4,7 @@
 #include "math/ola_math.h"
 #include "ola_entity.h"
 
-class OlaLight
+class OlaLight : public ISpatialObj
 {
 public:
 	enum LIGHT_TYPE

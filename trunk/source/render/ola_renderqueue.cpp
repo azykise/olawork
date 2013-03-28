@@ -216,7 +216,7 @@ void OlaRenderQueue::pushToRener(OlaRenderOp* op)
 			break;
 		case OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST:
 			mRenderGroups[SOILD_GROUP]->groupRenderOp(op);
-			mTotalTris += op->ib()->num_i() / 3;
+			mTotalTris += op->ib->num_i() / 3;
 			break;
 	}
 

@@ -5,21 +5,23 @@
 #include "../ola_scene.h"
 
 
-class OlaSmallScene : public OlaSceneBase
+class OlaSmallScene : public OlaRenderScene
 {
 public:
-	OlaSmallScene(const char* name);
+	OlaSmallScene(const char* name,OlaRenderSceneMng* mng);
 	virtual ~OlaSmallScene();
 
 	virtual void initialize();
 	virtual void release();
 
-	virtual void attachCell(OlaSceneCellImpl* obj);
-	virtual void detachCell(OlaSceneCellImpl* obj);
+	virtual void attachObj(ISpatialObj* obj);
+	virtual void detachObj(ISpatialObj* obj);
 
-	virtual CellList& visibleCells();
+	virtual const LightList* lights( bool all = false );
+
 protected:
-	
+
+	LightList mLights;
 };
 
 

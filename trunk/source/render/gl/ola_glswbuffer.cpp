@@ -11,7 +11,7 @@
 
 #include "ola_glswbuffer.h"
 
-OlaEGLBufferWin::OlaEGLBufferWin(void* ph,OlaGLDevice* device):
+OlaEGLBufferWin::OlaEGLBufferWin(OlaGLDevice* device):
 mDevice(device),
 mEGLSurface(EGL_NO_SURFACE),
 mEGLContext(EGL_NO_CONTEXT),
@@ -21,14 +21,8 @@ mHWND(0)
 		EGL_CONTEXT_CLIENT_VERSION, 2,
 		EGL_NONE
 	};
-
 	mEGLContext = eglCreateContext(mDevice->glDisplay(), mDevice->glConfigs()[0], device->glContext(), aEGLContextAttributes);
 	assert (mEGLContext != EGL_NO_CONTEXT && "Failed to create EGL context.\n");
-
-	mHWND = *static_cast<unsigned int*>(ph);
-
-	mEGLSurface = eglCreateWindowSurface(mDevice->glDisplay(), mDevice->glConfigs()[0], (EGLNativeWindowType)mHWND , 0);
-	assert(mEGLSurface != EGL_NO_SURFACE && "Failed to create EGL surface.\n");	
 }
 
 OlaEGLBufferWin::~OlaEGLBufferWin()
@@ -42,31 +36,31 @@ OlaEGLBufferWin::~OlaEGLBufferWin()
 
 	if (mEGLContext)
 	{
-		eglDestroyContext(mDevice->glDisplay(),mEGLContext);
+		//eglDestroyContext(mDevice->glDisplay(),mEGLContext);
 		mEGLContext = 0;
 	}
 }
 
-//void OlaEGLBufferWin::setScreenHandle( void* ph )
-//{
-//	unsigned int* p = (unsigned int*)ph;
-//	if (mHWND == *p)
-//	{
-//		return;
-//	}
-//
-//	mHWND = *p;
-//
-//	if (mEGLSurface)
-//	{
-//		eglDestroySurface(mDevice->glDisplay(),mEGLSurface);
-//		mEGLSurface = 0;
-//		mHWND = 0;
-//	}
-//
-//	mEGLSurface = eglCreateWindowSurface(mDevice->glDisplay(), mDevice->glConfigs()[0], (EGLNativeWindowType)mHWND , 0);
-//	assert(mEGLSurface != EGL_NO_SURFACE && "Failed to create EGL surface.\n");	
-//}
+void OlaEGLBufferWin::setScreenHandle( void* ph )
+{
+	unsigned int* p = (unsigned int*)ph;
+	if (mHWND == *p)
+	{
+		return;
+	}
+
+	mHWND = *p;
+
+	if (mEGLSurface)
+	{
+		eglDestroySurface(mDevice->glDisplay(),mEGLSurface);
+		mEGLSurface = 0;
+		mHWND = 0;
+	}
+
+	mEGLSurface = eglCreateWindowSurface(mDevice->glDisplay(), mDevice->glConfigs()[0], (EGLNativeWindowType)mHWND , 0);
+	assert(mEGLSurface != EGL_NO_SURFACE && "Failed to create EGL surface.\n");	
+}
 
 void OlaEGLBufferWin::resize( int x,int y )
 {

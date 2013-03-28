@@ -33,7 +33,7 @@ public:
 	inline void* glContext(){return mEGLContext;}
 	inline void** glConfigs(){return mEGLConfigs;}
 
-	virtual void init();
+	virtual void init(unsigned int h);
 
 	virtual void setViewport( int x,int y,int w,int h );
 

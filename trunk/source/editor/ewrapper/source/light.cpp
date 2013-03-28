@@ -14,7 +14,7 @@ namespace Engine
 		mRenderSys = rendersys;
 		mName = name;
 
-		ola::tVec3 v(0,0,0);
+		ola::vec3 v(0,0,0);
 		mLight->transform()->getPosition(&v);
 		mSrcPos = gcnew Vector3F(v.x,v.y,v.z);
 

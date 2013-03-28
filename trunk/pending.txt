@@ -19,11 +19,6 @@ ola_ase 读取器需要和h3d_editor中的nv_ase merge一下 以便方便的读取h3d资源
 2012/9/10
 ispatialobj 的设置有问题 如何判断ispatialobj的实际类型? 现在使用flags的方式感觉还是有问题
 
-2012/11/16
-scene 和 render 分开
-model 和 scene/render分开 加入game模块 实现场景管理，逻辑，渲染的模块分离
-render内部实现组件化，加入对象池机制
-
 
 
 

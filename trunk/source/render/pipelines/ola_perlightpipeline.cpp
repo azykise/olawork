@@ -57,13 +57,13 @@ void OlaPerLightPipeline::initialize()
 	mShadowmapRT = GetRenderDevice()->spawnRenderTarget(SHADOWMAP_RENDERTARGET);
 	mShadowmapRT->initialize(w * SHADOW_MAP_SCALE,h * SHADOW_MAP_SCALE);
     
- //   OlaMaterial* scenefinal_mat = mRender->getMaterial("data/pp_test.mat","pp_test");
-	//scenefinal_mat->addRef();
+    OlaMaterial* scenefinal_mat = mRender->getMaterial("data/pp_test.mat","pp_test");
+	scenefinal_mat->addRef();
 
-	//mSceneFinalQuad = mChain->creatScreenQuad(SCENEFINAL_QUAD,scenefinal_mat);
-	//mFinalQuadRenderOp = new OlaRenderOp(mSceneFinalQuad);
- //   mSceneFinalQuad->setPixelW(w);
-	//mSceneFinalQuad->setPixelH(h);
+	mSceneFinalQuad = mChain->creatScreenQuad(SCENEFINAL_QUAD,scenefinal_mat);
+	mFinalQuadRenderOp = new OlaRenderOp(mSceneFinalQuad);
+    mSceneFinalQuad->setPixelW(w);
+	mSceneFinalQuad->setPixelH(h);
 }
 
 void OlaPerLightPipeline::release()
@@ -106,7 +106,7 @@ void OlaPerLightPipeline::resize(int w,int h)
 void OlaPerLightPipeline::_renderScreenFinalQuad()
 {
 	GetRenderDevice()->setViewport(0,0,mSceneFinalQuad->pixelW(),mSceneFinalQuad->pixelH());
-    OlaMaterial* material = mSceneFinalQuad->orgMaterial();
+    OlaMaterial* material = mSceneFinalQuad->material();
 
 	OlaMaterialParam::PARAM_VALUE* diffuse_value = material->symbol(OlaMaterialParam::DIFFUSE0);
 	if(diffuse_value)
@@ -145,13 +145,13 @@ void OlaPerLightPipeline::execute()
 
 void OlaPerLightPipeline::_renderShadowMap()
 {
-	//const OlaSceneBase::LightList& dir_lights = *(mCurrentScene->lights());;
+	const OlaRenderScene::LightList& dir_lights = *(mCurrentScene->lights());;
 
-	//olaVec3 pos = *(dir_lights[0]->position());
-	//olaVec3 lat = *(dir_lights[0]->lookatPT());
+	olaVec3 pos = *(dir_lights[0]->position());
+	olaVec3 lat = *(dir_lights[0]->lookatPT());
 
-	//mLightVFrustum->setEyePt(pos);
-	//mLightVFrustum->setLookPt(lat);
+	mLightVFrustum->setEyePt(pos);
+	mLightVFrustum->setLookPt(lat);
 
 	pushMatrix(OlaRenderPipeLine::PROJ_MATRIX,mLightVFrustum->getProjMatrix());
 	pushMatrix(OlaRenderPipeLine::VIEW_MATRIX,mLightVFrustum->getViewMatrix());

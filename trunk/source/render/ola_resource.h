@@ -9,7 +9,7 @@ public:
 
 	virtual void addRef() {mRefCounter++;}
 	virtual void delRef() {if(mRefCounter > 0) mRefCounter--;}
-	inline int refCount() {return mRefCounter;}
+	virtual int refCount() {return mRefCounter;}
 
 protected:
 	int mRefCounter;

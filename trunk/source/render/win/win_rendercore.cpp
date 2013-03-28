@@ -175,7 +175,7 @@ void OlaRenderCore::setView(ola::tViewParam* vp)
 	vf->fromViewParam(&t);	
 }
 
-void OlaRenderCore::setCamera(int index,ola::tVec3& pos,ola::tVec3& tag)
+void OlaRenderCore::setCamera(int index,ola::vec3& pos,ola::vec3& tag)
 {
 	olaVec3 _pos(pos.x,pos.y,pos.z);
 	olaVec3 _tag(tag.x,tag.y,tag.z);
@@ -183,7 +183,7 @@ void OlaRenderCore::setCamera(int index,ola::tVec3& pos,ola::tVec3& tag)
 	mRender->setCamera(index,_pos,_tag);	
 }
 
-void OlaRenderCore::getCamera(int index,ola::tVec3& pos,ola::tVec3& tag)
+void OlaRenderCore::getCamera(int index,ola::vec3& pos,ola::vec3& tag)
 {
 	olaVec3 _pos,_tag;
 

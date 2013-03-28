@@ -1,7 +1,7 @@
 // dllmain.cpp : 定义 DLL 应用程序的入口点。
 #include <windows.h>
 
-#include "../impls/ola_rendercore_impl.h"
+#include "win_rendercore.h"
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -13,11 +13,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 extern "C" __declspec(dllexport) ola::IRenderCore* createRenderCore(HWND hwnd)
 {
-	//ola::IRenderCore* core = new OlaRenderCore();
-	//core->initialize((unsigned int)hwnd);
-	//return core;
-
-	return 0;
+	ola::IRenderCore* core = new OlaRenderCore();
+	core->initialize((unsigned int)hwnd);
+	return core;
 }
 
 extern "C" __declspec(dllexport) void deleteRenderCore(ola::IRenderCore* core)

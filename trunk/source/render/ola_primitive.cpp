@@ -17,7 +17,9 @@ mVB(0)
 	mVB = GetRenderDevice()->spawnVB();
 	mIB = GetRenderDevice()->spawnIB();
 
-	mOp = new OlaRenderOp(mVB,mIB,0);
+	mOp = new OlaRenderOp();
+	mOp->vb = mVB;
+	mOp->ib = mIB;
 	
 	mOp->worldtrans.Identity();
 	mOp->drawmode = OlaRenderParam::PRIM_LINE;

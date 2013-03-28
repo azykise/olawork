@@ -23,6 +23,22 @@ mRender(render),mRenderQueue(0),mGLOrgRT(0),mCurrentScene(0)
 	mProjMatrix.Identity();
 }
 
+void OlaRenderPipeLine::pushToRender(CModel* model)
+{
+	CModel::RenderOpList& op_list = model->renderops();
+	CModel::RenderOpList::iterator op_i = op_list.begin();
+	while(op_i != op_list.end())
+	{
+		OlaRenderOp* op = (*op_i);
+
+		op->worldtrans = model->getWorldTransform();
+
+		mRenderQueue->pushToRener(op);
+		
+		op_i++;
+	}
+}
+
 void OlaRenderPipeLine::pushToRender(OlaRenderOp* op)
 {
 	mRenderQueue->pushToRener(op);

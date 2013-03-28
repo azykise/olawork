@@ -41,7 +41,6 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\source\pvr_gles2\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +63,6 @@
 				AdditionalDependencies="libGLESv2.lib libEGL.lib"
 				OutputFile="..\..\..\bin\ola_render.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\source\pvr_gles2\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -251,10 +249,46 @@
 				RelativePath="..\..\..\source\render\win\dllmain.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\source\interface\ola_engine.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_imples.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_impls.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_rendercore.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_rendercore.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_renderwindow.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\win\win_renderwindow.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="render"
 			>
+			<File
+				RelativePath="..\..\..\source\render\ola_imp.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_imp.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\..\source\render\ola_render.cpp"
 				>
@@ -379,14 +413,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\ola_material_ref.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_material_ref.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\..\source\render\ola_shaderfx.cpp"
 					>
 				</File>
@@ -504,10 +530,6 @@
 				</File>
 				<File
 					RelativePath="..\..\..\source\render\ola_util.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\utility\common\ptr_trunk.h"
 					>
 				</File>
 			</Filter>
@@ -720,70 +742,30 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="impls"
+				Name="scene"
 				>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_geometry_impl.cpp"
+					RelativePath="..\..\..\source\render\ola_scene.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_geometry_impl.h"
+					RelativePath="..\..\..\source\render\ola_scene.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_impls.cpp"
+					RelativePath="..\..\..\source\render\ola_scenemng.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_impls.h"
+					RelativePath="..\..\..\source\render\ola_scenemng.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_light_impl.cpp"
+					RelativePath="..\..\..\source\render\renderscene\ola_smallscene.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\source\render\impls\ola_light_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_material_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_material_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_prim_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_prim_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_renderable_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_renderable_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_rendercore_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_rendercore_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_window_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\impls\ola_window_impl.h"
+					RelativePath="..\..\..\source\render\renderscene\ola_smallscene.h"
 					>
 				</File>
 			</Filter>
@@ -795,90 +777,6 @@
 				RelativePath="..\..\..\pending.txt"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="scene"
-			>
-			<File
-				RelativePath="..\..\..\source\render\ola_scene.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\render\ola_scene.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\render\ola_scenemng.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\render\ola_scenemng.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\render\renderscene\ola_smallscene.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\render\renderscene\ola_smallscene.h"
-				>
-			</File>
-			<Filter
-				Name="impls"
-				>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_cell_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_cell_impl.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_scene_impl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_scene_impl.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="interface"
-			>
-			<File
-				RelativePath="..\..\..\source\interface\ola_engine.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\interface\ola_icommon.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\interface\ola_igame_t.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\interface\ola_irendercore.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\interface\ola_iscene.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="tgame"
-			>
-			<File
-				RelativePath="..\..\..\source\tgame\c_api.cpp"
-				>
-			</File>
-			<Filter
-				Name="impls"
-				>
-			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

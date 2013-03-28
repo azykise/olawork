@@ -26,8 +26,8 @@ public:
 
 	virtual void getView(ola::tViewParam* vp);
 	virtual void setView(ola::tViewParam* vp);
-	virtual void setCamera(int index,ola::tVec3& pos,ola::tVec3& tag);
-	virtual void getCamera(int index,ola::tVec3& pos,ola::tVec3& tag);
+	virtual void setCamera(int index,ola::vec3& pos,ola::vec3& tag);
+	virtual void getCamera(int index,ola::vec3& pos,ola::vec3& tag);
 	virtual void getViewMatrix(float* mat);
 	virtual void getProjMatrix(float* mat);
 

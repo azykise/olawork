@@ -76,8 +76,8 @@ public:
 	SBoneList& boneList(){return mSkeletonBones;}
 
 	olastring& name(){return mName;}
-	OlaMaterial* orgMaterial() {return mOrgMaterial;}
-	void setOrgMaterial(OlaMaterial* mat);
+	OlaMaterial* material() {return mMaterial;}
+	void setMaterial(OlaMaterial* mat);
 
 	virtual int getElementOffset(OlaVBParam::VB_ELEMENT_TYPE type){return mVB->elementOffset(type);}
 
@@ -90,7 +90,7 @@ public:
 protected:
 	olastring mName;
 
-	OlaMaterial* mOrgMaterial; //一个子网格就一个材质了 不会那么变态
+	OlaMaterial* mMaterial; //一个子网格就一个材质了 不会那么变态
 
 	OlaVB* mVB;
 	OlaIB* mIB;

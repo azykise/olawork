@@ -20,7 +20,7 @@ namespace Engine
 		{
 			Vector3F^ get()
 			{
-				ola::tVec3 v(0,0,0);
+				ola::vec3 v(0,0,0);
 				mLight->transform()->getPosition(&v);
 				mSrcPos->X = v.x;
 				mSrcPos->Y = v.y;
@@ -37,7 +37,7 @@ namespace Engine
 		{
 			Vector3F^ get()
 			{
-				ola::tVec3 v(0,0,0);
+				ola::vec3 v(0,0,0);
 				mLight->transform()->getPosition(&v);
 				mDstPos->X = v.x;
 				mDstPos->Y = v.y;

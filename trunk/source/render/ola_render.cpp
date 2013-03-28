@@ -15,39 +15,36 @@
 
 #include "model.h"
 
+#define lgGLError(x) 	if(glGetError() != GL_NO_ERROR){lg(x);}
+
 float gBackGroundColor[] = {0.5,0.5,0.5,1.0};
 
-OlaRenderOp::OlaRenderOp(OlaVB* vb,OlaIB* ib,OlaMaterialReference* matref):
-mVb(vb),
-mIb(ib),
-mMatRef(matref),
+OlaRenderOp::OlaRenderOp():
+vb(0),
+ib(0),
+mMat(0),
 selectionID(0),
 drawmode(OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST)
 {
-	if (mMatRef)
-	{
-		mMatRef->addRef();
-	}
-
 	worldtrans.Identity();
 }
 
-//OlaRenderOp::OlaRenderOp(OlaSubMesh* _sm):
-//mVb(_sm->vb()),
-//mIb(_sm->ib()),
-//mMatRef(new OlaMaterialReference(_sm->orgMaterial())),
-//selectionID(0),
-//drawmode(OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST)
-//{
-//	worldtrans.Identity();
-//}
+OlaRenderOp::OlaRenderOp(OlaSubMesh* _sm):
+vb(_sm->vb()),
+ib(_sm->ib()),
+mMat(_sm->material()),
+selectionID(0),
+drawmode(OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST)
+{
+	mMat->addRef();
+	worldtrans.Identity();
+}
 
 OlaRenderOp::~OlaRenderOp()
 {
-	if (mMatRef)
+	if (mMat)
 	{
-		mMatRef->delRef();
-		mMatRef = 0;
+		mMat->delRef();
 	}
 }
 
@@ -59,6 +56,9 @@ mPipeline(0),
 mDevice(0)
 {
 	olaMath::Init();	
+	mWorldMatrix.Identity();
+	mViewMatrix.Identity();
+	mProjMAtrix.Identity();
 }
 
 OlaRender::~OlaRender()
@@ -68,6 +68,8 @@ OlaRender::~OlaRender()
 
 void OlaRender::onInitRender(int w,int h,OlaRenderDevice* device)
 {
+    //glClearColor(gBackGroundColor[0],gBackGroundColor[1],gBackGroundColor[2],gBackGroundColor[3]);
+	//glViewport(0,0,w,h);
 	mScreenW = w;
 	mScreenH = h;
 
@@ -75,8 +77,8 @@ void OlaRender::onInitRender(int w,int h,OlaRenderDevice* device)
 
 	mResourceMng = new OlaResourceMng(device);	
 
-	tViewParams vp;
-	memset(&vp,0,sizeof(tViewParams));
+	tViewParam vp;
+	memset(&vp,0,sizeof(tViewParam));
 	vp.aspect = (float)mScreenW/(float)mScreenH;
 	vp.far_dist = 1000.f;
 	vp.near_dist = 1.0f;
@@ -91,7 +93,13 @@ void OlaRender::onInitRender(int w,int h,OlaRenderDevice* device)
     //mPipeline = new OlaPerLightPipeline(this);
 	mPipeline->initialize();
 
+	mDirLights.push_back(new OlaLight());
+
 	mDeviceLost = false;
+
+//	mPipeline->pushLights(mDirLights[0]);
+
+	lg("Render Inited\n");
 }
 
 void OlaRender::exec(void* param0,void* param1,void* param2)
@@ -119,12 +127,43 @@ void OlaRender::onRelease()
 	{
 		delete mCurrentFrustum;
 		mCurrentFrustum = 0;
-	}	
+	}
+
+	DirectionLightList::iterator light_i = mDirLights.begin();
+	while(light_i != mDirLights.end())
+	{
+		delete *light_i;
+		light_i++;
+	}
+	mDirLights.clear();
+	
+	lg("OlaRender Released !!!!.............................. \n");
+}
+
+void OlaRender::setCamera(int index,olaVec3& pos,olaVec3& target)
+{
+	mCurrentFrustum->setLookPt(target);
+	mCurrentFrustum->setEyePt(pos);
+}
+
+void OlaRender::getCamera(int index,olaVec3& pos,olaVec3& target)
+{
+	pos = mCurrentFrustum->getEyePt();
+	target = mCurrentFrustum->getLookPt();
 }
 
 OlaVFrustum* OlaRender::getViewFrustum(int index)
 {
 	return mCurrentFrustum;
+}
+
+void OlaRender::setDirLight(int idx,olaVec3& pos,olaVec3& lookat)
+{
+	if(idx >= mDirLights.size())
+		return;
+
+	mDirLights[idx]->setLookAtPT(lookat);
+	mDirLights[idx]->setPosition(pos);
 }
 
 void OlaRender::onResize(int w,int h)
@@ -153,11 +192,54 @@ void OlaRender::onRender(float elapse)
 	mPipeline->setMatrix(OlaRenderPipeLine::PROJ_MATRIX,mCurrentFrustum->getProjMatrix());
 
 	mPipeline->execute();
+
+	static int total_tri = mTotalTris;
+
+	if (total_tri != mTotalTris)
+	{
+		total_tri = mTotalTris;
+		std::cout<<total_tri<<std::endl;
+	}
+}
+
+OlaMesh* OlaRender::getMesh(const char* name)
+{
+	return mResourceMng->getMesh(name);
+}
+
+OlaMaterial* OlaRender::getMaterial(const char* filename,const char* name)
+{
+	return mResourceMng->getMaterial(filename,name);
+}
+
+OlaAssetLoader* OlaRender::getLoader()
+{
+	return mResourceMng->getLoader();
+}
+
+void OlaRender::setJNIAssetMng(AAssetManager* mng)
+{
+	mResourceMng->getLoader()->setJNIAssetMng(mng);
+}
+
+void OlaRender::pushToRender(CModel* model)
+{
+	mPipeline->pushToRender(model);
 }
 
 void OlaRender::pushToRender(OlaRenderOp* op)
 {
 	mPipeline->pushToRender(op);
+}
+
+void OlaRender::pushToRender(OlaPrimitive* pri)
+{
+	mPipeline->pushToRender(pri);
+}
+
+void OlaRender::setRenderScene( OlaRenderScene* scene )
+{
+	mPipeline->setCurrentScene(scene);
 }
 
 

@@ -80,7 +80,7 @@ void OlaScreenQuadChain::release()
 OlaScreenQuad* OlaScreenQuadChain::creatScreenQuad(const char* name,OlaMaterial* mat)
 {
 	OlaScreenQuad* quad = new OlaScreenQuad(name,this);
-	quad->setOrgMaterial(mat);
+	quad->setMaterial(mat);
 	olastring _name = quad->name();
 	mQuads[_name] = quad;
 

@@ -112,7 +112,7 @@ OlaTexture* OlaGLDevice::spawnTexture()
 
 OlaSwapBuffer* OlaGLDevice::spawnSwapBuffer()
 {
-	return new OlaEGLBufferWin(0,this);
+	return new OlaEGLBufferWin(this);
 }
 
 OlaShaderFX* OlaGLDevice::spawnShaderFX()
@@ -375,46 +375,46 @@ void OlaGLDevice::drawCall( OlaRenderOp* op , OlaGlobalFXConst* shaderconst)
 	mw[2][3] = 0.0f;mw[3][3] = 1.0f;
 	mw.Inverse().Transpose().CopyToFloatArrayColumn(Smwi);	
 
-	unsigned int handle_vb = *static_cast<unsigned int*>(op->vb()->handle());
-	unsigned int handle_ib = *static_cast<unsigned int*>(op->ib()->handle());
+	unsigned int handle_vb = *static_cast<unsigned int*>(op->vb->handle());
+	unsigned int handle_ib = *static_cast<unsigned int*>(op->ib->handle());
 
 	OlaRenderParam::DRAWCALL_PRIM_MODE prim_mode = op->drawmode;
 
-	int stride = op->vb()->stride();
-	int num_index = op->ib()->num_i();
+	int stride = op->vb->stride();
+	int num_index = op->ib->num_i();
 
 	glBindBuffer(GL_ARRAY_BUFFER,handle_vb);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, handle_ib);
 	
-	GLuint offset = op->vb()->elementOffset(OlaVBParam::ELEMENT_POS);
+	GLuint offset = op->vb->elementOffset(OlaVBParam::ELEMENT_POS);
 	if(pos_handle != -1 && offset != -1)
 	{		
 		glVertexAttribPointer(pos_handle, 3, GL_FLOAT, GL_FALSE, stride, (const void*)offset);
 		lgGLError("glVertexAttribPointer(pos_handle, 3, GL_FLOAT, GL_FALSE, stride, (const void*)offset); \n");	
 	}
 
-	offset =op->vb()->elementOffset(OlaVBParam::ELEMENT_NOR);
+	offset =op->vb->elementOffset(OlaVBParam::ELEMENT_NOR);
 	if(nor_handle != -1 && offset != -1)
 	{
 		glVertexAttribPointer(nor_handle, 3, GL_FLOAT, GL_FALSE, stride,(const void*)offset);
 		lgGLError("glVertexAttribPointer(nor_handle, 3, GL_FLOAT, GL_FALSE, stride,(const void*)offset); \n");
 	}
 
-	offset =op->vb()->elementOffset(OlaVBParam::ELEMENT_UV0);
+	offset =op->vb->elementOffset(OlaVBParam::ELEMENT_UV0);
 	if(uv0_handle != -1 && offset != -1)
 	{
 		glVertexAttribPointer(uv0_handle, 2, GL_FLOAT, GL_FALSE, stride, (const void*)offset);
 		lgGLError("glVertexAttribPointer(uv0_handle, 2, GL_FLOAT, GL_FALSE, stride, (const void*)offset); \n");
 	}
 
-	offset =op->vb()->elementOffset(OlaVBParam::ELEMENT_TAN);
+	offset =op->vb->elementOffset(OlaVBParam::ELEMENT_TAN);
 	if(tan_handle != -1 && offset != -1)
 	{
 		glVertexAttribPointer(tan_handle, 3, GL_FLOAT, GL_FALSE, stride, (const void*)offset);
 		lgGLError("glVertexAttribPointer(tan_handle, 3, GL_FLOAT, GL_FALSE, stride, (const void*)offset); \n");
 	}
 
-	offset =op->vb()->elementOffset(OlaVBParam::ELEMENT_BNR);
+	offset =op->vb->elementOffset(OlaVBParam::ELEMENT_BNR);
 	if(bnr_handle != -1 && offset != -1)
 	{
 		glVertexAttribPointer(bnr_handle, 3, GL_FLOAT, GL_FALSE, stride, (const void*)offset);
@@ -469,11 +469,11 @@ void OlaGLDevice::setSwapBuffer( OlaSwapBuffer* swb )
 	}
 }
 
-extern unsigned int* G_DEVICE_ENVIRONMENT_DATA;
-void OlaGLDevice::init()
+void OlaGLDevice::init(unsigned int h)
 {
-	unsigned int h = G_DEVICE_ENVIRONMENT_DATA[0];
+#if defined WIN32
 	_createGLRenderContext(h);
+#endif
 }
 
 void OlaGLDevice::setViewport( int x,int y,int w,int h )

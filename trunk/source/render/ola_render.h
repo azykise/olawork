@@ -7,7 +7,7 @@
 
 #include "ola_util.h"
 #include "math/ola_math.h"
-#include "ola_material_ref.h"
+#include "ola_material.h"
 #include "ola_camera.h"
 
 class AAssetManager;
@@ -28,7 +28,7 @@ class OlaScreenQuad;
 class OlaScreenQuadChain;
 class OlaRenderPipeLine;
 class OlaPrimitive;
-class OlaSceneBase;
+class OlaRenderScene;
 class OlaRenderDevice;
 
 class OlaRenderParam
@@ -52,28 +52,38 @@ public:
 class OlaRenderOp
 {
 public:
-	OlaRenderOp(OlaVB* vb,OlaIB* ib,OlaMaterialReference* matref);
-	//OlaRenderOp(OlaSubMesh* _sm);	
-
+	OlaRenderOp();
+	OlaRenderOp(OlaSubMesh* _sm);	
 	virtual ~OlaRenderOp();
+	OlaVB* vb;
+	OlaIB* ib;
+	
+	inline void setMaterial(OlaMaterial* mat)
+	{
+		if (mMat)
+		{
+			mMat->delRef();
+		}
+		mMat = mat;
+		mMat->addRef();
+	}
 
-	inline OlaVB* vb(){return mVb;}
-	inline OlaIB* ib(){return mIb;}	
-
-	inline OlaMaterial* material(){return mMatRef->material();}
+	inline OlaMaterial* material(){return mMat;}
 
 	olaMat4 worldtrans;
 	OlaRenderParam::DRAWCALL_PRIM_MODE drawmode;
 	unsigned int selectionID;
 
 protected:
-	OlaVB* mVb;
-	OlaIB* mIb;
-	OlaMaterialReference* mMatRef;
+	OlaMaterial* mMat;
 };
 
 class OlaRender
 {
+public:
+	typedef std::map<olastring,OlaRenderTarget*> RenderTargetTable;
+	typedef std::vector<OlaLight*> DirectionLightList;
+
 public:
 	OlaRender();
 	~OlaRender();
@@ -82,13 +92,27 @@ public:
 	void onRelease();
 
 	OlaVFrustum* getViewFrustum(int index);
+	void setCamera(int index,olaVec3& pos,olaVec3& target);
+	void getCamera(int index,olaVec3& pos,olaVec3& target);
 
 	void onResize(int w,int h);
 	void onRender(float elapse);	
 
+	void setRenderScene(OlaRenderScene* scene);
+	void setDirLight(int idx,olaVec3& pos,olaVec3& lookat);
+
+	void pushToRender(CModel* model);
 	void pushToRender(OlaRenderOp* op);
+	void pushToRender(OlaPrimitive* pri);
+
+	OlaMesh* getMesh(const char* name);
+	OlaMaterial* getMaterial(const char* filename,const char* name);
 
 	void exec(void* param0,void* param1,void* param2);
+
+	OlaAssetLoader* getLoader();
+
+	void setJNIAssetMng(AAssetManager* mng);
 
 	int getTotalTris(){return mTotalTris;}
     void setTotalTris(int t){mTotalTris = t;};
@@ -106,9 +130,15 @@ protected:
 	OlaResourceMng* mResourceMng;
 
 	OlaVFrustum* mCurrentFrustum;
+	
+	DirectionLightList mDirLights;
 
 	int mScreenW;
 	int mScreenH;
+
+	olaMat4 mWorldMatrix;
+	olaMat4 mViewMatrix;
+	olaMat4 mProjMAtrix;
 
 	OlaRenderPipeLine* mPipeline;
 
