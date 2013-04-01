@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\source\pvr_gles2\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,6 +64,7 @@
 				AdditionalDependencies="libGLESv2.lib libEGL.lib"
 				OutputFile="..\..\..\bin\ola_render.dll"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="..\..\..\source\pvr_gles2\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -741,40 +743,40 @@
 					>
 				</File>
 			</Filter>
-			<Filter
-				Name="scene"
-				>
-				<File
-					RelativePath="..\..\..\source\render\ola_scene.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_scene.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_scenemng.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_scenemng.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_smallscene.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\renderscene\ola_smallscene.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="etc"
 			>
 			<File
 				RelativePath="..\..\..\pending.txt"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="scene"
+			>
+			<File
+				RelativePath="..\..\..\source\render\ola_scene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_scene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_scenemng.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_scenemng.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\renderscene\ola_smallscene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\renderscene\ola_smallscene.h"
 				>
 			</File>
 		</Filter>

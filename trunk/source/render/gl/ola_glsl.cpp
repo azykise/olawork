@@ -3,9 +3,9 @@
 #endif
 
 #if defined WIN32
-#include <GLES2/gl2.h>
+#include "GLES2/gl2.h"
 #elif defined __ANDROID_API__
-#include <GLES2/gl2.h>
+#include "GLES2/gl2.h"
 #elif defined __APPLE__
 #include <OpenGLES/ES2/gl.h>
 #endif
@@ -17,46 +17,7 @@
 
 const char TOKEN_PROGRAM_START_VERT[] = "#program vert";
 const char TOKEN_PROGRAM_START_FRAG[] = "#program frag";
-
-const char TOKEN_PROGRAM_END_VERT[] = "#end";
-const char TOKEN_PROGRAM_END_FRAG[] = "#end";
-
-class GLSLReader
-{
-public:
-	GLSLReader(const char* _data):data(_data)
-	{
-	
-	}
-
-	bool parse()
-	{
-		int vert_s = data.find(TOKEN_PROGRAM_START_VERT,true,0,-1);
-		if(vert_s == -1)
-			return false;
-
-		int vert_e = data.find(TOKEN_PROGRAM_END_VERT,true,vert_s,-1);
-		if(vert_e == -1)
-			return false;
-
-		int frag_s = data.find(TOKEN_PROGRAM_START_FRAG,true,0,-1);
-		if(frag_s == -1)
-			return false;
-
-		int frag_e = data.find(TOKEN_PROGRAM_END_FRAG,true,frag_s,-1);
-		if(frag_e == -1)
-			return false;
-
-		vert = olastring(data.c_str(),vert_s + strlen(TOKEN_PROGRAM_START_VERT),vert_e);
-		frag = olastring(data.c_str(),frag_s + strlen(TOKEN_PROGRAM_START_FRAG),frag_e);
-
-		return true;
-	}
-
-	olastring data;
-	olastring vert;
-	olastring frag;
-};
+const char TOKEN_PROGRAM_END[] = "#end";
 
 OlaGLSL::OlaGLSL():
 mFragHandle(0),
@@ -125,6 +86,32 @@ unsigned int _loadShader(const char** data,GLenum type)
 	return pShader;
 }
 
+bool GetProgramString(OlaArray<olastring>& lines,olastring& outProgStr,const char* PROG_TOKEN)
+{
+	bool start = false;
+	for (unsigned int i = 0 ; i < lines.size() ; i++)
+	{
+		olastring& s = lines[i];
+
+		if(!strcmp(s.c_str(),PROG_TOKEN))
+		{
+			start = true;
+			continue;
+		}
+
+		if(start)
+		{
+			if(!strcmp(s.c_str(),TOKEN_PROGRAM_END))
+			{
+				break;
+			}
+
+			outProgStr.append(s);
+		}
+	}	
+	return start;
+}
+
 bool OlaGLSL::load( const char* file_name )
 {
 	_clear();
@@ -133,17 +120,23 @@ bool OlaGLSL::load( const char* file_name )
 
 	OlaAsset* asset = OlaAssetLoader::instance()->load(file_name,false);
 
-	char* data = (char*)(asset->data);
+	olastring _data(asset->data);
+	OlaArray<olastring> outlines;
 
-	GLSLReader gr(data);
-	gr.parse();
+	int n = OlaUtility::readStringLines(_data,outlines);
+	
+	olastring vert_program;
+	GetProgramString(outlines,vert_program,TOKEN_PROGRAM_START_VERT);
+
+	olastring frag_program;
+	GetProgramString(outlines,frag_program,TOKEN_PROGRAM_START_FRAG);
 
 	const char *vstrs[1] = { 0 };
-	vstrs[0] = gr.vert.c_str();
+	vstrs[0] = vert_program.c_str();
 	mVertHandle = _loadShader(vstrs,GL_VERTEX_SHADER);
 
 	const char *fstrs[1] = { 0 };
-	fstrs[0] = gr.frag.c_str();
+	fstrs[0] = frag_program.c_str();
 	mFragHandle = _loadShader(fstrs,GL_FRAGMENT_SHADER);
 
 	delete asset;

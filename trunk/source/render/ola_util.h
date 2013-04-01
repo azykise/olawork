@@ -1,11 +1,9 @@
 #ifndef _NV_UTILITY_H__
 #define _NV_UTILITY_H__
 
-#include <string.h>
 #include <memory.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <string>
 
 #if defined WIN32
 
@@ -28,11 +26,13 @@
 
 #endif
 
+#include "ola_stl.h"
 #include "ola_string.h"
 
-namespace nv_util
+class OlaUtility
 {
-
-} // nv_util
+public:
+	static int readStringLines(olastring& s,OlaArray<olastring>& outLines);
+};
 
 #endif

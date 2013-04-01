@@ -2,9 +2,9 @@
 #include <assert.h>
 
 #if defined WIN32
-#include <GLES2/gl2.h>
+#include "GLES2/gl2.h"
 #elif defined __ANDROID_API__
-#include <GLES2/gl2.h>
+#include "GLES2/gl2.h"
 #elif defined __APPLE__
 #include <OpenGLES/ES2/gl.h>
 #endif
