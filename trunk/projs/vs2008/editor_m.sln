@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{F851FEFB-4DCE-4174-BD38-BD7E84513D59}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\pending.txt = ..\..\pending.txt
@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "editor", "..\..\source\edit
 		{01096689-D98E-4E54-946E-E56481BD994E} = {01096689-D98E-4E54-946E-E56481BD994E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ewrapper", "..\..\source\editor\ewrapper\ewrapper.vcproj", "{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ewrapper", "..\..\source\editor\ewrapper\ewrapper.vcxproj", "{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modelview", "..\..\source\editor\modelview\modelview.csproj", "{1F0D65DB-53FA-4CCB-A09D-619F493B5634}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -42,7 +42,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scene", "..\..\source\edito
 		{B125E0DE-5369-45E5-8DAD-08C3481EF942} = {B125E0DE-5369-45E5-8DAD-08C3481EF942}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ola_render", "ola_render\ola_render.vcproj", "{26A5902A-312B-45F6-B573-650F8C7AC76E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ola_render", "ola_render\ola_render.vcxproj", "{26A5902A-312B-45F6-B573-650F8C7AC76E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

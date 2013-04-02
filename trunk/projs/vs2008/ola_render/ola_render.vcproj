@@ -575,14 +575,6 @@
 				Name="base"
 				>
 				<File
-					RelativePath="..\..\..\source\render\model.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\model.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\..\source\render\ola_assetmng.cpp"
 					>
 				</File>
@@ -612,14 +604,6 @@
 				</File>
 				<File
 					RelativePath="..\..\..\source\render\ola_device.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_entity.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\source\render\ola_entity.h"
 					>
 				</File>
 				<File
@@ -777,6 +761,26 @@
 			</File>
 			<File
 				RelativePath="..\..\..\source\render\renderscene\ola_smallscene.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="entity"
+			>
+			<File
+				RelativePath="..\..\..\source\render\model.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\model.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_entity.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\render\ola_entity.h"
 				>
 			</File>
 		</Filter>
