@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="platform_win">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{8759e003-82ed-4ed2-830d-a93a39b36951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\xml">
+      <UniqueIdentifier>{838eb9f5-eab6-45ff-b7da-3ad723da9362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\math">
+      <UniqueIdentifier>{35def617-4e31-4e58-a442-d15c92a96f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\material">
+      <UniqueIdentifier>{5955d198-296f-42ce-99fa-9eef72347d7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\postprocess">
+      <UniqueIdentifier>{70f1e3e9-86a2-4352-8624-5617e90618c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\geometry">
+      <UniqueIdentifier>{1c694f88-7841-43c5-9cd6-05b67b3a6fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\util">
+      <UniqueIdentifier>{7298c98c-1305-4439-b2ef-1ce15d5babef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\pipeline">
+      <UniqueIdentifier>{3b32a20c-42f5-4e8a-8c0e-132e0facd5c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\base">
+      <UniqueIdentifier>{62acc809-3a20-4a77-aa55-5a94f338b72d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\animation">
+      <UniqueIdentifier>{8369a090-5380-4695-8ad0-658848ae84a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\gl">
+      <UniqueIdentifier>{f4f38323-7335-407f-adeb-616b4b1f3326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{6189eb06-4731-4fdd-a67c-f0028bf00ff3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{ff02c2f6-4c0b-427c-9f4d-41157b95dc8a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\render\win\dllmain.cpp">
+      <Filter>platform_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\win\win_imples.cpp">
+      <Filter>platform_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\win\win_rendercore.cpp">
+      <Filter>platform_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\win\win_renderwindow.cpp">
+      <Filter>platform_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_imp.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_render.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\xml\ola_xml.cpp">
+      <Filter>render\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\xml\tinystr.cpp">
+      <Filter>render\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\xml\tinyxml.cpp">
+      <Filter>render\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\xml\tinyxmlerror.cpp">
+      <Filter>render\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\xml\tinyxmlparser.cpp">
+      <Filter>render\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_decompose.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_mathbase.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_matrix.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_plane.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_quat.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\math\ola_vector.cpp">
+      <Filter>render\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_fxconst.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_material.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_shaderfx.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_texture.cpp">
+      <Filter>render\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_postprocess.cpp">
+      <Filter>render\postprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_geobuffer.cpp">
+      <Filter>render\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_mesh.cpp">
+      <Filter>render\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_primitive.cpp">
+      <Filter>render\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_skeleton.cpp">
+      <Filter>render\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_skin.cpp">
+      <Filter>render\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_ase.cpp">
+      <Filter>render\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_file.cpp">
+      <Filter>render\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_string.cpp">
+      <Filter>render\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_tga.cpp">
+      <Filter>render\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_util.cpp">
+      <Filter>render\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\pipelines\ola_forwardpipeline.cpp">
+      <Filter>render\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\pipelines\ola_perlightpipeline.cpp">
+      <Filter>render\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_renderpipeline.cpp">
+      <Filter>render\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_renderqueue.cpp">
+      <Filter>render\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_assetmng.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_bounding.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_camera.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_device.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_light.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_resource.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_resourcemng.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_sklmodel.cpp">
+      <Filter>render\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_action.cpp">
+      <Filter>render\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_action_res.cpp">
+      <Filter>render\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_animation.cpp">
+      <Filter>render\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_gl.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_glib.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_glrt.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_glsl.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_glswbuffer.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_gltexture.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\gl\ola_glvb.cpp">
+      <Filter>render\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_scenemng.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\renderscene\ola_smallscene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\model.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\interface\ola_engine.h">
+      <Filter>platform_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\win\win_impls.h">
+      <Filter>platform_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\win\win_rendercore.h">
+      <Filter>platform_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\win\win_renderwindow.h">
+      <Filter>platform_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_imp.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_render.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\xml\ola_xml.h">
+      <Filter>render\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\xml\tinystr.h">
+      <Filter>render\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\xml\tinyxml.h">
+      <Filter>render\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_asemath.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_decompose.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_math.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_mathbase.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_matrix.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_plane.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_quat.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\math\ola_vector.h">
+      <Filter>render\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_fxconst.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_material.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_shaderfx.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_texture.h">
+      <Filter>render\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_postprocess.h">
+      <Filter>render\postprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_geobuffer.h">
+      <Filter>render\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_mesh.h">
+      <Filter>render\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_primitive.h">
+      <Filter>render\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_skeleton.h">
+      <Filter>render\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_skin.h">
+      <Filter>render\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_ase.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_file.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_stl.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_string.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_tga.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_util.h">
+      <Filter>render\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\pipelines\ola_forwardpipeline.h">
+      <Filter>render\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\pipelines\ola_perlightpipeline.h">
+      <Filter>render\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_renderpipeline.h">
+      <Filter>render\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_renderqueue.h">
+      <Filter>render\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_assetmng.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_bounding.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_camera.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_device.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_light.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_resource.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_resourcemng.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_sklmodel.h">
+      <Filter>render\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_action.h">
+      <Filter>render\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_action_res.h">
+      <Filter>render\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_animation.h">
+      <Filter>render\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_gl.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_glib.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_glrt.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_glsl.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_glswbuffer.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_gltexture.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\gl\ola_glvb.h">
+      <Filter>render\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_scenemng.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\renderscene\ola_smallscene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\model.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_entity.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

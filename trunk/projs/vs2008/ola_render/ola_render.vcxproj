@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="engine_debug|Win32">
+      <Configuration>engine_debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{26A5902A-312B-45F6-B573-650F8C7AC76E}</ProjectGuid>
+    <RootNamespace>ola_render</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'">..\..\..\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'">true</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\source\pvr_gles2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libGLESv2.lib;libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\bin\ola_render.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\source\pvr_gles2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='engine_debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libGLESv2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\bin\engine_d.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\render\win\dllmain.cpp" />
+    <ClCompile Include="..\..\..\source\render\win\win_imples.cpp" />
+    <ClCompile Include="..\..\..\source\render\win\win_rendercore.cpp" />
+    <ClCompile Include="..\..\..\source\render\win\win_renderwindow.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_imp.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_render.cpp" />
+    <ClCompile Include="..\..\..\source\render\xml\ola_xml.cpp" />
+    <ClCompile Include="..\..\..\source\render\xml\tinystr.cpp" />
+    <ClCompile Include="..\..\..\source\render\xml\tinyxml.cpp" />
+    <ClCompile Include="..\..\..\source\render\xml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\..\source\render\xml\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_decompose.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_mathbase.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_matrix.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_plane.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_quat.cpp" />
+    <ClCompile Include="..\..\..\source\render\math\ola_vector.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_fxconst.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_material.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_shaderfx.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_texture.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_postprocess.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_geobuffer.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_mesh.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_primitive.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_skeleton.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_skin.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_ase.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_file.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_string.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_tga.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_util.cpp" />
+    <ClCompile Include="..\..\..\source\render\pipelines\ola_forwardpipeline.cpp" />
+    <ClCompile Include="..\..\..\source\render\pipelines\ola_perlightpipeline.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_renderpipeline.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_renderqueue.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_assetmng.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_bounding.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_camera.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_device.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_light.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_resource.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_resourcemng.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_sklmodel.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_action.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_action_res.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_animation.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_gl.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_glib.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_glrt.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_glsl.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_glswbuffer.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_gltexture.cpp" />
+    <ClCompile Include="..\..\..\source\render\gl\ola_glvb.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_scene.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_scenemng.cpp" />
+    <ClCompile Include="..\..\..\source\render\renderscene\ola_smallscene.cpp" />
+    <ClCompile Include="..\..\..\source\render\model.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_entity.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\interface\ola_engine.h" />
+    <ClInclude Include="..\..\..\source\render\win\win_impls.h" />
+    <ClInclude Include="..\..\..\source\render\win\win_rendercore.h" />
+    <ClInclude Include="..\..\..\source\render\win\win_renderwindow.h" />
+    <ClInclude Include="..\..\..\source\render\ola_imp.h" />
+    <ClInclude Include="..\..\..\source\render\ola_render.h" />
+    <ClInclude Include="..\..\..\source\render\xml\ola_xml.h" />
+    <ClInclude Include="..\..\..\source\render\xml\tinystr.h" />
+    <ClInclude Include="..\..\..\source\render\xml\tinyxml.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_asemath.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_decompose.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_math.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_mathbase.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_matrix.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_plane.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_quat.h" />
+    <ClInclude Include="..\..\..\source\render\math\ola_vector.h" />
+    <ClInclude Include="..\..\..\source\render\ola_fxconst.h" />
+    <ClInclude Include="..\..\..\source\render\ola_material.h" />
+    <ClInclude Include="..\..\..\source\render\ola_shaderfx.h" />
+    <ClInclude Include="..\..\..\source\render\ola_texture.h" />
+    <ClInclude Include="..\..\..\source\render\ola_postprocess.h" />
+    <ClInclude Include="..\..\..\source\render\ola_geobuffer.h" />
+    <ClInclude Include="..\..\..\source\render\ola_mesh.h" />
+    <ClInclude Include="..\..\..\source\render\ola_primitive.h" />
+    <ClInclude Include="..\..\..\source\render\ola_skeleton.h" />
+    <ClInclude Include="..\..\..\source\render\ola_skin.h" />
+    <ClInclude Include="..\..\..\source\render\ola_ase.h" />
+    <ClInclude Include="..\..\..\source\render\ola_file.h" />
+    <ClInclude Include="..\..\..\source\render\ola_stl.h" />
+    <ClInclude Include="..\..\..\source\render\ola_string.h" />
+    <ClInclude Include="..\..\..\source\render\ola_tga.h" />
+    <ClInclude Include="..\..\..\source\render\ola_util.h" />
+    <ClInclude Include="..\..\..\source\render\pipelines\ola_forwardpipeline.h" />
+    <ClInclude Include="..\..\..\source\render\pipelines\ola_perlightpipeline.h" />
+    <ClInclude Include="..\..\..\source\render\ola_renderpipeline.h" />
+    <ClInclude Include="..\..\..\source\render\ola_renderqueue.h" />
+    <ClInclude Include="..\..\..\source\render\ola_assetmng.h" />
+    <ClInclude Include="..\..\..\source\render\ola_bounding.h" />
+    <ClInclude Include="..\..\..\source\render\ola_camera.h" />
+    <ClInclude Include="..\..\..\source\render\ola_device.h" />
+    <ClInclude Include="..\..\..\source\render\ola_light.h" />
+    <ClInclude Include="..\..\..\source\render\ola_resource.h" />
+    <ClInclude Include="..\..\..\source\render\ola_resourcemng.h" />
+    <ClInclude Include="..\..\..\source\render\ola_sklmodel.h" />
+    <ClInclude Include="..\..\..\source\render\ola_action.h" />
+    <ClInclude Include="..\..\..\source\render\ola_action_res.h" />
+    <ClInclude Include="..\..\..\source\render\ola_animation.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_gl.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_glib.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_glrt.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_glsl.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_glswbuffer.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_gltexture.h" />
+    <ClInclude Include="..\..\..\source\render\gl\ola_glvb.h" />
+    <ClInclude Include="..\..\..\source\render\ola_scene.h" />
+    <ClInclude Include="..\..\..\source\render\ola_scenemng.h" />
+    <ClInclude Include="..\..\..\source\render\renderscene\ola_smallscene.h" />
+    <ClInclude Include="..\..\..\source\render\model.h" />
+    <ClInclude Include="..\..\..\source\render\ola_entity.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
