@@ -15,6 +15,8 @@
 #pragma warning(disable:4819)
 #pragma warning(disable:4244)
 
+#include <vector>
+
 #include "asciiexp.h"
 #include "modstack.h"
 #include "iparamb2.h"
@@ -159,6 +161,8 @@ void AsciiExp::ExportGeomObject(INode* node, int indentLevel)
 	}
 	
 	fprintf(pStream,"%s}\n", indent.data());
+
+	ExportDmlFile(node);
 }
 
 /****************************************************************************
@@ -1170,6 +1174,38 @@ void AsciiExp::ExportMaterial(INode* node, int indentLevel)
 		fprintf(pStream,"%s\t%s %s\n", indent.data(), ID_WIRECOLOR,
 			Format(Color(GetRValue(c)/255.0f, GetGValue(c)/255.0f, GetBValue(c)/255.0f)));
 	}
+}
+
+void AsciiExp::ExportDmlFile(INode* node)
+{
+	std::string dmlfile = ReplaceAll(sFilename,".ase",".dml");
+	std::string asename = GetFilename(sFilename);
+
+	std::vector<std::string> submats;
+	Mtl* mtl = node->GetMtl();
+	if (mtl && mtl->NumSubMtls() != 0)
+	{
+		submats.resize(mtl->NumSubMtls());
+		for (int i = 0; i < mtl->NumSubMtls(); i++) 
+		{
+			Mtl* subMtl = mtl->GetSubMtl(i);
+			submats[i] = FixupName(subMtl->GetName());
+		}
+	}
+
+	FILE* stream = fopen(dmlfile.c_str(),"wb");	
+	
+	fprintf(stream,"<ola_model>\n");
+	fprintf(stream,"	<geometry resource=\"%s\"/>\n",asename.c_str());
+	fprintf(stream,"	<material num=\"%d\">\n",submats.size());
+	for (int i = 0 ; i < submats.size() ; i++)
+	{
+		fprintf(stream,"		<submat index=\"%d\" name=\"%s\" resource=\"default.mat\"/>\n",i,submats[i].c_str());
+	}	
+	fprintf(stream,"	</material>\n");
+	fprintf(stream,"</ola_model>\n");
+
+	fclose(stream);
 }
 
 void AsciiExp::DumpMaterial(Mtl* mtl, int mtlID, int subNo, int indentLevel)

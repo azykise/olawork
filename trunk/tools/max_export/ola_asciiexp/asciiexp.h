@@ -122,6 +122,8 @@ public:
 	void	ExportCameraSettings(CameraState* cs, CameraObject* cam, TimeValue t, int indentLevel);
 	void	ExportLightSettings(LightState* ls, GenLight* light, TimeValue t, int indentLevel);
 
+	void	ExportDmlFile(INode* node);
+
 	// Low level export
 	void	DumpPoly(PolyLine* line, Matrix3 tm, int indentLevel);
 	void	DumpMatrix3(Matrix3* m, int indentLevel);
@@ -153,6 +155,10 @@ public:
 	BoneModData* GetBoneModeData(INode* node);
 	ISkin*	GetSelectedSkinModify(INode* node);
 	void	GetVertexBoneInfo(VertexBoneInfo* out,int skined_vid,BoneModData* bone_mod,ISkin* skin);
+	std::string ToLower(const std::string& str);
+	std::string ReplaceAll(const std::string& str,const std::string& from,const std::string& to);
+	std::string ReplaceChar(const std::string& str,char from,char to);
+	std::string GetFilename(const std::string& fullname);
 
 	// A collection of overloaded value to string converters.
 	TSTR	Format(int value);
@@ -244,6 +250,7 @@ private:
 
 	Interface*	ip;
 	FILE*		pStream;
+	std::string sFilename;
 	int			nTotalNodeCount;
 	int			nCurNode;
 	TCHAR		szFmtStr[16];
@@ -256,4 +263,3 @@ private:
 };
 
 #endif // __ASCIIEXP__H
-

@@ -11,6 +11,9 @@
 //* Copyright (c) 1997, All Rights Reserved. 
 //***************************************************************************
 
+#include <algorithm>
+#include <cctype>
+
 #include "asciiexp.h"
 
 #include "3dsmaxport.h"
@@ -398,8 +401,11 @@ int AsciiExp::DoExport(const TCHAR *name,ExpInterface *ei,Interface *i, BOOL sup
 	
 	sprintf(szFmtStr, "%%4.%df", nPrecision);
 
+	sFilename = name;
+	sFilename = ToLower(sFilename);
+
 	// Open the stream
-	pStream = _tfopen(name,_T("wt"));
+	pStream = _tfopen(sFilename.c_str(),_T("wt"));
 	if (!pStream) {
 		return 0;
 	}
@@ -655,7 +661,56 @@ void AsciiExp::WriteConfig()
 	fclose(cfgStream);
 }
 
+std::string AsciiExp::GetFilename( const std::string& fullname )
+{
+	std::string _fullname = ReplaceChar(fullname,'\\','/');
+	int i = _fullname.find_last_of('/') + 1;
+	if (i >= _fullname.length())
+	{
+		i = _fullname.length() - 1;
+	}
+	int n = _fullname.find_first_of('.');
+	if (n == std::string::npos || n <= i)
+	{
+		n = _fullname.size();
+	}
+	std::string filename = fullname.substr(i,n);
+	return filename;
+}
 
+std::string AsciiExp::ReplaceChar( const std::string& str,char from,char to )
+{
+	std::string news(str);
+	std::replace(news.begin(),news.end(),from,to);
+	return news;
+}
+
+std::string AsciiExp::ReplaceAll( const std::string& str,const std::string& from,const std::string& to )
+{	
+	std::string news(str);
+	if (from.length() == 0 || to.length() == 0)
+	{
+		return from;
+	}
+    std::string::size_type pos = 0;
+	while((pos = news.find(from, pos)) != std::string::npos)
+    {
+		news.replace(pos, from.length(), to);
+        pos += to.length();
+    }
+	return news;
+}
+
+std::string AsciiExp::ToLower( const std::string& str )
+{
+	std::string news(str);
+	int len = news.length();
+	for (int i = 0 ; i < len ; i++)
+	{
+		news[i] = std::tolower(news[i]);
+	}
+	return news;
+}
 BOOL MtlKeeper::AddMtl(Mtl* mtl)
 {
 	if (!mtl) {
