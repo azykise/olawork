@@ -221,7 +221,7 @@ mShader(0),
 mMetaMaterial(0),
 mFilename(_filename)
 {
-	memset(mSymbols,0,OlaMaterialParam::MATERIAL_SYMBOLS_END * sizeof(OlaMaterialParam::PARAM_VALUE*));
+	memset(mParaments,0,OlaMaterialParam::MATERIAL_SYMBOLS_END * sizeof(OlaMaterialParam::PARAM_VALUE*));
 }
 
 OlaMaterial::~OlaMaterial()
@@ -229,11 +229,11 @@ OlaMaterial::~OlaMaterial()
 	int var = OlaMaterialParam::TRANSPARENCY;
 	while (var != OlaMaterialParam::MATERIAL_SYMBOLS_END)
 	{
-		OlaMaterialParam::PARAM_VALUE* value = mSymbols[var];
+		OlaMaterialParam::PARAM_VALUE* value = mParaments[var];
 		if(value != 0)
 		{
 			delete value;
-			mSymbols[var] = 0;
+			mParaments[var] = 0;
 		}
 		var += 1;
 	}
@@ -273,60 +273,60 @@ void OlaMaterial::setFromMeta(OlaMaterial* meta)
 	int var = OlaMaterialParam::TRANSPARENCY;
 	while (var != OlaMaterialParam::MATERIAL_SYMBOLS_END)
 	{
-		OlaMaterialParam::PARAM_VALUE* met_value = meta->mSymbols[var];
+		OlaMaterialParam::PARAM_VALUE* met_value = meta->mParaments[var];
 		if(met_value != 0)
 		{
 			OlaMaterialParam::PARAM_VALUE* value = new OlaMaterialParam::PARAM_VALUE(met_value->type,met_value->data);
-			if(mSymbols[var] == 0)
-				mSymbols[var] = value;
+			if(mParaments[var] == 0)
+				mParaments[var] = value;
 			else
 			{
-				delete mSymbols[var];
-				mSymbols[var] = value;
+				delete mParaments[var];
+				mParaments[var] = value;
 			}
 		}
 		var += 1;
 	}
 }
 
-void OlaMaterial::setSymbol(const char* name,OlaMaterialParam::VALUE_TYPE _type,const char* value,bool force)
+void OlaMaterial::setParament(const char* name,OlaMaterialParam::VALUE_TYPE _type,const char* value,bool force)
 {
 	OlaMaterialParam::PARAM_DESC desc = _GetParamDesc(name);
 	if(desc.type == OlaMaterialParam::PARAM_MATSYMBOL)
 	{
 		OlaMaterialParam::PARAM_VALUE* pvalue = new OlaMaterialParam::PARAM_VALUE(_type,value);
-		if(mSymbols[desc.index] == 0)
-			mSymbols[desc.index] = pvalue;
+		if(mParaments[desc.index] == 0)
+			mParaments[desc.index] = pvalue;
 		else
 		{
-			delete mSymbols[desc.index];
-			mSymbols[desc.index] = pvalue;
+			delete mParaments[desc.index];
+			mParaments[desc.index] = pvalue;
 		}
 	}
 }
 
-void OlaMaterial::setSymbol(const char* name,OlaMaterialParam::VALUE_TYPE _type,void* value,bool force)
+void OlaMaterial::setParament(const char* name,OlaMaterialParam::VALUE_TYPE _type,void* value,bool force)
 {
 	OlaMaterialParam::PARAM_DESC desc = _GetParamDesc(name);
 	if(desc.type == OlaMaterialParam::PARAM_MATSYMBOL)
 	{
 		OlaMaterialParam::PARAM_VALUE* pvalue = new OlaMaterialParam::PARAM_VALUE(_type,value);
-		if(mSymbols[desc.index] == 0)
-			mSymbols[desc.index] = pvalue;
+		if(mParaments[desc.index] == 0)
+			mParaments[desc.index] = pvalue;
 		else
 		{
-			delete mSymbols[desc.index];
-			mSymbols[desc.index] = pvalue;
+			delete mParaments[desc.index];
+			mParaments[desc.index] = pvalue;
 		}
 	}
 }
 
-OlaMaterialParam::PARAM_VALUE* OlaMaterial::symbol(const char* name)
+OlaMaterialParam::PARAM_VALUE* OlaMaterial::parament(const char* name)
 {
 	OlaMaterialParam::PARAM_DESC desc = _GetParamDesc(name);
 	if(desc.type == OlaMaterialParam::PARAM_MATSYMBOL)
 	{
-		return mSymbols[desc.index];
+		return mParaments[desc.index];
 	}
 	else
 	{

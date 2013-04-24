@@ -169,7 +169,7 @@ const char MATERIAL_TECHSOURCEF[] = "source_f";
 const char MATERIAL_VERTEX_ATTAIBUTE[] = "attrib";
 const char MATERIAL_SHADER_VAR[] = "var";
 
-static void ParseMaterialVariablesFromXML(TiXmlElement* instance ,OlaMaterial* material ,OlaResourceMng* res_mng)
+void ParseMaterialVariablesFromXML(TiXmlElement* instance ,OlaMaterial* material ,OlaResourceMng* res_mng)
 {
 	TiXmlElement* var = instance->FirstChildElement(MATERIAL_SHADER_VAR);
 	while (var)
@@ -181,15 +181,15 @@ static void ParseMaterialVariablesFromXML(TiXmlElement* instance ,OlaMaterial* m
 		if(strcmp(var_type,TYPE_TEXTURE) == 0)
 		{				
 			OlaTexture* diffuse_map = res_mng->getTexture(var_value);
-			material->setSymbol(var_name,OlaMaterialParam::VALUE_TYPE_TEXTURE,diffuse_map);
+			material->setParament(var_name,OlaMaterialParam::VALUE_TYPE_TEXTURE,diffuse_map);
 		}
 		else if(strcmp(var_type,TYPE_BOOL) == 0)
 		{
-			material->setSymbol(var_name,OlaMaterialParam::VALUE_TYPE_BOOL,var_value);
+			material->setParament(var_name,OlaMaterialParam::VALUE_TYPE_BOOL,var_value);
 		}
 		else if(strcmp(var_type,TYPE_VEC4) == 0)
 		{
-			material->setSymbol(var_name,OlaMaterialParam::VALUE_TYPE_VEC4,var_value);
+			material->setParament(var_name,OlaMaterialParam::VALUE_TYPE_VEC4,var_value);
 		}
 
 		var = var->NextSiblingElement(MATERIAL_SHADER_VAR);

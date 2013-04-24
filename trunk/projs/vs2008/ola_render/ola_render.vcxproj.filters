@@ -8,9 +8,6 @@
     <Filter Include="render">
       <UniqueIdentifier>{8759e003-82ed-4ed2-830d-a93a39b36951}</UniqueIdentifier>
     </Filter>
-    <Filter Include="render\xml">
-      <UniqueIdentifier>{838eb9f5-eab6-45ff-b7da-3ad723da9362}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render\math">
       <UniqueIdentifier>{35def617-4e31-4e58-a442-d15c92a96f62}</UniqueIdentifier>
     </Filter>
@@ -23,17 +20,8 @@
     <Filter Include="render\geometry">
       <UniqueIdentifier>{1c694f88-7841-43c5-9cd6-05b67b3a6fed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="render\util">
-      <UniqueIdentifier>{7298c98c-1305-4439-b2ef-1ce15d5babef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render\pipeline">
       <UniqueIdentifier>{3b32a20c-42f5-4e8a-8c0e-132e0facd5c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render\base">
-      <UniqueIdentifier>{62acc809-3a20-4a77-aa55-5a94f338b72d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render\animation">
-      <UniqueIdentifier>{8369a090-5380-4695-8ad0-658848ae84a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="render\gl">
       <UniqueIdentifier>{f4f38323-7335-407f-adeb-616b4b1f3326}</UniqueIdentifier>
@@ -43,6 +31,24 @@
     </Filter>
     <Filter Include="entity">
       <UniqueIdentifier>{ff02c2f6-4c0b-427c-9f4d-41157b95dc8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{838eb9f5-eab6-45ff-b7da-3ad723da9362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{7298c98c-1305-4439-b2ef-1ce15d5babef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{252ddb9e-a4fc-462d-8bbb-2495d6124c33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{62acc809-3a20-4a77-aa55-5a94f338b72d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="animation">
+      <UniqueIdentifier>{8369a090-5380-4695-8ad0-658848ae84a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\parser">
+      <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,19 +71,19 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\xml\ola_xml.cpp">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\xml\tinystr.cpp">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\xml\tinyxml.cpp">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\xml\tinyxmlerror.cpp">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\xml\tinyxmlparser.cpp">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\math\ola_decompose.cpp">
       <Filter>render\math</Filter>
@@ -128,19 +134,19 @@
       <Filter>render\geometry</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_ase.cpp">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_file.cpp">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_string.cpp">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_tga.cpp">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_util.cpp">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\pipelines\ola_forwardpipeline.cpp">
       <Filter>render\pipeline</Filter>
@@ -155,37 +161,25 @@
       <Filter>render\pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_assetmng.cpp">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_bounding.cpp">
-      <Filter>render\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\render\ola_camera.cpp">
-      <Filter>render\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\render\ola_device.cpp">
-      <Filter>render\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\render\ola_light.cpp">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_resource.cpp">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_resourcemng.cpp">
-      <Filter>render\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\render\ola_sklmodel.cpp">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_action.cpp">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_action_res.cpp">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_animation.cpp">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\gl\ola_gl.cpp">
       <Filter>render\gl</Filter>
@@ -223,6 +217,27 @@
     <ClCompile Include="..\..\..\source\render\ola_entity.cpp">
       <Filter>entity</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_thread.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_sklmodel.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_light.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_device.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_camera.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp">
+      <Filter>base\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp">
+      <Filter>base\parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h">
@@ -244,13 +259,13 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\xml\ola_xml.h">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\xml\tinystr.h">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\xml\tinyxml.h">
-      <Filter>render\xml</Filter>
+      <Filter>xml</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\math\ola_asemath.h">
       <Filter>render\math</Filter>
@@ -307,22 +322,22 @@
       <Filter>render\geometry</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_ase.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_file.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_stl.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_string.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_tga.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_util.h">
-      <Filter>render\util</Filter>
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\pipelines\ola_forwardpipeline.h">
       <Filter>render\pipeline</Filter>
@@ -337,37 +352,25 @@
       <Filter>render\pipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_assetmng.h">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_bounding.h">
-      <Filter>render\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\render\ola_camera.h">
-      <Filter>render\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\render\ola_device.h">
-      <Filter>render\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\render\ola_light.h">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_resource.h">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_resourcemng.h">
-      <Filter>render\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\render\ola_sklmodel.h">
-      <Filter>render\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_action.h">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_action_res.h">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_animation.h">
-      <Filter>render\animation</Filter>
+      <Filter>animation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\gl\ola_gl.h">
       <Filter>render\gl</Filter>
@@ -404,6 +407,27 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_entity.h">
       <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_thread.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_sklmodel.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_light.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_device.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_camera.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\parser\ola_dml.h">
+      <Filter>base\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\parser\ola_mat.h">
+      <Filter>base\parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

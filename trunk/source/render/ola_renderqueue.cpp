@@ -203,7 +203,7 @@ void OlaRenderQueue::pushToRener(OlaRenderOp* op)
 {
 	OlaMaterial* material = op->material();
 
-	unsigned int shadow_cast = material->getSymbolValue<unsigned int>(OlaMaterialParam::CAST_SHADOW);
+	unsigned int shadow_cast = material->paramentValue<unsigned int>(OlaMaterialParam::CAST_SHADOW);
 	if(shadow_cast && mRenderGroups[SHADOWCAST_GROUP])
 	{
 		mRenderGroups[SHADOWCAST_GROUP]->groupRenderOp(op);

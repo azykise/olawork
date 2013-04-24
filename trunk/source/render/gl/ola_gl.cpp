@@ -283,13 +283,13 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 	OlaShader* shader = material->shader();
 
 	int c0_handle = shader->handle(OlaMaterialParam::COLOR0);
-	olaVec4* c0 = material->getSymbolValue<olaVec4*>(OlaMaterialParam::USER_COLOR0);
+	olaVec4* c0 = material->paramentValue<olaVec4*>(OlaMaterialParam::USER_COLOR0);
 	if(c0_handle != -1 && c0)
 	{
 		glUniform4f(c0_handle,c0->x,c0->y,c0->z,c0->w);
 	}
 
-	void* no_cull = material->getSymbolValue<void*>(OlaMaterialParam::NO_CULLFACE);
+	void* no_cull = material->paramentValue<void*>(OlaMaterialParam::NO_CULLFACE);
 	if(no_cull)
 	{
 		glDisable(GL_CULL_FACE);
@@ -299,7 +299,7 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 		glEnable(GL_CULL_FACE);
 	}
 
-	OlaTexture* diffuse0 = material->getSymbolValue<OlaTexture*>(OlaMaterialParam::DIFFUSE0);	
+	OlaTexture* diffuse0 = material->paramentValue<OlaTexture*>(OlaMaterialParam::DIFFUSE0);	
 	int diffuse_handle = -1;	
 	if(diffuse0)
 	{
@@ -313,7 +313,7 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 		lgGLError("glBindTexture(GL_TEXTURE_2D,diffuse_handle); \n");
 	}
 
-	OlaTexture* normal0 = material->getSymbolValue<OlaTexture*>(OlaMaterialParam::NORMAL0);
+	OlaTexture* normal0 = material->paramentValue<OlaTexture*>(OlaMaterialParam::NORMAL0);
 	int normal_handle = -1;
 	if (normal0)
 	{
@@ -326,7 +326,7 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 		lgGLError("glBindTexture(GL_TEXTURE_2D,normal_handle); \n");
 	}
 
-	OlaTexture* sepcular0 = material->getSymbolValue<OlaTexture*>(OlaMaterialParam::SPECULAR0);
+	OlaTexture* sepcular0 = material->paramentValue<OlaTexture*>(OlaMaterialParam::SPECULAR0);
 	int specular_handle = -1;
 	if (sepcular0)
 	{

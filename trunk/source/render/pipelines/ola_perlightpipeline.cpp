@@ -108,7 +108,7 @@ void OlaPerLightPipeline::_renderScreenFinalQuad()
 	GetRenderDevice()->setViewport(0,0,mSceneFinalQuad->pixelW(),mSceneFinalQuad->pixelH());
     OlaMaterial* material = mSceneFinalQuad->material();
 
-	OlaMaterialParam::PARAM_VALUE* diffuse_value = material->symbol(OlaMaterialParam::DIFFUSE0);
+	OlaMaterialParam::PARAM_VALUE* diffuse_value = material->parament(OlaMaterialParam::DIFFUSE0);
 	if(diffuse_value)
 	{
 		diffuse_value->data = mSceneInputRT;//;mShadowmapRT mSceneInputRT

@@ -24,8 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "editor", "..\..\source\edit
 		{01096689-D98E-4E54-946E-E56481BD994E} = {01096689-D98E-4E54-946E-E56481BD994E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ewrapper", "..\..\source\editor\ewrapper\ewrapper.vcxproj", "{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modelview", "..\..\source\editor\modelview\modelview.csproj", "{1F0D65DB-53FA-4CCB-A09D-619F493B5634}"
 	ProjectSection(ProjectDependencies) = postProject
 		{21BF6473-B33A-4661-A99D-19A70B9AF5F5} = {21BF6473-B33A-4661-A99D-19A70B9AF5F5}
@@ -43,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scene", "..\..\source\edito
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ola_render", "ola_render\ola_render.vcxproj", "{26A5902A-312B-45F6-B573-650F8C7AC76E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ewrapper", "..\..\source\editor\ewrapper\ewrapper.vcxproj", "{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,21 +102,6 @@ Global
 		{B125E0DE-5369-45E5-8DAD-08C3481EF942}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B125E0DE-5369-45E5-8DAD-08C3481EF942}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B125E0DE-5369-45E5-8DAD-08C3481EF942}.Release|Win32.ActiveCfg = Release|Any CPU
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Win32.Build.0 = Debug|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Any CPU.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Mixed Platforms.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Mixed Platforms.Build.0 = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Win32.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Win32.Build.0 = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Any CPU.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Win32.ActiveCfg = Release|Win32
-		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Win32.Build.0 = Release|Win32
 		{1F0D65DB-53FA-4CCB-A09D-619F493B5634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F0D65DB-53FA-4CCB-A09D-619F493B5634}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F0D65DB-53FA-4CCB-A09D-619F493B5634}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -162,6 +147,21 @@ Global
 		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Release|Win32.ActiveCfg = Release|Win32
 		{26A5902A-312B-45F6-B573-650F8C7AC76E}.Release|Win32.Build.0 = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Debug|Win32.Build.0 = Debug|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Any CPU.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Mixed Platforms.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Mixed Platforms.Build.0 = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Win32.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.engine_debug|Win32.Build.0 = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Win32.ActiveCfg = Release|Win32
+		{85FD5B7A-19E8-48B8-A0C1-FE43C92E011A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

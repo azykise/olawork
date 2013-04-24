@@ -70,7 +70,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\source\pvr_gles2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\source\pvr_gles2\include;..\..\..\source\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OLA_RENDER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -81,9 +81,9 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libGLESv2.lib;libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libGLESv2.lib;libEGL.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\..\bin\ola_render.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\source\pvr_gles2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\source\pvr_gles2\lib;..\..\..\source\pthread\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -129,6 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\render\ola_thread.cpp" />
+    <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp" />
+    <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp" />
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp" />
     <ClCompile Include="..\..\..\source\render\win\win_imples.cpp" />
     <ClCompile Include="..\..\..\source\render\win\win_rendercore.cpp" />
@@ -191,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h" />
+    <ClInclude Include="..\..\..\source\render\ola_thread.h" />
+    <ClInclude Include="..\..\..\source\render\parser\ola_dml.h" />
+    <ClInclude Include="..\..\..\source\render\parser\ola_mat.h" />
     <ClInclude Include="..\..\..\source\render\win\win_impls.h" />
     <ClInclude Include="..\..\..\source\render\win\win_rendercore.h" />
     <ClInclude Include="..\..\..\source\render\win\win_renderwindow.h" />
