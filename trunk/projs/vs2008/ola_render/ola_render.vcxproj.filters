@@ -238,6 +238,15 @@
     <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp">
       <Filter>base\parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h">
@@ -428,6 +437,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_mat.h">
       <Filter>base\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_shaderpool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_materialpool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_meshpool.h">
+      <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

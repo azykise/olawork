@@ -129,6 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_thread.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp" />
@@ -194,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h" />
+    <ClInclude Include="..\..\..\source\render\ola_materialpool.h" />
+    <ClInclude Include="..\..\..\source\render\ola_meshpool.h" />
+    <ClInclude Include="..\..\..\source\render\ola_shaderpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_thread.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_dml.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_mat.h" />
