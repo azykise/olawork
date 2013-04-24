@@ -246,6 +246,8 @@ void OlaRenderSceneMng::loadScene(const char* filename)
 	draw_all = true;
 }
 
+#include "parser/ola_dml.h"
+
 const char DML_ROOT[] = "ola_model";
 const char DML_GEO[] = "geometry";
 const char DML_MAT[] = "material";
@@ -254,32 +256,21 @@ CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 {
 	OlaRender* render = mRender;
 	OlaAsset* xml_asset = render->getLoader()->load(filename);
-	const char* p_xml = xml_asset->data;
-
-	OlaXmlDocument* xml = OlaXmlDocument::CreateXmlDocument();
-	assert( xml->parse(p_xml) && "dml parse error" );
-
-	OlaXmlNode* model_node = xml->fisrtChild();
-	assert(model_node && "no model_node!");
-
-	OlaXmlNode* geom_node = model_node->selectFirst(DML_GEO);
-	assert(geom_node && "no geom_node!");
-	const char* mesh_name = geom_node->attribute(DML_RESOURCE);
-
-	OlaXmlNode* mat_node = model_node->selectFirst(DML_MAT);
-	assert(geom_node && "no mat_node!");
-	const char* mat_name = mat_node->attribute(DML_RESOURCE);
 
 	olastring dml_filename(filename);
-	olastring mesh_file(mesh_name);
-	olastring mat_file(mat_name);
-	
-	OlaMesh* mesh = render->getMesh(mesh_file.c_str());
-	OlaMesh::SubMeshList& submat_list = mesh->submeshs();
-	OlaMesh::SubMeshList::iterator submesh_i = submat_list.begin();
-	while(submesh_i != submat_list.end())
+
+	tDmlFileInfo dmlInfo;
+	tDmlResult dml;
+
+	OlaDMLParser parser;
+	parser.parseDMLInfoFromData(xml_asset->data,xml_asset->length,&dmlInfo);
+	parser.fillDML(&dmlInfo,&dml);
+
+	OlaMesh::SubMeshList& submat_list = dml.Mesh->submeshs();
+	for (unsigned int i = 0 ; i < submat_list.size() ; i++ )
 	{
-		OlaSubMesh* submesh = *submesh_i;			
+		OlaSubMesh* submesh = submat_list[i];
+		olastring& mat_file = dmlInfo.MeshMatsFullname[0];
 		OlaMaterial* submesh_mat = submesh->material();
 		if(submesh_mat == 0)
 		{
@@ -287,16 +278,9 @@ CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 			assert(material && "no material instance");
 			submesh->setMaterial(material);
 		}
-		
-		submesh_i++;
 	}
 
-	CModel* model = new CModel(dml_filename,mesh);
-	
-	//mModels.push_back(model);
-
-	delete xml;
-
+	CModel* model = new CModel(dml_filename,dml.Mesh);
 	return model;
 }
 

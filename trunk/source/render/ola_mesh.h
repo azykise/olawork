@@ -1,13 +1,10 @@
 #ifndef _OLA_MESH_H__
 #define _OLA_MESH_H__
 
-#include <vector>
+#include "ola_stl.h"
 
 #include "ola_assetmng.h"
 #include "ola_geobuffer.h"
-
-#include <vector>
-#include <map>
 
 #include "ola_ase.h"
 #include "ola_string.h"
@@ -21,7 +18,7 @@ class OlaSkeleton;
 class OlaMesh : public IRefCounter
 {
 public:
-	typedef std::vector<OlaSubMesh*> SubMeshList;
+	typedef OlaArray<OlaSubMesh*> SubMeshList;
 public:
 	OlaMesh(const char* name);
 
@@ -59,10 +56,10 @@ public:
 		olastring name;
 	};
 
-	typedef std::vector<tSBone*> SBoneList;
-	typedef std::vector<tVSkinInfo> VSkinInfoList;
+	typedef OlaArray<tSBone*> SBoneList;
+	typedef OlaArray<tVSkinInfo> VSkinInfoList;
 
-	typedef std::vector<int> MeshFaceList;
+	typedef OlaArray<int> MeshFaceList;
 public:
 	OlaSubMesh(const char* name);
 	virtual ~OlaSubMesh();

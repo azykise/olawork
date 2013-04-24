@@ -3,6 +3,7 @@
 
 #include "../ola_ase.h"
 #include "../ola_mesh.h"
+#include "../ola_assetmng.h"
 
 bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* outDmlInfo )
 {
@@ -41,6 +42,15 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 
 bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 {
+	OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEFullname.c_str(),false);
+
+	dml->Mesh = new OlaMesh(dmlInfo->ASEFullname.c_str());
+
+	OlaMeshParser parser;
+	parser.parseMeshFromData(asset->data,asset->length,dml->Mesh);
+
+	delete asset;
+
 	return true;
 }
 
