@@ -1183,13 +1183,20 @@ void AsciiExp::ExportDmlFile(INode* node)
 
 	std::vector<std::string> submats;
 	Mtl* mtl = node->GetMtl();
-	if (mtl && mtl->NumSubMtls() != 0)
+	if (mtl)
 	{
-		submats.resize(mtl->NumSubMtls());
-		for (int i = 0; i < mtl->NumSubMtls(); i++) 
+		if(mtl->NumSubMtls() != 0)
 		{
-			Mtl* subMtl = mtl->GetSubMtl(i);
-			submats[i] = FixupName(subMtl->GetName());
+			submats.resize(mtl->NumSubMtls());
+			for (int i = 0; i < mtl->NumSubMtls(); i++) 
+			{
+				Mtl* subMtl = mtl->GetSubMtl(i);
+				submats[i] = FixupName(subMtl->GetName());
+			}
+		}
+		else
+		{
+			submats.push_back(FixupName(mtl->GetName()));
 		}
 	}
 
