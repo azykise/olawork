@@ -5,7 +5,7 @@ class IRefCounter
 {
 public:
 	IRefCounter():mRefCounter(0){};
-	virtual ~IRefCounter(){mRefCounter = 0;}
+	virtual ~IRefCounter();
 
 	virtual void addRef() {mRefCounter++;}
 	virtual void delRef() {if(mRefCounter > 0) mRefCounter--;}

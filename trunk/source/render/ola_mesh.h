@@ -24,7 +24,6 @@ public:
 
 	~OlaMesh();
 
-	bool load(OlaAsset* asset);
 	void clear();
 
 	bool copyTo(OlaMesh* mesh,OlaVBParam::VBO_TYPE vb_type);
@@ -64,7 +63,6 @@ public:
 	OlaSubMesh(const char* name);
 	virtual ~OlaSubMesh();
 
-	virtual bool load(OlaASE::geomobj* geo,MeshFaceList& faces);
 	virtual void clear();
 
 	virtual void copyTo(OlaSubMesh* submesh,OlaVBParam::VBO_TYPE vb_type);

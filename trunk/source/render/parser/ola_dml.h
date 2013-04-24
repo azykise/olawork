@@ -6,7 +6,7 @@
 class OlaMesh;
 class OlaSubMesh;
 class OlaMaterial;
-class geomobj;
+class OlaMaterialPool;
 
 struct tDmlFileInfo
 {
@@ -24,9 +24,13 @@ struct tDmlResult
 class OlaDMLParser
 {
 public:
+	OlaDMLParser(OlaMaterialPool* matpool = 0);
+
 	virtual bool parseDMLInfoFromData(const char* data,int len,tDmlFileInfo* outDmlInfo);	
 
-	virtual bool fillDML(tDmlFileInfo* dmlInfo,tDmlResult* dml);	
+	virtual bool fillDML(tDmlFileInfo* dmlInfo,tDmlResult* dml);
+protected:
+	OlaMaterialPool* mMaterialPool;
 };
 
 class OlaMeshParser

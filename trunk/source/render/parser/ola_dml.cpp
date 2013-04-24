@@ -54,6 +54,11 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 	return true;
 }
 
+OlaDMLParser::OlaDMLParser( OlaMaterialPool* matpool ):
+mMaterialPool(matpool)
+{
+
+}
 OlaASE::matobj* _GetMaterialLeaf(OlaASE::matobj* matnode, int submat_id)
 {
 	if (!matnode) return 0;
@@ -161,6 +166,19 @@ struct tOlaFixedVertex
 	float tan[3];
 	float bnr[3];
 };
+
+void copyVBoneToSkinInfo(OlaASE::vbonedata* vb,OlaSubMesh::tVSkinInfo* sk)
+{
+	sk->bone_id[0] = vb->bone_id[0];
+	sk->bone_id[1] = vb->bone_id[1];
+	sk->bone_id[2] = vb->bone_id[2];
+	sk->bone_id[3] = vb->bone_id[3];
+
+	sk->weight[0] = vb->weight[0];
+	sk->weight[1] = vb->weight[1];
+	sk->weight[2] = vb->weight[2];
+	sk->weight[3] = vb->weight[3];
+}
 
 bool FillSubMesh( OlaSubMesh* submesh,OlaASE::geomobj* geo0,OlaMeshParser::MeshFaceList& faces )
 {

@@ -203,7 +203,7 @@ void OlaShader::reset(OlaShaderFX* fx)
 }
 
 OlaShader::~OlaShader()
-{
+{	
 	if(mFX)
 	{
 		delete mFX;

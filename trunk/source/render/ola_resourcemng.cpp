@@ -131,28 +131,7 @@ OlaMesh* OlaResourceMng::getMesh(const char* _filename)
 	{
 		return i->second;
 	}
-
-	OlaAsset* asset = mLoader->load(filename.c_str());
-	if(asset == 0)
-	{
-		lg("load asset %s failed: asset == null !!! \n",filename.c_str());
-		return 0;
-	}
-
-	OlaMesh* mesh = new OlaMesh(_filename);
-
-	if(mesh->load(asset))
-	{
-		lg("load mesh %s done !!! \n",filename.c_str());
-		mMeshs[filename] = mesh;
-		return mesh;
-	}
-	else
-	{
-		lg("load mesh %s failed: parse ase crash!!! \n",filename.c_str());
-		delete mesh;
-		return 0;
-	}
+	return 0;
 }
 
 const char MATERIAL_DEFAULT[] = "default";
