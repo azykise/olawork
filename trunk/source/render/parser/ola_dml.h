@@ -6,6 +6,7 @@
 class OlaMesh;
 class OlaSubMesh;
 class OlaMaterial;
+class OlaMeshPool;
 class OlaMaterialPool;
 
 struct tDmlFileInfo
@@ -24,12 +25,13 @@ struct tDmlResult
 class OlaDMLParser
 {
 public:
-	OlaDMLParser(OlaMaterialPool* matpool = 0);
+	OlaDMLParser(OlaMeshPool* meshpool = 0,OlaMaterialPool* matpool = 0);
 
 	virtual bool parseDMLInfoFromData(const char* data,int len,tDmlFileInfo* outDmlInfo);	
 
 	virtual bool fillDML(tDmlFileInfo* dmlInfo,tDmlResult* dml);
 protected:
+	OlaMeshPool* mMeshPool;
 	OlaMaterialPool* mMaterialPool;
 };
 

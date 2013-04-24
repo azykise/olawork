@@ -54,7 +54,8 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 	return true;
 }
 
-OlaDMLParser::OlaDMLParser( OlaMaterialPool* matpool ):
+OlaDMLParser::OlaDMLParser( OlaMeshPool* meshpool, OlaMaterialPool* matpool ):
+mMeshPool(meshpool),
 mMaterialPool(matpool)
 {
 
