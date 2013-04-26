@@ -96,3 +96,57 @@ void CModel::setPostition(float x,float y,float z)
 	temp_vec3.Set(x,y,z);	
 	setPostition(temp_vec3);
 }
+
+void OlaMeshRenderer::mesh( OlaMesh* mesh /*= 0*/ )
+{
+	if ( mesh == mMesh )
+	{
+		return;
+	}
+
+	if ( !mesh )
+	{
+		if ( mMesh )
+		{
+			mMesh->delRef();			
+		}
+		mMesh = 0;
+	}
+	else
+	{
+		if ( mMesh )
+		{
+			mMesh->delRef();
+		}
+		mesh->addRef();
+		mMesh = mesh;		
+	}
+
+	if ( mMesh )
+	{
+		for (unsigned int i = 0 ; i < mMaterials.size() ; i++ )
+		{
+			if (mMaterials[i] != 0)
+			{
+				mMaterials[i]->delRef();
+			}			
+		}
+		mMaterials.clear();
+		mMaterials.resize(mMesh->submeshs().size());
+		mMaterials.assign(mMesh->submeshs().size(),0);
+	}
+}
+
+OlaMaterial* OlaMeshRenderer::material( int index )
+{
+	if (index < 0 || index >= mMaterials.size())
+	{
+		return 0;
+	}
+	return mMaterials[index];
+}
+
+void OlaMeshRenderer::material( int index,OlaMaterial* mat )
+{
+
+}

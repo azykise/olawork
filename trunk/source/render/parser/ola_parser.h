@@ -26,11 +26,6 @@ struct tMatFileInfo
 	OlaArray<tMatVarInfo> Paraments;
 };
 
-struct tMatResult
-{
-	OlaMaterial* Material;
-};
-
 struct tDmlFileInfo
 {
 	olastring DmlFullname;
@@ -38,10 +33,23 @@ struct tDmlFileInfo
 	OlaArray<tMatFileInfo> MeshMatsInfo;
 };
 
+struct tMatResult
+{
+	OlaMaterial* Material;
+};
+
 struct tDmlResult
 {
 	OlaMesh* Mesh;
 	OlaArray<OlaMaterial*> MeshMats;
+};
+
+struct tResourcePools
+{
+	OlaShaderPool* ShaderPool;
+	OlaMeshPool* MeshPool;
+	OlaTexturePool* TexturePool;
+	OlaMaterialPool* MaterialPool;	
 };
 
 #endif

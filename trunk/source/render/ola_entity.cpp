@@ -1,13 +1,13 @@
 #include "ola_entity.h"
 #include "ola_scene.h"
 
-ISpatialObj::ISpatialObj():
+OlaTransformObj::OlaTransformObj():
 mScene(0)
 {
 
 }
 
-ISpatialObj::~ISpatialObj()
+OlaTransformObj::~OlaTransformObj()
 {
 	if (mScene)
 	{

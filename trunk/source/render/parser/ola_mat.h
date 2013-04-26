@@ -6,15 +6,14 @@
 class OlaMATParser
 {
 public:
-	OlaMATParser(OlaShaderPool* shaderpool,OlaTexturePool* texlpool);
+	OlaMATParser(tResourcePools* ps);
 
 	virtual bool parseMATFromData(const char* data,int len,tMatFileInfo* outMatInfo);
 
-	virtual bool fillMAT(tMatFileInfo* matInfo,tMatResult* outMat);
+	virtual bool fillMAT(tMatFileInfo* matInfo,OlaMaterial*& outMat);
 
 protected:
-	OlaShaderPool* mShaderPool;
-	OlaTexturePool* mTexturePool;
+	tResourcePools* mPools;
 };
 
 #endif

@@ -21,7 +21,7 @@ class OlaSceneNode
 {
 public:
 	typedef OlaArray<OlaSceneNode*> NodeList;
-	typedef OlaArray<ISpatialObj*> AttachedList;
+	typedef OlaArray<OlaTransformObj*> AttachedList;
 public:
 	OlaSceneNode(const char* name,OlaSceneNode* parent){}
 	virtual ~OlaSceneNode(){}
@@ -31,8 +31,8 @@ public:
 	virtual void addSub(OlaSceneNode* sub){}
 	virtual void delSub(OlaSceneNode* sub){}
 
-	virtual void attachObj(ISpatialObj* obj){}
-	virtual void detachObj(ISpatialObj* obj){}
+	virtual void attachObj(OlaTransformObj* obj){}
+	virtual void detachObj(OlaTransformObj* obj){}
 
 	virtual OlaSceneNode* findSubNode(const char* name){return 0;}
 
@@ -69,8 +69,8 @@ public:
 	virtual void initialize();
 	virtual void release();
 	
-	virtual void attachObj(ISpatialObj* obj) = 0;
-	virtual void detachObj(ISpatialObj* obj) = 0;	
+	virtual void attachObj(OlaTransformObj* obj) = 0;
+	virtual void detachObj(OlaTransformObj* obj) = 0;	
 
 	virtual OlaSceneNode* root(){return mRoot;}
 	virtual OlaSceneNode* findNode(const char* name);

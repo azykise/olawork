@@ -33,7 +33,7 @@ const olaVec3* OlaLight:: position()
 unsigned int OlaLight::flags()
 {
 	unsigned int f = 0;
-	f |= SPATIAL_OBJPARAM::OBJFLAG_LIGHT;
-	f |= SPATIAL_OBJPARAM::OBJFLAG_DYNAMIC;
+	f |= TRANSFORM_OBJPARAM::OBJFLAG_LIGHT;
+	f |= TRANSFORM_OBJPARAM::OBJFLAG_DYNAMIC;
 	return f;
 }

@@ -7,7 +7,7 @@
 
 class OlaRenderScene;
 
-struct SPATIAL_OBJPARAM
+struct TRANSFORM_OBJPARAM
 {
 	enum OBJ_FLAGS
 	{
@@ -17,11 +17,11 @@ struct SPATIAL_OBJPARAM
 	};	
 };
 
-class ISpatialObj
+class OlaTransformObj
 {
 public:
-	ISpatialObj();
-	virtual ~ISpatialObj();
+	OlaTransformObj();
+	virtual ~OlaTransformObj();
 
 	virtual unsigned int flags() = 0;
 

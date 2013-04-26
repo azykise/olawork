@@ -14,8 +14,8 @@ public:
 	virtual void initialize();
 	virtual void release();
 
-	virtual void attachObj(ISpatialObj* obj);
-	virtual void detachObj(ISpatialObj* obj);
+	virtual void attachObj(OlaTransformObj* obj);
+	virtual void detachObj(OlaTransformObj* obj);
 
 	virtual const LightList* lights( bool all = false );
 

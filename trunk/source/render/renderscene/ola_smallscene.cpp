@@ -17,11 +17,11 @@ OlaSmallScene::~OlaSmallScene()
 
 }
 
-void OlaSmallScene::attachObj( ISpatialObj* obj )
+void OlaSmallScene::attachObj( OlaTransformObj* obj )
 {
 	unsigned int f = obj->flags();
 
-	if (f & SPATIAL_OBJPARAM::OBJFLAG_LIGHT)
+	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
 	{
 		OlaLight* l = dynamic_cast<OlaLight*>(obj);
 		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
@@ -35,11 +35,11 @@ void OlaSmallScene::attachObj( ISpatialObj* obj )
 	}		
 }
 
-void OlaSmallScene::detachObj( ISpatialObj* obj )
+void OlaSmallScene::detachObj( OlaTransformObj* obj )
 {
 	unsigned int f = obj->flags();
 
-	if (f & SPATIAL_OBJPARAM::OBJFLAG_LIGHT)
+	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
 	{
 		OlaLight* l = dynamic_cast<OlaLight*>(obj);
 		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");

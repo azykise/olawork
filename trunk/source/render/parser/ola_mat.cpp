@@ -23,9 +23,8 @@ const char TYPE_META[] = "meta";
 const char TYPE_TEXTURE[] = "texture";
 const char TYPE_BOOL[]	= "bool";
 
-OlaMATParser::OlaMATParser( OlaShaderPool* shaderpool , OlaTexturePool* texlpool ):
-mShaderPool(shaderpool),
-mTexturePool(texlpool)
+OlaMATParser::OlaMATParser( tResourcePools* ps ):
+mPools(ps)
 {
 
 }
@@ -60,16 +59,16 @@ bool OlaMATParser::parseMATFromData( const char* data,int len,tMatFileInfo* outM
 	return true;
 }
 
-bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,tMatResult* outMat )
+bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 {
-	OlaShader* shader = mShaderPool->seek(matInfo->ShaderFullname.c_str());
+	OlaShader* shader = mPools->ShaderPool->seek(matInfo->ShaderFullname.c_str());
 	if(shader == 0)
 	{
 		shader = new OlaShader();
 		OlaShaderFX* fx = GetRenderDevice()->spawnShaderFX();
 		fx->load(matInfo->ShaderFullname.c_str());
 		shader->reset(fx);
-		mShaderPool->enPool(shader);
+		mPools->ShaderPool->enPool(shader);
 	}
 
 	OlaMaterial* material = new OlaMaterial(matInfo->MatFullname.c_str());
@@ -82,7 +81,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,tMatResult* outMat )
 		if(strcmp(var.Type.c_str(),TYPE_TEXTURE) != 0)				
 			continue;
 
-		OlaTexture* texture = mTexturePool->seek(var.Value.c_str());
+		OlaTexture* texture = mPools->TexturePool->seek(var.Value.c_str());
 		if(!texture)	
 		{
 			texture = GetRenderDevice()->spawnTexture();
@@ -94,7 +93,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,tMatResult* outMat )
 
 			delete asset;
 
-			mTexturePool->enPool(texture);
+			mPools->TexturePool->enPool(texture);
 		}
 
 		material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_TEXTURE,texture);
@@ -113,6 +112,8 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,tMatResult* outMat )
 			material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_VEC4,var.Value.c_str());
 		}
 	}
+
+	outMat = material;
 
 	return true;
 }

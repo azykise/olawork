@@ -4,6 +4,10 @@
 #include "../ola_ase.h"
 #include "../ola_mesh.h"
 #include "../ola_assetmng.h"
+#include "../ola_material.h"
+
+#include "../ola_meshpool.h"
+#include "../ola_materialpool.h"
 
 #include "ola_mat.h"
 
@@ -35,7 +39,17 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 
 		olastring submat_res = submat_node->attribute("resource");
 
-		//outDmlInfo->MeshMatsFullname[idx] = submat_res;
+		OlaAsset* matfile = new OlaAsset;
+
+		LoadAssetFile(submat_res.c_str(),matfile);
+
+		tMatFileInfo matinfo;
+		matinfo.MatFullname = submat_res;
+
+		mMATParser->parseMATFromData(matfile->data,matfile->length,&matinfo);
+		outDmlInfo->MeshMatsInfo[idx] = matinfo;
+
+		delete matfile;				
 
 		submat_node = submat_node->nextSibling("submat");
 	}	
@@ -45,23 +59,58 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 
 bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 {
-	OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEFullname.c_str(),false);
+	OlaMesh* mesh = mPools->MeshPool->seek(dmlInfo->ASEFullname.c_str());
+	if ( !mesh )
+	{
+		mesh = new OlaMesh(dmlInfo->ASEFullname.c_str()); 
 
-	dml->Mesh = new OlaMesh(dmlInfo->ASEFullname.c_str());
+		OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEFullname.c_str(),false);
 
-	OlaMeshParser parser;
-	parser.parseMeshFromData(asset->data,asset->length,dml->Mesh);
+		OlaMeshParser parser;
+		parser.parseMeshFromData(asset->data,asset->length,dml->Mesh);
 
-	delete asset;
+		delete asset;
+
+		mPools->MeshPool->enPool(mesh);
+	}
+	
+	mesh->addRef();
+	dml->Mesh = mesh;
+
+	for ( unsigned int i = 0 ; i < dmlInfo->MeshMatsInfo.size() ; i++ )
+	{
+		tMatFileInfo& matinfo = dmlInfo->MeshMatsInfo[i];
+
+		OlaMaterial* mat = mPools->MaterialPool->seek(matinfo.MatFullname);
+		if ( !mat )
+		{
+			mat = new OlaMaterial(matinfo.MatFullname.c_str());
+			mMATParser->fillMAT(&matinfo,mat);
+
+			mPools->MaterialPool->enPool(mat);
+		}
+
+		mat->addRef();
+		dml->MeshMats.push_back(mat);
+	}
 
 	return true;
 }
 
-OlaDMLParser::OlaDMLParser( OlaMeshPool* meshpool, OlaMaterialPool* matpool ):
-mMeshPool(meshpool),
-mMaterialPool(matpool)
+OlaDMLParser::OlaDMLParser( tResourcePools* ps ):
+mPools(ps),
+mMATParser(0)
 {
+	mMATParser = new OlaMATParser(mPools);
+}
 
+OlaDMLParser::~OlaDMLParser()
+{
+	if (mMATParser)
+	{
+		delete mMATParser;
+		mMATParser = 0;
+	}
 }
 OlaASE::matobj* _GetMaterialLeaf(OlaASE::matobj* matnode, int submat_id)
 {

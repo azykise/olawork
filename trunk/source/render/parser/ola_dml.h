@@ -3,17 +3,20 @@
 
 #include "ola_parser.h"
 
+class OlaMATParser;
 class OlaDMLParser
 {
 public:
-	OlaDMLParser(OlaMeshPool* meshpool = 0,OlaMaterialPool* matpool = 0);
+	OlaDMLParser(tResourcePools* ps = 0);
+
+	virtual ~OlaDMLParser();
 
 	virtual bool parseDMLInfoFromData(const char* data,int len,tDmlFileInfo* outDmlInfo);	
 
 	virtual bool fillDML(tDmlFileInfo* dmlInfo,tDmlResult* dml);
 protected:
-	OlaMeshPool* mMeshPool;
-	OlaMaterialPool* mMaterialPool;
+	OlaMATParser* mMATParser;
+	tResourcePools* mPools;
 };
 
 class OlaMeshParser
