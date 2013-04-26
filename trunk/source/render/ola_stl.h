@@ -54,4 +54,14 @@ public:
 	}
 };
 
+template <class T1,class T2>
+class OlaPair : public std::pair<T1,T2>
+{
+public:
+	inline bool equals(OlaPair<T1,T2>& p)
+	{
+		return first == p.first && second == p.second;
+	}
+};
+
 #endif

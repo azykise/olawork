@@ -269,15 +269,15 @@ CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 	OlaMesh::SubMeshList& submat_list = dml.Mesh->submeshs();
 	for (unsigned int i = 0 ; i < submat_list.size() ; i++ )
 	{
-		OlaSubMesh* submesh = submat_list[i];
-		olastring& mat_file = dmlInfo.MeshMatsFullname[0];
-		OlaMaterial* submesh_mat = submesh->material();
-		if(submesh_mat == 0)
-		{
-			OlaMaterial* material = render->getMaterial(mat_file.c_str(),submesh->name().c_str());
-			assert(material && "no material instance");
-			submesh->setMaterial(material);
-		}
+		//OlaSubMesh* submesh = submat_list[i];
+		//olastring& mat_file = dmlInfo.MeshMatsFullname[0];
+		//OlaMaterial* submesh_mat = submesh->material();
+		//if(submesh_mat == 0)
+		//{
+		//	OlaMaterial* material = render->getMaterial(mat_file.c_str(),submesh->name().c_str());
+		//	assert(material && "no material instance");
+		//	submesh->setMaterial(material);
+		//}
 	}
 
 	CModel* model = new CModel(dml_filename,dml.Mesh);

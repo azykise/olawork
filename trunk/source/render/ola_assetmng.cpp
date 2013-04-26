@@ -69,6 +69,13 @@ void OlaAssetLoader::setJNIAssetMng(AAssetManager* mng)
 
 OlaAsset* OlaAssetLoader::load(const char* filename , bool cache)
 {
+	OlaAsset* ola_asset = new OlaAsset();
+	load(filename,ola_asset,cache);
+	return ola_asset;
+}
+
+bool OlaAssetLoader::load( const char* filename,OlaAsset* ola_asset,bool cache /*= true*/ )
+{
 	olastring asset_name(filename);
 
     char *pResult = NULL;
@@ -98,8 +105,7 @@ OlaAsset* OlaAssetLoader::load(const char* filename , bool cache)
 	pResult[iLen] = '\0';
 	asset_file->close();
 	delete asset_file;
-
-	OlaAsset* ola_asset = new OlaAsset();
+	
 	ola_asset->length = iLen + 1;
 	ola_asset->data =(char*)malloc(ola_asset->length); 
 	memcpy(ola_asset->data,pResult,ola_asset->length);
@@ -116,4 +122,10 @@ OlaAsset* OlaAssetLoader::load(const char* filename , bool cache)
 		mAssets[asset_name] = ola_asset;
 
 	return ola_asset;
+}
+
+bool LoadAssetFile(const char* filename,OlaAsset* outAsset)
+{
+	OlaAssetLoader::instance()->load(filename,outAsset,false);
+	return true;
 }

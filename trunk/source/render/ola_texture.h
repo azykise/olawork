@@ -19,6 +19,7 @@ public:
 
 	virtual void release() = 0;
 
+	virtual int	 readTga(char* data,int len);
 	virtual int  readTga(OlaAsset* asset);
 	virtual bool fill(unsigned char* rgba,int w,int h,int bpp) = 0;
 	virtual bool filltest();

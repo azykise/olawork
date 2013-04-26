@@ -1,26 +1,7 @@
 #ifndef _OLA_DML_FILEPARSER_
 #define _OLA_DML_FILEPARSER_
 
-#include "../ola_util.h"
-
-class OlaMesh;
-class OlaSubMesh;
-class OlaMaterial;
-class OlaMeshPool;
-class OlaMaterialPool;
-
-struct tDmlFileInfo
-{
-	olastring DmlFullname;
-	olastring ASEFullname;
-	OlaArray<olastring> MeshMatsFullname;
-};
-
-struct tDmlResult
-{
-	OlaMesh* Mesh;
-	OlaArray<OlaMaterial*> MeshMats;
-};
+#include "ola_parser.h"
 
 class OlaDMLParser
 {

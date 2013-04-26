@@ -102,8 +102,12 @@ OlaRLEstate;
 
 int OlaTexture::readTga(OlaAsset* asset)
 {
-	unsigned char* byte = (unsigned char*)(asset->data);
-	int len = asset->length;
+	return readTga(asset->data,asset->length);
+}
+
+int OlaTexture::readTga( char* _data,int len )
+{
+	unsigned char* byte = (unsigned char*)(_data);
 
 	OlaTgaHeader tgaHeader;
 	OlaTgaFooter tgaFooter;

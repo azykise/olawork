@@ -1,27 +1,12 @@
 #ifndef _OLA_MAT_FILEPARSER_
 #define _OLA_MAT_FILEPARSER_
 
-#include "../ola_util.h"
-
-class OlaShader;
-class OlaMaterial;
-class OlaShaderPool;
-
-struct tMatFileInfo
-{
-	olastring MatFullname;
-	olastring ShaderFullname;
-};
-
-struct tMatResult
-{
-	OlaMaterial* Material;
-};
+#include "ola_parser.h"
 
 class OlaMATParser
 {
 public:
-	OlaMATParser(OlaShaderPool* shaderpool);
+	OlaMATParser(OlaShaderPool* shaderpool,OlaTexturePool* texlpool);
 
 	virtual bool parseMATFromData(const char* data,int len,tMatFileInfo* outMatInfo);
 
@@ -29,6 +14,7 @@ public:
 
 protected:
 	OlaShaderPool* mShaderPool;
+	OlaTexturePool* mTexturePool;
 };
 
 #endif

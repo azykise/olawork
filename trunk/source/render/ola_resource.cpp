@@ -3,10 +3,8 @@
 const char DEFAULT_MATERIAL_NAME[] = "default.mat";
 const char DEFAULT_MATERIAL_DATA[] = 
 "<ola_material version=\"1.0\">"
-"	<instance name=\"default\">"
-"		<technique type=\"shader\" source_s=\"default.glsl\"/>"
-"		<var name=\"diffuse_map\" type=\"texture\" value=\"art/default.tga\"/>"
-"	</instance>"
+"	<technique type=\"forward\" source_s=\"default.glsl\"/>"
+"	<var name=\"diffuse_map\" type=\"texture\" value=\"default.tga\"/>"
 "</ola_material>";
 
 const char DEFAULT_SHADER_NAME[] = "defalut.shader";
@@ -344,3 +342,5 @@ IRefCounter::~IRefCounter()
 {
 	assert(mRefCounter == 0 && "reference count is not 0!");
 }
+
+

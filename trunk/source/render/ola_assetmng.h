@@ -35,6 +35,8 @@ public:
 
 	void setJNIAssetMng(AAssetManager* mng);
 
+	virtual bool load(const char* filename,OlaAsset* asset,bool cache = true);
+
 	virtual OlaAsset* load(const char* filename , bool cache = true);
 
 protected:
@@ -42,6 +44,6 @@ protected:
 	AssetTable mAssets;
 };
 
-
+extern bool LoadAssetFile(const char* filename,OlaAsset* outAsset);
 
 #endif

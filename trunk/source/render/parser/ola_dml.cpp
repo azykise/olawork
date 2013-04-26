@@ -5,6 +5,8 @@
 #include "../ola_mesh.h"
 #include "../ola_assetmng.h"
 
+#include "ola_mat.h"
+
 bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* outDmlInfo )
 {
 	OlaXmlDocument* xml = OlaXmlDocument::CreateXmlDocument();
@@ -23,7 +25,7 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 	
 	const char* mat_numstr = mat_node->attribute("num");
 	int mat_num = atoi(mat_numstr);
-	outDmlInfo->MeshMatsFullname.resize(mat_num);
+	outDmlInfo->MeshMatsInfo.resize(mat_num);
 
 	OlaXmlNode* submat_node = mat_node->selectFirst("submat");
 	while(submat_node)
@@ -32,7 +34,8 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 		int idx = atoi(idxstr);
 
 		olastring submat_res = submat_node->attribute("resource");
-		outDmlInfo->MeshMatsFullname[idx] = submat_res;
+
+		//outDmlInfo->MeshMatsFullname[idx] = submat_res;
 
 		submat_node = submat_node->nextSibling("submat");
 	}	
