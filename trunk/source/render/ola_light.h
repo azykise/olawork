@@ -20,7 +20,7 @@ public:
 	virtual unsigned int flags();
 
 	virtual void setLookAtPT(const olaVec3& dir);
-	virtual void setPosition(const olaVec3& pos);
+	virtual void position(const olaVec3& pos);
 
 	void setLength(float l){mLength = l;}
 	void setRadius(float r){mRadius = r;}

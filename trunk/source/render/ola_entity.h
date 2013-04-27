@@ -26,14 +26,14 @@ public:
 	virtual unsigned int flags() = 0;
 
 	//should not be virtual cause it may be called in deconstrator
-	inline void setScene(OlaRenderScene* scene){mScene = scene;};
+	inline void scene(OlaRenderScene* scene){mScene = scene;};
 	inline OlaRenderScene* scene(){return mScene;};
 
 	virtual olaAABB* aabb() = 0;
 
 	virtual const olaVec3* position() = 0;
-	virtual void setPosition(const olaVec3& pos) = 0;
-	virtual void setPosition(float x,float y,float z){olaVec3 v(x,y,z);setPosition(v);}
+	virtual void position(const olaVec3& pos) = 0;
+	virtual void position(float x,float y,float z){olaVec3 v(x,y,z);position(v);}
 
 	//virtual const olaQuat* rotation() = 0;
 	//virtual const olaMat4* transform() = 0;

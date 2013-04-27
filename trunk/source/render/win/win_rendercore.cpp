@@ -233,7 +233,7 @@ ola::IPrimitive* OlaRenderCore::createPrimitive(ola::PrimitiveType type)
 {
 	OlaPrimitive* prim = new OlaPrimitive(OlaPrimitiveParam::PRI_LINE);
 	OlaMaterial* pri_mat = mRender->getResourceMng()->getPrimitiveMaterial();
-	prim->renderop()->setMaterial(pri_mat);
+	prim->renderop()->material(pri_mat);
 
 	OlaPrimitiveImpl* impl = new OlaPrimitiveImpl(prim,mSceneMng);
 	//mSceneMng->prims().push_back(prim);

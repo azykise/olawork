@@ -15,7 +15,7 @@ void OlaLight::setLookAtPT(const olaVec3& lat)
 	mLookAtPT = lat;
 }
 
-void OlaLight::setPosition(const olaVec3& pos)
+void OlaLight::position(const olaVec3& pos)
 {
 	mPosition = pos;
 }

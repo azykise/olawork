@@ -301,7 +301,7 @@ public:
 	virtual void setPosition( float x,float y,float z ) 
 	{
 		olaVec3 p(x,y,z);
-		mLight->setPosition(p);
+		mLight->position(p);
 	}
 
 	virtual void getRotation(ola::quat* out_rot) 

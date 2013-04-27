@@ -30,7 +30,7 @@ void OlaSmallScene::attachObj( OlaTransformObj* obj )
 		{
 			ls->detachObj(l);
 		}
-		l->setScene(this);
+		l->scene(this);
 		mLights.add(l);
 	}		
 }
@@ -45,7 +45,7 @@ void OlaSmallScene::detachObj( OlaTransformObj* obj )
 		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
 		if (mLights.contains(l))
 		{
-			l->setScene(0);
+			l->scene(0);
 			mLights.remove(l);
 		}
 	}

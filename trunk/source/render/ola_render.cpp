@@ -163,7 +163,7 @@ void OlaRender::setDirLight(int idx,olaVec3& pos,olaVec3& lookat)
 		return;
 
 	mDirLights[idx]->setLookAtPT(lookat);
-	mDirLights[idx]->setPosition(pos);
+	mDirLights[idx]->position(pos);
 }
 
 void OlaRender::onResize(int w,int h)

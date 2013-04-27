@@ -457,4 +457,12 @@
       <Filter>base\parser</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\source\render\ola_model.h">
+      <Filter>entity</Filter>
+    </None>
+    <None Include="..\..\..\source\render\ola_model.cpp">
+      <Filter>entity</Filter>
+    </None>
+  </ItemGroup>
 </Project>

@@ -266,6 +266,10 @@
     <ClInclude Include="..\..\..\source\render\model.h" />
     <ClInclude Include="..\..\..\source\render\ola_entity.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\source\render\ola_model.cpp" />
+    <None Include="..\..\..\source\render\ola_model.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

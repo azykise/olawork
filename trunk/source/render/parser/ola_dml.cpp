@@ -3,6 +3,7 @@
 
 #include "../ola_ase.h"
 #include "../ola_mesh.h"
+#include "../ola_model.h"
 #include "../ola_assetmng.h"
 #include "../ola_material.h"
 
@@ -57,7 +58,7 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 	return true;
 }
 
-bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
+bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml )
 {
 	OlaMesh* mesh = mPools->MeshPool->seek(dmlInfo->ASEFullname.c_str());
 	if ( !mesh )
@@ -67,15 +68,14 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 		OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEFullname.c_str(),false);
 
 		OlaMeshParser parser;
-		parser.parseMeshFromData(asset->data,asset->length,dml->Mesh);
+		parser.parseMeshFromData(asset->data,asset->length,mesh);
 
 		delete asset;
 
 		mPools->MeshPool->enPool(mesh);
 	}
 	
-	mesh->addRef();
-	dml->Mesh = mesh;
+	dml->mesh(mesh);
 
 	for ( unsigned int i = 0 ; i < dmlInfo->MeshMatsInfo.size() ; i++ )
 	{
@@ -90,8 +90,7 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,tDmlResult* dml )
 			mPools->MaterialPool->enPool(mat);
 		}
 
-		mat->addRef();
-		dml->MeshMats.push_back(mat);
+		dml->material(i,mat);
 	}
 
 	return true;

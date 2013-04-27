@@ -4,6 +4,7 @@
 #include "ola_parser.h"
 
 class OlaMATParser;
+class OlaMeshRenderer;
 class OlaDMLParser
 {
 public:
@@ -13,7 +14,7 @@ public:
 
 	virtual bool parseDMLInfoFromData(const char* data,int len,tDmlFileInfo* outDmlInfo);	
 
-	virtual bool fillDML(tDmlFileInfo* dmlInfo,tDmlResult* dml);
+	virtual bool fillDML(tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml);
 protected:
 	OlaMATParser* mMATParser;
 	tResourcePools* mPools;

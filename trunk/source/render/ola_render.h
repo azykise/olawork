@@ -58,7 +58,7 @@ public:
 	OlaVB* vb;
 	OlaIB* ib;
 	
-	inline void setMaterial(OlaMaterial* mat)
+	inline void material(OlaMaterial* mat)
 	{
 		if (mMat)
 		{
