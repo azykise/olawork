@@ -37,6 +37,7 @@ public:
 	virtual void pushRender(ola::IPrimitive* r);
 	virtual void pushRender(ola::IStaticModel* r);
 	virtual void pushRender(ola::IRenderable* r);
+	virtual void pushRender(ola::IGeometry* g);
 
 	virtual void pushHardwareSelect(ola::IPrimitive* primitive,unsigned int sel_id){};
 

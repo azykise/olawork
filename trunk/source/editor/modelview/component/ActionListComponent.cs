@@ -22,28 +22,28 @@ namespace modelview
 
         public void setCurrentAction(string action_name)
         {
-            if (Doc.CurrentDynamicModel != null)
-            {
-                if (!ActionFiles.ContainsKey(action_name) && Doc.CurrentDynamicModel.DefActionName != action_name)
-                {
-                    return;
-                }
+            //if (Doc.CurrentDynamicModel != null)
+            //{
+            //    if (!ActionFiles.ContainsKey(action_name) && Doc.CurrentDynamicModel.DefActionName != action_name)
+            //    {
+            //        return;
+            //    }
                     
-                string action_filename = ActionFiles[action_name];
-                Doc.CurrentDynamicModel.setAction(action_filename);
-                updateCurrentActionName();
+            //    string action_filename = ActionFiles[action_name];
+            //    Doc.CurrentDynamicModel.setAction(action_filename);
+            //    updateCurrentActionName();
 
-                ActionListUI.updateUI();
-                EditorGraph.postMessage(this, new MessageBase("AfterModelActionChanged"));
-            }            
+            //    ActionListUI.updateUI();
+            //    EditorGraph.postMessage(this, new MessageBase("AfterModelActionChanged"));
+            //}            
         }
 
         public void resetCurrentAction()
         {
-            if (Doc.CurrentDynamicModel != null)
-            {
-                setCurrentAction(Doc.CurrentDynamicModel.DefActionName);
-            }
+            //if (Doc.CurrentDynamicModel != null)
+            //{
+            //    setCurrentAction(Doc.CurrentDynamicModel.DefActionName);
+            //}
         }
 
         public void refreshActionList()
@@ -69,12 +69,12 @@ namespace modelview
 
         private void updateCurrentActionName()
         {
-            if (Doc.CurrentDynamicModel != null && Doc.CurrentDynamicModel.CurrentAction.Name != Doc.CurrentDynamicModel.DefActionName)
-            {
-                CurrentActionName = Doc.CurrentDynamicModel.CurrentAction.Name;
-            }
-            else
-                CurrentActionName = null;
+            //if (Doc.CurrentDynamicModel != null && Doc.CurrentDynamicModel.CurrentAction.Name != Doc.CurrentDynamicModel.DefActionName)
+            //{
+            //    CurrentActionName = Doc.CurrentDynamicModel.CurrentAction.Name;
+            //}
+            //else
+            //    CurrentActionName = null;
         }
 
         private void onAfterModelViewUICreatedMessage(EditorComponent from, MessageBase msg)

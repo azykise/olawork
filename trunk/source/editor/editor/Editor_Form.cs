@@ -33,8 +33,14 @@ namespace editor
         {
             if (!m_enable)
             {               
-                try { m_render_sys = new Engine.RenderSystem(this.Handle); }
-                catch (System.Exception) { CommonTool.newLog(m_domain_mng, "RenderSystem 创建失败");}
+                try 
+                { 
+                    m_render_sys = new RenderSystem(this.Handle); 
+                }
+                catch (System.Exception e) 
+                { 
+                    CommonTool.newLog(m_domain_mng, "RenderSystem 创建失败" + e.Message);
+                }
 
                 CommonTool.newLog(m_domain_mng, "RenderSystem 创建成功");
 
@@ -135,7 +141,7 @@ namespace editor
         public DomainManager DomainMng { get { return m_domain_mng; } }
 
         DomainManager m_domain_mng = null;
-        Engine.RenderSystem m_render_sys = null;
+        RenderSystem m_render_sys = null;
         EditorLog m_log = null;
         bool m_enable = false;
 

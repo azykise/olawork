@@ -19,20 +19,20 @@ namespace modelview
 
         public void reloadCurrentModel()
         {
-            if (Doc.CurrentStaticModel == null)
-                return;
+            //if (Doc.CurrentStaticModel == null)
+            //    return;
 
-            Doc.CurrentStaticModel.reloadMaterials();
+            //Doc.CurrentStaticModel.reloadMaterials();
         }
 
         public void openCurrentModelFolder()
         {
-            if (Doc.CurrentStaticModel == null)
-                return;
+            //if (Doc.CurrentStaticModel == null)
+            //    return;
 
-            string abs_filename = Tool.GetAssetAbsoultFilePath(Doc.CurrentStaticModel.Name);
-            string abs_path = Tool.GetFilePath(abs_filename);
-            System.Diagnostics.Process.Start("Explorer.exe", abs_path);
+            //string abs_filename = Tool.GetAssetAbsoultFilePath(Doc.CurrentStaticModel.Name);
+            //string abs_path = Tool.GetFilePath(abs_filename);
+            //System.Diagnostics.Process.Start("Explorer.exe", abs_path);
         }
 
         public void setRightPanelExpand(bool expand)

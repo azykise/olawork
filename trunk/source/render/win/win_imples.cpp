@@ -330,20 +330,20 @@ public:
 	OlaSceneEntryLight(OlaLight* l):mLight(l){}	 
 	virtual ~OlaSceneEntryLight()
 	{
-		if (mScene)
-		{
-			mScene->mScene->detachObj(mLight);
-			mScene = 0;
-		}
+		//if (mScene)
+		//{
+		//	mScene->mScene->detachObj(mLight);
+		//	mScene = 0;
+		//}
 	}
 	virtual OlaSceneEntryImpl::ENTRY_TYPE type(){return OlaSceneEntryImpl::ENTRY_LIGHT;}
 	virtual void detachScene()
 	{
-		if (mScene)
+/*		if (mScene)
 		{
 			mScene->mScene->detachObj(mLight);
 			mScene = 0;
-		}		
+		}*/		
 	}
 	
 	OlaLight* mLight;
@@ -421,15 +421,15 @@ void OlaSceneImpl::attachEntry( ola::ISceneEntry* entry )
 	if(!entry)
 		return;	
 
-	OlaSceneEntryImpl* impl = dynamic_cast<OlaSceneEntryImpl*>(entry);
-	switch(impl->type())
-	{
-	case OlaSceneEntryImpl::ENTRY_LIGHT:
-		{
-			OlaSceneEntryLight* lentry = dynamic_cast<OlaSceneEntryLight*>(impl);
-			lentry->setScene(this);
-			mScene->attachObj(lentry->mLight);
-		}
-		break;
-	}
+	//OlaSceneEntryImpl* impl = dynamic_cast<OlaSceneEntryImpl*>(entry);
+	//switch(impl->type())
+	//{
+	//case OlaSceneEntryImpl::ENTRY_LIGHT:
+	//	{
+	//		OlaSceneEntryLight* lentry = dynamic_cast<OlaSceneEntryLight*>(impl);
+	//		lentry->setScene(this);
+	//		mScene->attachObj(lentry->mLight);
+	//	}
+	//	break;
+	//}
 }

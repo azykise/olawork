@@ -22,40 +22,40 @@ namespace modelview
         {
             close();
 
-            if (Grid != null)
-            {
-                Grid.Dispose();
-                Grid = null;
-            }
+            //if (Grid != null)
+            //{
+            //    Grid.Dispose();
+            //    Grid = null;
+            //}
 
-            if (DirLight0 != null)
-            {
-                DirLight0.Dispose();
-                DirLight0 = null;
-            }
+            //if (DirLight0 != null)
+            //{
+            //    DirLight0.Dispose();
+            //    DirLight0 = null;
+            //}
 
-            if (CurrentScene != null)
-            {
-                CurrentScene.Dispose();
-                CurrentScene = null;
-            }
+            //if (CurrentScene != null)
+            //{
+            //    CurrentScene.Dispose();
+            //    CurrentScene = null;
+            //}
 
             base.release();
         }
 
         protected override void initialize()
         {
-            if(Grid == null)
-                Grid = Domain.getViewManager().RenderSystem.createPrimitiveGrid(new Vector3F(0, 0, 0), 100, 100, 5, 5);
+            //if(Grid == null)
+            //    Grid = Domain.getViewManager().RenderSystem.createPrimitiveGrid(new Vector3F(0, 0, 0), 100, 100, 5, 5);
 
-            DirLight0 = Domain.getViewManager().RenderSystem.createLight("DirLight0");
-            DirLight0.SrcPos = new Vector3F(200.0f, 200.0f, 200.0f);
-            DirLight0.DstPos = new Vector3F(0, 0, 0);
+            //DirLight0 = Domain.getViewManager().RenderSystem.createLight("DirLight0");
+            //DirLight0.SrcPos = new Vector3F(200.0f, 200.0f, 200.0f);
+            //DirLight0.DstPos = new Vector3F(0, 0, 0);
 
-            CurrentScene = Domain.getViewManager().RenderSystem.createSmallScene("ModelViewScene");
-            DirLight0.attach(CurrentScene);
+            //CurrentScene = Domain.getViewManager().RenderSystem.createSmallScene("ModelViewScene");
+            //DirLight0.attach(CurrentScene);
 
-            Domain.getViewManager().RenderSystem.setRenderScene(CurrentScene);
+            //Domain.getViewManager().RenderSystem.setRenderScene(CurrentScene);
         }
 
         private void onOpenFileMessage(EditorComponent from, MessageBase msg)
@@ -94,28 +94,28 @@ namespace modelview
             string suffix = Tool.GetFileSuffix(s);
 
             bool b = false;
-            switch (suffix)
-            {
-                case Tool.SUFFIX_DML:
-                    if (CurrentDynamicModel != null)
-                        CurrentDynamicModel.Dispose();
-                    if (CurrentStaticModel != null)
-                        CurrentStaticModel.Dispose();
+            //switch (suffix)
+            //{
+            //    case Tool.SUFFIX_DML:
+            //        if (CurrentDynamicModel != null)
+            //            CurrentDynamicModel.Dispose();
+            //        if (CurrentStaticModel != null)
+            //            CurrentStaticModel.Dispose();
 
-                    CurrentDynamicModel = null;
-                    CurrentStaticModel = Domain.getViewManager().RenderSystem.createStaticModel(s);
-                    b = true;
-                    break;
-                case Tool.SUFFIX_CHR:
-                    if (CurrentDynamicModel != null)
-                        CurrentDynamicModel.Dispose();
-                    if (CurrentStaticModel != null)
-                        CurrentStaticModel.Dispose();
-                    CurrentStaticModel = null;
-                    CurrentDynamicModel = Domain.getViewManager().RenderSystem.createDynamicModel(s);
-                    b = true;
-                    break;
-            }
+            //        CurrentDynamicModel = null;
+            //        CurrentStaticModel = Domain.getViewManager().RenderSystem.createStaticModel(s);
+            //        b = true;
+            //        break;
+            //    case Tool.SUFFIX_CHR:
+            //        if (CurrentDynamicModel != null)
+            //            CurrentDynamicModel.Dispose();
+            //        if (CurrentStaticModel != null)
+            //            CurrentStaticModel.Dispose();
+            //        CurrentStaticModel = null;
+            //        CurrentDynamicModel = Domain.getViewManager().RenderSystem.createDynamicModel(s);
+            //        b = true;
+            //        break;
+            //}
 
             if (b)
             {
@@ -127,28 +127,28 @@ namespace modelview
 
         public override void close()
         {
-            if (CurrentStaticModel != null)
-            {
-                CurrentStaticModel.Dispose();
-                CurrentStaticModel = null;
-            }
+            //if (CurrentStaticModel != null)
+            //{
+            //    CurrentStaticModel.Dispose();
+            //    CurrentStaticModel = null;
+            //}
 
-            if (CurrentDynamicModel != null)
-            {
-                CurrentDynamicModel.Dispose();
-                CurrentDynamicModel = null;
-            }
+            //if (CurrentDynamicModel != null)
+            //{
+            //    CurrentDynamicModel.Dispose();
+            //    CurrentDynamicModel = null;
+            //}
 
-            Domain.getViewManager().RenderSystem.clearResourceCache("");
+            //Domain.getViewManager().RenderSystem.clearResourceCache("");
         }
 
         public ActionManager ActionMng = null;
 
         public ModelView Domain = null;
-        public Engine.Scene CurrentScene = null;
-        public Engine.StaticModel CurrentStaticModel = null;
-        public Engine.DynamicModel CurrentDynamicModel = null;
-        public Engine.PrimitiveGrid Grid = null;
-        public Engine.Light DirLight0 = null;
+        //public Engine.Scene CurrentScene = null;
+        //public Engine.StaticModel CurrentStaticModel = null;
+        //public Engine.DynamicModel CurrentDynamicModel = null;
+        //public Engine.PrimitiveGrid Grid = null;
+        //public Engine.Light DirLight0 = null;
     }
 }

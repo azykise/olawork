@@ -9,7 +9,7 @@ namespace editor
 {
     public abstract class Common3DView : View
     {
-        public Common3DView(string name,Engine.RenderSystem rs):
+        public Common3DView(string name, RenderSystem rs):
             base(name,rs)
         {
 

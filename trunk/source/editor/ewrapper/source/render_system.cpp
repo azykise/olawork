@@ -275,11 +275,12 @@ namespace Engine
 
 	void RenderSystem::clearResourceCache( System::String^ type )
 	{
-		RenderCore->clearResourceCache("");
+		//RenderCore->clearResourceCache("");
 	}
 
 	int RenderSystem::getResourceNum( System::String^ type )
 	{
-		return RenderCore->getResourceNum("");
+		return 0;
+		//return RenderCore->getResourceNum("");
 	}
 }

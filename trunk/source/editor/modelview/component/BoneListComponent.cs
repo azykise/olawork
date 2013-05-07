@@ -21,12 +21,12 @@ namespace modelview
 
         private void onAfterModelCreatedMessage(EditorComponent from, MessageBase msg)
         {
-            if (Doc.CurrentDynamicModel != null)
-            {
-                BoneListUI.updateBoneList(Doc.CurrentDynamicModel.RootBone);
-            }
-            else
-                BoneListUI.updateBoneList(null);
+            //if (Doc.CurrentDynamicModel != null)
+            //{
+            //    BoneListUI.updateBoneList(Doc.CurrentDynamicModel.RootBone);
+            //}
+            //else
+            //    BoneListUI.updateBoneList(null);
             
         }
 

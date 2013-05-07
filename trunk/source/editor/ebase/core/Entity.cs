@@ -74,7 +74,7 @@ namespace editor
 
         }
 
-        public virtual void render(Engine.RenderSystem rendersys)
+        public virtual void render( RenderSystem rendersys)
         {
 
         }
@@ -129,7 +129,7 @@ namespace editor
             set { mSelected = value; }
         }
 
-        public virtual bool pushToSelect(uint id,Engine.RenderSystem rendersys)
+        public virtual bool pushToSelect(uint id, RenderSystem rendersys)
         {
             return false;
         }

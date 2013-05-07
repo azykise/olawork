@@ -7,7 +7,7 @@ namespace editor
 {
     public abstract class View : EditorComponent
     {
-        public View(string name,Engine.RenderSystem rs)
+        public View(string name, RenderSystem rs)
             : base(name)
         {
             m_render_sys = rs;
@@ -63,8 +63,8 @@ namespace editor
             return NotifyResult.Succeed;
         }
 
-        public virtual Engine.RenderSystem RenderSystem{get{return m_render_sys;}}
-        public virtual Engine.RenderWindow RenderWindow
+        public virtual  RenderSystem RenderSystem{get{return m_render_sys;}}
+        public virtual  RenderWindow RenderWindow
         {
             get{return m_window;}
             set{m_window = value;}
@@ -90,8 +90,8 @@ namespace editor
         }
 
         protected Camera m_camera = new Camera();
-        protected Engine.RenderSystem m_render_sys = null;
-        protected Engine.RenderWindow m_window = null;
+        protected  RenderSystem m_render_sys = null;
+        protected  RenderWindow m_window = null;
         protected ViewManager m_mng;
 
         protected ComplexController m_base_controller = null;
@@ -152,13 +152,13 @@ namespace editor
         {
             get { return m_views; }
         }
-        public virtual Engine.RenderSystem RenderSystem
+        public virtual  RenderSystem RenderSystem
         {
             get { return m_render_system; }
             set { m_render_system = value; }
         }
 
-        protected Engine.RenderSystem m_render_system = null;
+        protected  RenderSystem m_render_system = null;
         protected View m_current_view = null;
         protected List<View> m_views = new List<View>();
     }

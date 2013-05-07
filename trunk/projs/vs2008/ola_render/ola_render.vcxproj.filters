@@ -50,6 +50,9 @@
     <Filter Include="base\parser">
       <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="impls">
+      <UniqueIdentifier>{38ddcd2c-0ca0-4962-a0fc-21be1b66b0f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp">
@@ -249,6 +252,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_refobj.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\impls\ola_geometry_impl.cpp">
+      <Filter>impls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\win\ola_engine.cpp">
+      <Filter>platform_win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +467,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_parser.h">
       <Filter>base\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_refobj.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\impls\ola_geometry_impl.h">
+      <Filter>impls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,10 @@
 #include "ola_geometry_impl.h"
-#include "ola_material_impl.h"
+//#include "ola_material_impl.h"
 
-#include "../model.h"
-#include "../ola_resourcemng.h"
+#include "../ola_model.h"
 
-OlaGeometryImpl::OlaGeometryImpl(OlaResourceMng* res_mng):
-mResourceMng(res_mng)
+OlaMeshGeometryImpl::OlaMeshGeometryImpl():
+mMesh(0)
 {
 	//for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
 	//{
@@ -15,7 +14,7 @@ mResourceMng(res_mng)
 	//}
 }
 
-OlaGeometryImpl::~OlaGeometryImpl()
+OlaMeshGeometryImpl::~OlaMeshGeometryImpl()
 {
 	//for (size_t i = 0 ; i < mSubMaterials.size() ; i++)
 	//{
@@ -32,41 +31,7 @@ OlaGeometryImpl::~OlaGeometryImpl()
 
 }
 
-ola::IMaterial* OlaGeometryImpl::material( int idx )
+OlaArray<OlaRenderOp*>& OlaMeshGeometryImpl::renderOps()
 {
-	return mSubMaterials[idx];
-}
-
-int OlaGeometryImpl::submeshNum()
-{
-	return mSubMaterials.size();
-}
-
-void OlaGeometryImpl::setMaterial( int idx , ola::IMaterial* mat )
-{
-	if (idx < mSubMaterials.size())
-	{
-		OlaMaterialImpl* mat_impl = static_cast<OlaMaterialImpl*>(mat);
-		//mSubMaterials[idx]->setMaterial(mat_impl->material());
-	}
-}
-
-ola::tAABB* OlaGeometryImpl::aabb()
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-void OlaGeometryImpl::setRootBone( ola::ITransform* rb)
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-ola::ITransform* OlaGeometryImpl::rootbone()
-{
-	throw std::exception("The method or operation is not implemented.");
-}
-
-int OlaGeometryImpl::deserialize( const ola::byte* data,int len )
-{
-	return 0;
+	return mMesh->updateRenderOps();
 }

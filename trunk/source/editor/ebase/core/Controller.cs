@@ -324,7 +324,7 @@ namespace editor
             Vector3F postiton = m_current_view.getCamera().Position;
 
             Vector3F dir = lookatpt - postiton;
-            Vector3F top = Engine.Math.IsZero(dir.X) && Engine.Math.IsZero(dir.Y) ? Vector3F.YAxis : Vector3F.ZAxis;
+            Vector3F top = MathHelper.IsZero(dir.X) && MathHelper.IsZero(dir.Y) ? Vector3F.YAxis : Vector3F.ZAxis;
 
             Vector3F right = Vector3F.CrossProduct(dir, top);
             right.Normalize();
@@ -376,8 +376,8 @@ namespace editor
             Vector3F lookatpt = m_current_view.getCamera().Direction;
             Vector3F postiton = m_current_view.getCamera().Position;
 
-            Vector3F dir = lookatpt - postiton;      
-            Vector3F top = Engine.Math.IsZero(dir.X) && Engine.Math.IsZero(dir.Y) ? Vector3F.YAxis : Vector3F.ZAxis;
+            Vector3F dir = lookatpt - postiton;
+            Vector3F top = MathHelper.IsZero(dir.X) && MathHelper.IsZero(dir.Y) ? Vector3F.YAxis : Vector3F.ZAxis;
 
             Vector3F right = Vector3F.CrossProduct(dir, top);
             right.Normalize();

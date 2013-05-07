@@ -21,7 +21,7 @@ void OlaSmallScene::attachObj( OlaTransformObj* obj )
 {
 	unsigned int f = obj->flags();
 
-	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
+/*	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
 	{
 		OlaLight* l = dynamic_cast<OlaLight*>(obj);
 		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
@@ -32,23 +32,23 @@ void OlaSmallScene::attachObj( OlaTransformObj* obj )
 		}
 		l->scene(this);
 		mLights.add(l);
-	}		
+	}*/		
 }
 
 void OlaSmallScene::detachObj( OlaTransformObj* obj )
 {
 	unsigned int f = obj->flags();
 
-	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
-	{
-		OlaLight* l = dynamic_cast<OlaLight*>(obj);
-		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
-		if (mLights.contains(l))
-		{
-			l->scene(0);
-			mLights.remove(l);
-		}
-	}
+	//if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
+	//{
+	//	OlaLight* l = dynamic_cast<OlaLight*>(obj);
+	//	assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
+	//	if (mLights.contains(l))
+	//	{
+	//		l->scene(0);
+	//		mLights.remove(l);
+	//	}
+	//}
 }
 
 void OlaSmallScene::initialize()

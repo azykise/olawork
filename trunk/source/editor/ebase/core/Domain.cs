@@ -13,7 +13,7 @@ namespace editor
             m_show_text = showtext;
         }
 
-        public virtual void init(Engine.RenderSystem rsys)
+        public virtual void init( RenderSystem rsys)
         {
             m_view_mng.RenderSystem = rsys;
         }

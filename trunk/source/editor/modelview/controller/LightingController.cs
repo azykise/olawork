@@ -17,8 +17,8 @@ namespace modelview
 
         public void moveingLight(Vector3F src,Vector3F dst)
         {
-            mDoc.DirLight0.SrcPos = src;
-            mDoc.DirLight0.DstPos = dst;
+            //mDoc.DirLight0.SrcPos = src;
+            //mDoc.DirLight0.DstPos = dst;
         }
 
         ModelViewDoc mDoc = null;

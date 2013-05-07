@@ -11,7 +11,6 @@ class OlaTransformObj;
 class OlaMeshRenderer
 {
 public:
-
 	OlaMeshRenderer();
 	virtual ~OlaMeshRenderer();
 
@@ -23,6 +22,8 @@ public:
 
 	virtual OlaTransformObj* transform();
 	virtual void transform(OlaTransformObj* transobj);
+
+	virtual OlaArray<OlaRenderOp*>& updateRenderOps();
 
 protected:	
 

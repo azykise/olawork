@@ -11,7 +11,7 @@ namespace modelview
 {
     class MainView : Common3DView
     {
-        public MainView(Engine.RenderSystem rs,ModelViewDoc doc) :
+        public MainView(RenderSystem rs,ModelViewDoc doc) :
             base("ModelMainView",rs)
         {
             m_camera.Position = new Vector3F(0, -5, 3);
@@ -39,20 +39,20 @@ namespace modelview
             m_window.setBackgroundColor(0, 0, 1, 0);
             m_render_sys.setRenderWindow(m_window);           
 
-            if (mDoc.CurrentStaticModel != null)
-            {
-                mDoc.CurrentStaticModel.render();
-            }
+            //if (mDoc.CurrentStaticModel != null)
+            //{
+            //    mDoc.CurrentStaticModel.render();
+            //}
 
-            mDoc.ActionMng.update(elasped);
+            //mDoc.ActionMng.update(elasped);
 
-            if (mDoc.CurrentDynamicModel != null)
-            {
-                mDoc.CurrentDynamicModel.render();
-            }
+            //if (mDoc.CurrentDynamicModel != null)
+            //{
+            //    mDoc.CurrentDynamicModel.render();
+            //}
 
-            if(mDoc.Grid != null)
-                mDoc.Grid.render(m_render_sys);
+            //if(mDoc.Grid != null)
+            //    mDoc.Grid.render(m_render_sys);
 
             m_render_sys.beginDraw();
             m_render_sys.drawSceneActors();

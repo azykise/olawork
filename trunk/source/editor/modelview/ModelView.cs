@@ -16,7 +16,7 @@ namespace modelview
             registMessage("ExpandRightPanel", OnMessageExpandRightPanel);
         }
 
-        public override void init(Engine.RenderSystem rsys)
+        public override void init(RenderSystem rsys)
         {
             base.init(rsys);
 

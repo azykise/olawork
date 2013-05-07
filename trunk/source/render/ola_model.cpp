@@ -2,6 +2,7 @@
 #include "ola_mesh.h"
 #include "ola_material.h"
 #include "ola_render.h"
+#include "ola_entity.h"
 
 OlaMeshRenderer::OlaMeshRenderer():
 mMesh(0),
@@ -135,5 +136,26 @@ OlaTransformObj* OlaMeshRenderer::transform()
 void OlaMeshRenderer::transform( OlaTransformObj* transobj )
 {
 	mTranform = transobj;
+}
+
+OlaArray<OlaRenderOp*>& OlaMeshRenderer::updateRenderOps()
+{
+	for (unsigned int i = 0; i < mRenderOps.size() ; i++)
+	{
+		OlaRenderOp* op = mRenderOps[i];
+
+		if (mTranform)
+		{
+			const float* f44 = mTranform->transform()->ToFloatPtr();
+			op->worldtrans.FromFloatsColumnMajor(f44);
+		}
+		else
+		{
+			op->worldtrans.Identity();
+		}
+
+	}
+
+	return mRenderOps;
 }
 

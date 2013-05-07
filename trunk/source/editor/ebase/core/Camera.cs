@@ -85,7 +85,7 @@ namespace editor
             m_view_param.Aspect = m_aspect;
         }
 
-        public virtual void doUpdate(Engine.RenderSystem rendersys)
+        public virtual void doUpdate( RenderSystem rendersys)
         {
             rendersys.setViewParament(m_view_param);
             m_viewmat = (Matrix4F)rendersys.getViewMatrix();
@@ -122,6 +122,6 @@ namespace editor
         protected Vector3F m_direction = new Vector3F(0, 1, 0);
         protected Matrix4F m_viewmat = new Matrix4F();
         protected Matrix4F m_projmat = new Matrix4F();
-        protected Engine.ViewParament m_view_param = new Engine.ViewParament();
+        protected  ViewParament m_view_param = new  ViewParament();
     }
 }

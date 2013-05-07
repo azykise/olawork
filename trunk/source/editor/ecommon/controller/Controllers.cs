@@ -143,13 +143,13 @@ namespace editor
 
             if (mSelectRect == null && m_current_view != null)
             {
-                mSelectRect = m_current_view.RenderSystem.createPrimitiveGrid();
+                //mSelectRect = m_current_view.RenderSystem.createPrimitiveGrid();
                 mSelectRect.setColor(1.0f, 1.0f, 1.0f, 1.0f);
             }
 
             if (mShowRect && m_current_view != null)
             {
-                mSelectRect.setRect(mRectPT[0], mRectPT[1], mRectPT[2], mRectPT[3]);
+                //mSelectRect.setRect(mRectPT[0], mRectPT[1], mRectPT[2], mRectPT[3]);
                 mSelectRect.render(m_current_view.RenderSystem);
             }
         }
@@ -186,7 +186,7 @@ namespace editor
         bool mShowRect = false;
         Vector3F[] mRectPT = new Vector3F[4];
         
-        Engine.PrimitiveGrid mSelectRect = null;
+        PrimitiveGrid mSelectRect = null;
     }
 
     public class EntityTransform3DController : Controller

@@ -14,6 +14,8 @@
 #include "win_impls.h"
 #include "win_rendercore.h"
 
+#include "../impls/ola_geometry_impl.h"
+
 #include "../ola_device.h"
 
 #define  lg(...) printf(__VA_ARGS__)
@@ -280,6 +282,18 @@ void OlaRenderCore::pushRender( ola::IRenderable* r )
 		mRender->pushToRender(op);
 		
 		op_i++;
+	}
+}
+
+void OlaRenderCore::pushRender( ola::IGeometry* g )
+{
+	OlaMeshGeometryImpl* impl = static_cast<OlaMeshGeometryImpl*>(g);
+
+	OlaArray<OlaRenderOp*>& op_list = impl->renderOps();
+	for (unsigned int i = 0 ; i < op_list.size() ; i++)
+	{
+		OlaRenderOp* op = op_list[i];
+		mRender->pushToRender(op);
 	}
 }
 

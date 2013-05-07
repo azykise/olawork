@@ -24,15 +24,15 @@ namespace modelview
         public void setDynamicActorFrame(int frame)
         {
             CurrentFrame = frame;
-            if (Doc.CurrentDynamicModel != null)
-            {
-                Doc.ActionMng.CurrentFrame = frame;
-            }
+            //if (Doc.CurrentDynamicModel != null)
+            //{
+            //    Doc.ActionMng.CurrentFrame = frame;
+            //}
         }
 
         public bool isAnimationEnable()
         {
-            return Doc.CurrentDynamicModel != null;
+            return false;//Doc.CurrentDynamicModel != null;
         }
 
         public void startActionPlay()
@@ -52,12 +52,12 @@ namespace modelview
 
         public void resetUIByCurrentAction()
         {
-            if (Doc.CurrentDynamicModel != null)
-            {
-                ActionLength = Doc.CurrentDynamicModel.CurrentAction.FrameNumber;
-            }
-            else
-                ActionLength = 100;
+            //if (Doc.CurrentDynamicModel != null)
+            //{
+            //    ActionLength = Doc.CurrentDynamicModel.CurrentAction.FrameNumber;
+            //}
+            //else
+            //    ActionLength = 100;
 
             stopActionPlay();
 

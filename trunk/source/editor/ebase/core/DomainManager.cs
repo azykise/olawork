@@ -71,7 +71,7 @@ namespace editor
             }
         }
 
-        public bool init(string info,Engine.RenderSystem render_sys)
+        public bool init(string info, RenderSystem render_sys)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(ConfigPath);

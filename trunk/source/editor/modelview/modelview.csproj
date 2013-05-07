@@ -64,11 +64,6 @@
       <HintPath>..\..\..\bin\plugins\editor\ecommon.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ewrapper, Version=1.0.4466.20670, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\plugins\editor\ewrapper.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Sharp3D.Math, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\plugins\editor\Sharp3D.Math.dll</HintPath>

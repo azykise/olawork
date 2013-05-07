@@ -53,17 +53,4 @@ protected:
 	RenderOpList mRenderOps;
 };
 
-class OlaMeshRenderer
-{
-public:
-	inline OlaMesh* mesh() {return mMesh;};
-	void mesh(OlaMesh* newMesh);
-	OlaMaterial* material(int index);
-	void material(int index,OlaMaterial* mat);
-protected:	
-	OlaMesh* mMesh;
-	OlaArray<OlaMaterial*> mMaterials;
-};
-
-
 #endif

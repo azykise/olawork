@@ -181,7 +181,7 @@ namespace editor
 
     public interface IEntityFactory
     {
-        Entity createEntity(string type, Dictionary<string, object> propertys,Engine.RenderSystem rendersys);
+        Entity createEntity(string type, Dictionary<string, object> propertys, RenderSystem rendersys);
         List<string> getSupportTypes();
     }
 
@@ -211,7 +211,7 @@ namespace editor
             }
         }
 
-        public virtual void render(Engine.RenderSystem rendersys)
+        public virtual void render( RenderSystem rendersys)
         {
             foreach (EntityLayer layer in mEntityLayers.Values)
             {
