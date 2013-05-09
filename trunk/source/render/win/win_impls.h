@@ -233,8 +233,6 @@ public:
 	OlaSceneEntryLight* mSceneEntry;
 };
 
-
-
 class OlaSceneImpl : public ola::IScene
 {
 public:

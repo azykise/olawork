@@ -41,17 +41,17 @@
     <Filter Include="thread">
       <UniqueIdentifier>{252ddb9e-a4fc-462d-8bbb-2495d6124c33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="base">
-      <UniqueIdentifier>{62acc809-3a20-4a77-aa55-5a94f338b72d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="animation">
       <UniqueIdentifier>{8369a090-5380-4695-8ad0-658848ae84a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="base\parser">
-      <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="impls">
       <UniqueIdentifier>{7ee50fd5-6022-4d09-8302-71f84a12769e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{62acc809-3a20-4a77-aa55-5a94f338b72d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\parser">
+      <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -164,16 +164,16 @@
       <Filter>render\pipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_assetmng.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_bounding.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_resource.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_resourcemng.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_action.cpp">
       <Filter>animation</Filter>
@@ -233,27 +233,33 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp">
-      <Filter>base\parser</Filter>
+      <Filter>resources\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp">
-      <Filter>base\parser</Filter>
+      <Filter>resources\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_model.cpp">
       <Filter>entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\impls\ola_geometry_impl.cpp">
+      <Filter>impls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\impls\ola_light_impl.cpp">
+      <Filter>impls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\impls\ola_transform_impl.cpp">
       <Filter>impls</Filter>
     </ClCompile>
   </ItemGroup>
@@ -370,16 +376,16 @@
       <Filter>render\pipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_assetmng.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_bounding.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_resource.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_resourcemng.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_action.h">
       <Filter>animation</Filter>
@@ -439,27 +445,33 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_dml.h">
-      <Filter>base\parser</Filter>
+      <Filter>resources\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_mat.h">
-      <Filter>base\parser</Filter>
+      <Filter>resources\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_shaderpool.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_materialpool.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_meshpool.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_texturepool.h">
-      <Filter>base</Filter>
+      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_parser.h">
-      <Filter>base\parser</Filter>
+      <Filter>resources\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\impls\ola_geometry_impl.h">
+      <Filter>impls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\impls\ola_light_impl.h">
+      <Filter>impls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\impls\ola_transform_impl.h">
       <Filter>impls</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,6 +12,7 @@
 #include "../ola_model.h"
 
 #include "../impls/ola_geometry_impl.h"
+#include "../impls/ola_transform_impl.h"
 
 OlaBoneImpl::OlaBoneImpl( OlaBone* bone ,OlaSkeletonImpl* skl):
 mBone(bone),
