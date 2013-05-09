@@ -214,9 +214,6 @@
     <ClCompile Include="..\..\..\source\render\renderscene\ola_smallscene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\render\ola_entity.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_thread.cpp">
       <Filter>thread</Filter>
     </ClCompile>
@@ -258,6 +255,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\impls\ola_light_impl.cpp">
       <Filter>impls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_transobj.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_kernelobj.cpp">
+      <Filter>entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -423,9 +426,6 @@
     <ClInclude Include="..\..\..\source\render\renderscene\ola_smallscene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\render\ola_entity.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_thread.h">
       <Filter>thread</Filter>
     </ClInclude>
@@ -467,6 +467,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\impls\ola_light_impl.h">
       <Filter>impls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_transobj.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_kernelobj.h">
+      <Filter>entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

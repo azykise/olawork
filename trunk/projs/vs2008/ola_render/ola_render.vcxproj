@@ -131,12 +131,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\impls\ola_geometry_impl.cpp" />
     <ClCompile Include="..\..\..\source\render\impls\ola_light_impl.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_kernelobj.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_model.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_thread.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_transobj.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp" />
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp" />
@@ -196,17 +198,18 @@
     <ClCompile Include="..\..\..\source\render\ola_scene.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_scenemng.cpp" />
     <ClCompile Include="..\..\..\source\render\renderscene\ola_smallscene.cpp" />
-    <ClCompile Include="..\..\..\source\render\ola_entity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h" />
     <ClInclude Include="..\..\..\source\render\impls\ola_geometry_impl.h" />
     <ClInclude Include="..\..\..\source\render\impls\ola_light_impl.h" />
+    <ClInclude Include="..\..\..\source\render\ola_kernelobj.h" />
     <ClInclude Include="..\..\..\source\render\ola_materialpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_meshpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_shaderpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_texturepool.h" />
     <ClInclude Include="..\..\..\source\render\ola_thread.h" />
+    <ClInclude Include="..\..\..\source\render\ola_transobj.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_dml.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_mat.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_parser.h" />
@@ -267,7 +270,6 @@
     <ClInclude Include="..\..\..\source\render\ola_scene.h" />
     <ClInclude Include="..\..\..\source\render\ola_scenemng.h" />
     <ClInclude Include="..\..\..\source\render\renderscene\ola_smallscene.h" />
-    <ClInclude Include="..\..\..\source\render\ola_entity.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\source\render\ola_model.h" />

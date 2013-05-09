@@ -8,7 +8,7 @@
 #include "ola_string.h"
 #include "math/ola_math.h"
 
-#include "ola_entity.h"
+#include "ola_transobj.h"
 #include "ola_scene.h"
 
 class CModel;

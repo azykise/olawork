@@ -11,7 +11,7 @@
 #include "ola_resourcemng.h"
 #include "ola_assetmng.h"
 #include "model.h"
-#include "ola_entity.h"
+#include "ola_transobj.h"
 #include "ola_sklmodel.h"
 #include "ola_light.h"
 

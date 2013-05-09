@@ -2,7 +2,7 @@
 #include "ola_mesh.h"
 #include "ola_material.h"
 #include "ola_render.h"
-#include "ola_entity.h"
+#include "ola_transobj.h"
 
 OlaMeshRenderer::OlaMeshRenderer():
 mMesh(0),

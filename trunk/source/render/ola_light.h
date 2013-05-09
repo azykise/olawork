@@ -2,7 +2,7 @@
 #define _OLA_INCLUDE_OLA_LIGHT_H__
 
 #include "math/ola_math.h"
-#include "ola_entity.h"
+#include "ola_transobj.h"
 
 class OlaLight : public OlaTransformObj
 {

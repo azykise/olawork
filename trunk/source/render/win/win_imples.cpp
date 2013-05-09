@@ -3,7 +3,6 @@
 
 #include "../ola_resourcemng.h"
 #include "../ola_skeleton.h"
-#include "../ola_entity.h"
 #include "../ola_mesh.h"
 #include "../ola_skin.h"
 #include "../ola_sklmodel.h"
