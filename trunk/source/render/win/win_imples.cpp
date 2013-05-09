@@ -11,6 +11,8 @@
 #include "../ola_action_res.h"
 #include "../ola_model.h"
 
+#include "../impls/ola_geometry_impl.h"
+
 OlaBoneImpl::OlaBoneImpl( OlaBone* bone ,OlaSkeletonImpl* skl):
 mBone(bone),
 mSkeleton(skl)
@@ -42,6 +44,22 @@ const char* OlaBoneImpl::name()
 ola::IBone* OlaBoneImpl::sub( int idx )
 {
 	return (mChildren[idx]);
+}
+
+OlaStaticModelImpl::OlaStaticModelImpl(OlaMeshRenderer* model):
+mGeometry(0)
+{
+	mGeometry = new OlaGeometryImpl(model);
+}
+
+OlaStaticModelImpl::~OlaStaticModelImpl()
+{
+	delete mGeometry;
+}
+
+ola::IGeometry* OlaStaticModelImpl::geometry()
+{
+	return mGeometry;
 }
 
 OlaSkeletonImpl::OlaSkeletonImpl( OlaSkeletonModel* skl ):
@@ -166,46 +184,6 @@ void OlaMaterialImpl::reload()
 {
 	//mResourceMng->reloadMaterial(mMaterial->filename().c_str(),mMaterial->name().c_str());		
 }
-
-OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model):
-mModel(model)
-{
-	for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
-	{
-		OlaMaterial* material = mModel->material(i);
-		OlaMaterialImpl* impl = new OlaMaterialImpl(material);
-		mSubMaterials.push_back(impl);
-	}
-}
-
-OlaGeometryImpl::~OlaGeometryImpl()
-{
-	for (size_t i = 0 ; i < mSubMaterials.size() ; i++)
-	{
-		OlaMaterialImpl* material = mSubMaterials[i];
-		delete material;
-	}	
-	mSubMaterials.clear();
-
-	if (mModel)
-	{
-		delete mModel;
-		mModel = 0;
-	}
-
-}
-
-OlaMesh* OlaGeometryImpl::mesh()
-{
-	return mModel->mesh();
-}
-
-
-OlaArray<OlaRenderOp*>& OlaGeometryImpl::renderOps()
-{
-	return mModel->updateRenderOps();
-}
-
 
 OlaCharacterImpl::OlaCharacterImpl( OlaSkeletonModel* model ):
 mSkeletonModel(model),

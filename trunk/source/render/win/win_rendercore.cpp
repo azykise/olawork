@@ -20,6 +20,8 @@
 
 #include "../ola_model.h"
 
+#include "../impls/ola_geometry_impl.h"
+
 #define  lg(...) printf(__VA_ARGS__)
 
 OlaRenderCore::OlaRenderCore():

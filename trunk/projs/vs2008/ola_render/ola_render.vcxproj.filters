@@ -50,6 +50,9 @@
     <Filter Include="base\parser">
       <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="impls">
+      <UniqueIdentifier>{7ee50fd5-6022-4d09-8302-71f84a12769e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp">
@@ -211,9 +214,6 @@
     <ClCompile Include="..\..\..\source\render\renderscene\ola_smallscene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\render\model.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_entity.cpp">
       <Filter>entity</Filter>
     </ClCompile>
@@ -252,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_model.cpp">
       <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\impls\ola_geometry_impl.cpp">
+      <Filter>impls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -417,9 +420,6 @@
     <ClInclude Include="..\..\..\source\render\renderscene\ola_smallscene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\render\model.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_entity.h">
       <Filter>entity</Filter>
     </ClInclude>
@@ -458,6 +458,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\parser\ola_parser.h">
       <Filter>base\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\impls\ola_geometry_impl.h">
+      <Filter>impls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

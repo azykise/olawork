@@ -254,12 +254,12 @@ const char DML_MAT[] = "material";
 const char DML_RESOURCE[] = "resource";
 CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 {
-	OlaRender* render = mRender;
-	OlaAsset* xml_asset = render->getLoader()->load(filename);
+	//OlaRender* render = mRender;
+	//OlaAsset* xml_asset = render->getLoader()->load(filename);
 
-	olastring dml_filename(filename);
+	//olastring dml_filename(filename);
 
-	tDmlFileInfo dmlInfo;
+	//tDmlFileInfo dmlInfo;
 
 
 
@@ -281,8 +281,10 @@ CModel* OlaRenderSceneMng::loadModelFromDML(const char* filename)
 		//}
 	//}
 
-	CModel* model = new CModel(dml_filename,0);
-	return model;
+	//CModel* model = new CModel(dml_filename,0);
+	//return model;
+
+	return 0;
 }
 
 const char CHR_ROOT[] = "ola_character";

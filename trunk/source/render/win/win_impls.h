@@ -74,29 +74,7 @@ public:
 	OlaMaterial* mMaterial;
 };
 
-class OlaGeometryImpl : public ola::IGeometry
-{
-public:
-	OlaGeometryImpl(OlaMeshRenderer* model);
-	virtual ~OlaGeometryImpl();
-
-	virtual int submeshNum(){ return mSubMaterials.size(); };
-
-	virtual ola::IMaterial* submeshMaterial(int idx) { return mSubMaterials[idx];}
-
-	virtual void reload(){};
-
-	virtual const char* getResourceFilename(){return "";}	
-
-	virtual OlaMesh* mesh();
-
-	virtual OlaArray<OlaRenderOp*>& renderOps();
-
-protected:
-
-	OlaMeshRenderer* mModel;
-	std::vector<OlaMaterialImpl*> mSubMaterials;
-};
+class OlaGeometryImpl;
 
 class OlaSkeletonImpl;
 class OlaBoneImpl : public ola::IBone
@@ -184,18 +162,11 @@ protected:
 class OlaStaticModelImpl : public ola::IStaticModel
 {
 public:
-	OlaStaticModelImpl(OlaMeshRenderer* model):
-	mGeometry(0)
-	{
-		mGeometry = new OlaGeometryImpl(model);
-	}
+	OlaStaticModelImpl(OlaMeshRenderer* model);
 
-	virtual ~OlaStaticModelImpl()
-	{
-		delete mGeometry;
-	}
+	virtual ~OlaStaticModelImpl();
 
-	virtual ola::IGeometry* geometry(){return mGeometry;}
+	virtual ola::IGeometry* geometry();
 
 	virtual ola::ITransform* transform(){return 0;}
 

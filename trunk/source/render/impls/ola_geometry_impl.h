@@ -1,38 +1,36 @@
 #ifndef _OLA_INCLUDE_GEOMETRY_IMPLS_H__
 #define _OLA_INCLUDE_GEOMETRY_IMPLS_H__
 
-#include "../ola_stl.h"
-#include "../../interface/ola_irendercore.h"
+#include "../ola_util.h"
+#include "../../interface/ola_engine.h"
 
-class OlaMesh;
+class OlaMeshRenderer;
 class OlaMaterialImpl;
-class OlaResourceMng;
+class OlaMesh;
+class OlaRenderOp;
 
 class OlaGeometryImpl : public ola::IGeometry
 {
 public:
-	OlaGeometryImpl(OlaResourceMng* res_mng);
+	OlaGeometryImpl(OlaMeshRenderer* model);
 	virtual ~OlaGeometryImpl();
 
-	virtual int deserialize(const ola::byte* data,int len);
+	virtual int submeshNum(){ return mSubMaterials.size(); };
 
-	virtual int submeshNum();
+	virtual ola::IMaterial* submeshMaterial(int idx);
 
-	virtual ola::IMaterial* material(int idx);
+	virtual void reload(){};
 
-	virtual void setMaterial( int idx , ola::IMaterial* mat );
+	virtual const char* getResourceFilename(){return "";}	
 
-	virtual ola::tAABB* aabb();
+	virtual OlaMesh* mesh();
 
-	virtual void setRootBone( ola::ITransform* rb);
+	virtual OlaArray<OlaRenderOp*>& renderOps();
 
-	virtual ola::ITransform* rootbone();
+protected:
 
-	inline OlaMesh* mesh(){return mMesh;}
-
-	OlaResourceMng* mResourceMng;
-	OlaMesh* mMesh;
-	OlaArray<OlaMaterialImpl*> mSubMaterials;
+	OlaMeshRenderer* mModel;
+	std::vector<OlaMaterialImpl*> mSubMaterials;
 };
 
 #endif
