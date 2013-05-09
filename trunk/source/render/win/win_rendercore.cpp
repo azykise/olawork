@@ -11,6 +11,8 @@
 #include "../ola_mesh.h"
 #include "../ola_skin.h"
 
+#include "../parser/ola_dml.h"
+
 #include "win_impls.h"
 #include "win_rendercore.h"
 
