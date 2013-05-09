@@ -68,7 +68,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 		OlaShaderFX* fx = GetRenderDevice()->spawnShaderFX();
 		fx->load(matInfo->ShaderFullname.c_str());
 		shader->reset(fx);
-		mPools->ShaderPool->enPool(shader);
+		mPools->ShaderPool->enPool(matInfo->ShaderFullname.c_str(),shader);
 	}
 
 	OlaMaterial* material = new OlaMaterial(matInfo->MatFullname.c_str());
@@ -93,7 +93,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 
 			delete asset;
 
-			mPools->TexturePool->enPool(texture);
+			mPools->TexturePool->enPool(var.Value.c_str(),texture);
 		}
 
 		material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_TEXTURE,texture);

@@ -1,8 +1,10 @@
 #ifndef _OLA_TEXTURE_H__
 #define _OLA_TEXTURE_H__
 
+#include "ola_resource.h"
+
 class OlaAsset;
-class OlaTexture
+class OlaTexture : public IRefCounter
 {
 public:
 	enum TEXTURE_TYPE

@@ -1,4 +1,5 @@
 #include "ola_materialpool.h"
+#include "ola_material.h"
 
 OlaMaterialPool::OlaMaterialPool()
 {
@@ -10,22 +11,43 @@ OlaMaterialPool::~OlaMaterialPool()
 
 }
 
-void OlaMaterialPool::enPool( OlaMaterial* mat )
+void OlaMaterialPool::enPool( const char* matassetpath , OlaMaterial* mat )
 {
-
+	olastring _matassetpath(matassetpath);
+	MaterialPool::iterator i = mMaterialPool.find(_matassetpath);
+	if (i == mMaterialPool.end())
+	{
+		mat->addRef();
+		mMaterialPool[_matassetpath] = mat;
+	}
 }
 
-void OlaMaterialPool::dePool( OlaMaterial* mat )
+void OlaMaterialPool::dePool( const char* matassetpath )
 {
-
+	olastring _matassetpath(matassetpath);
+	MaterialPool::iterator i = mMaterialPool.find(_matassetpath);
+	if (i != mMaterialPool.end())
+	{
+		OlaMaterial* mat = i->second;
+		mat->delRef();
+		if (mat->refCount() == 0)
+		{
+			mMaterialPool.erase(_matassetpath);
+			delete mat;
+		}
+	}
 }
 
-void OlaMaterialPool::dePool( const char* matfilename )
+OlaMaterial* OlaMaterialPool::seek( const char* matassetpath )
 {
+	olastring _matassetpath(matassetpath);
 
-}
+	MaterialPool::iterator i = mMaterialPool.find(_matassetpath);
+	if (i != mMaterialPool.end())
+	{
+		i->second->addRef();
+		return i->second;
+	}
 
-OlaMaterial* OlaMaterialPool::seek( const char* matfilename )
-{
 	return 0;
 }

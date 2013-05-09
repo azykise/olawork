@@ -13,9 +13,8 @@ public:
 
 	virtual ~OlaShaderPool();
 
-	void enPool(OlaShader* shader);
-	void dePool(OlaShader* shader);
-	void dePool(const char* fxfilename);
+	void enPool(const char* fxassetpath,OlaShader* shader);
+	void dePool(const char* fxassetpath);
 
 	OlaShader* seek(const char* fxfilename);	
 

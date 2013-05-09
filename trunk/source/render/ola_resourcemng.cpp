@@ -9,6 +9,11 @@
 #include "ola_animation.h"
 #include "ola_device.h"
 
+#include "ola_shaderpool.h"
+#include "ola_texturepool.h"
+#include "ola_materialpool.h"
+#include "ola_meshpool.h"
+
 const char TYPE_STRING[] = "string";
 const char TYPE_FLOAT[] = "float";
 const char TYPE_INT[] = "int";
@@ -39,10 +44,17 @@ OlaResourceMng* OlaResourceMng::instance()
 
 OlaResourceMng::OlaResourceMng(OlaRenderDevice* device):
 mLoader(0),
+mPools(0),
 mDevice(device)
 {
 	mLoader = new OlaAssetLoader();
 	gResourceMngInstance = this;
+
+	mPools = new tResourcePools();
+	mPools->ShaderPool = new OlaShaderPool();
+	mPools->TexturePool = new OlaTexturePool();
+	mPools->MaterialPool = new OlaMaterialPool();
+	mPools->MeshPool = new OlaMeshPool();	
 }
 
 OlaResourceMng::~OlaResourceMng()
@@ -53,6 +65,16 @@ OlaResourceMng::~OlaResourceMng()
 	{
 		delete mLoader;
 		mLoader = 0;
+	}
+
+	if (mPools)
+	{
+		delete mPools->ShaderPool;
+		delete mPools->TexturePool;
+		delete mPools->MaterialPool;
+		delete mPools->MeshPool;	
+		delete mPools;
+		mPools = 0;
 	}
 
 	gResourceMngInstance = 0;
@@ -488,4 +510,20 @@ int OlaResourceMng::getResourceNum( const char* res_type )
 	num += mMeshs.size();
 
 	return num;		
+}
+
+olastring OlaResourceMng::FilePathToAssetPath( const olastring& _filepath )
+{
+	olastring filepath = _filepath;
+	filepath = olastring::toLower(filepath.accessData());
+
+	olastring assetpath = "";
+
+	int asset_idx = olastring::findText(filepath.c_str(),"/assets/");
+	if (asset_idx != -1)
+	{
+		assetpath = filepath.mid(asset_idx,filepath.length() - asset_idx);
+	}
+
+	return assetpath;
 }

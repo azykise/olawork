@@ -282,6 +282,8 @@ public:
 	int					dynamicMemoryUsed() const;
 	static olastring	formatNumber( int number );
 
+	char*				accessData(){return data;}
+
 protected:
 	int					len;
 	char *				data;

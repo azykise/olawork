@@ -13,11 +13,10 @@ public:
 
 	virtual ~OlaMaterialPool();
 
-	void enPool(OlaMaterial* mat);
-	void dePool(OlaMaterial* mat);
-	void dePool(const char* matfilename);
+	void enPool(const char* matassetpath,OlaMaterial* mat);
+	void dePool(const char* matassetpath);
 
-	OlaMaterial* seek(const char* matfilename);	
+	OlaMaterial* seek(const char* matassetpath);	
 
 protected:
 	MaterialPool mMaterialPool;

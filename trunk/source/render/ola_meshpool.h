@@ -13,11 +13,10 @@ public:
 
 	virtual ~OlaMeshPool();
 
-	void enPool(OlaMesh* mat);
-	void dePool(OlaMesh* mat);
-	void dePool(const char* asefilename);
+	void enPool(const char* aseassetpath,OlaMesh* mesh);
+	void dePool(const char* aseassetpath);
 
-	OlaMesh* seek(const char* asefilename);	
+	OlaMesh* seek(const char* aseassetpath);	
 
 protected:
 	MeshPool mMeshPool;

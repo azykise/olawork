@@ -72,7 +72,7 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml )
 
 		delete asset;
 
-		mPools->MeshPool->enPool(mesh);
+		mPools->MeshPool->enPool(dmlInfo->ASEFullname.c_str(),mesh);
 	}
 	
 	dml->mesh(mesh);
@@ -87,7 +87,7 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml )
 			mat = new OlaMaterial(matinfo.MatFullname.c_str());
 			mMATParser->fillMAT(&matinfo,mat);
 
-			mPools->MaterialPool->enPool(mat);
+			mPools->MaterialPool->enPool(matinfo.MatFullname.c_str(),mat);
 		}
 
 		dml->material(i,mat);

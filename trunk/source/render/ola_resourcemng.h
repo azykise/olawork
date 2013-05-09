@@ -12,6 +12,7 @@
 #include "ola_texture.h"
 #include "ola_shaderfx.h"
 
+#include "parser/ola_parser.h"
 
 class OlaAssetLoader;
 class OlaSkeleton;
@@ -44,6 +45,8 @@ public:
 
 	static OlaResourceMng* instance();
 
+	static olastring FilePathToAssetPath(const olastring& filepath);
+
 	void clear();
 
 	OlaMesh* getMesh(const char* filename);
@@ -63,6 +66,8 @@ public:
 	void clearResourceCache(const char* res_type);
 	int getResourceNum(const char* res_type);
 
+	tResourcePools* pools(){return mPools;};
+
 protected:	
 
 	MeshTable		mMeshs;
@@ -80,6 +85,7 @@ protected:
 	OlaAssetLoader* mLoader;
 	OlaRenderDevice* mDevice;
 
+	tResourcePools* mPools;
 };
 
 #endif

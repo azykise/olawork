@@ -13,14 +13,13 @@ public:
 
 	virtual ~OlaTexturePool();
 
-	void enPool(OlaTexture* texture);
-	void dePool(OlaTexture* texture);
-	void dePool(const char* texlfilename);
+	void enPool(const char* texlassetpath,OlaTexture* texture);
+	void dePool(const char* texlassetpath);
 
-	OlaTexture* seek(const char* texlfilename);	
+	OlaTexture* seek(const char* texlassetpath);	
 
 protected:
-	TexturePool mMaterialPool;
+	TexturePool mTexturePool;
 };
 
 #endif
