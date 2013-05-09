@@ -1848,7 +1848,7 @@ void olaMat4::CopyToFloatArrayColumn(float* m44)
 	m44[15] = mat[3][3];	
 }
 
-void olaMat4::FromFloatsColumnMajor(float* pIn16)
+void olaMat4::FromFloatsColumnMajor(const float* pIn16)
 {
 	for (int i=0; i<4; ++i)
 	{

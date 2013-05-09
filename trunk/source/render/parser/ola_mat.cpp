@@ -37,13 +37,15 @@ bool OlaMATParser::parseMATFromData( const char* data,int len,tMatFileInfo* outM
 	OlaXmlNode* mat_node = xml->fisrtChild();
 	assert(mat_node && "no mat_node!");
 
-	OlaXmlNode* tech_node = mat_node->selectFirst("technique");
+	OlaXmlNode* ins_node = mat_node->fisrtChild();
+
+	OlaXmlNode* tech_node = ins_node->selectFirst("technique");
 	const char* tech_type = tech_node->attribute("type");
 	const char* shader = tech_node->attribute("source_s");
 
 	outMatInfo->ShaderFullname = shader;
 
-	OlaXmlNode* var_node = mat_node->selectFirst("var");
+	OlaXmlNode* var_node = ins_node->selectFirst("var");
 	while(var_node != 0)
 	{
 		tMatVarInfo varinfo;

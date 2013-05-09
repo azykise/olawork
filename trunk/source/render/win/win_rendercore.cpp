@@ -18,6 +18,8 @@
 
 #include "../ola_device.h"
 
+#include "../ola_model.h"
+
 #define  lg(...) printf(__VA_ARGS__)
 
 OlaRenderCore::OlaRenderCore():
@@ -244,9 +246,22 @@ ola::IPrimitive* OlaRenderCore::createPrimitive(ola::PrimitiveType type)
 
 ola::IStaticModel* OlaRenderCore::createStaticModel(const char* filename)
 {
-	CModel* model = mSceneMng->loadModelFromDML(filename);
+	OlaResourceMng* res_mng = mRender->getResourceMng();
+
+	OlaAsset* xml_asset = res_mng->getLoader()->load(filename,false);
+
+	olastring dml_filename(filename);
+
+	tDmlFileInfo dmlInfo;
+	OlaMeshRenderer* dml = new OlaMeshRenderer();
+
+	OlaDMLParser parser(res_mng->pools());
+	parser.parseDMLInfoFromData(xml_asset->data,xml_asset->length,&dmlInfo);
+	parser.fillDML(&dmlInfo,dml);
+
+	//CModel* model = mSceneMng->loadModelFromDML(filename);
 	
-	OlaStaticModelImpl* impl = new OlaStaticModelImpl(model,mRender->getResourceMng());
+	OlaStaticModelImpl* impl = new OlaStaticModelImpl(dml);
 	return impl;
 }
 
@@ -261,27 +276,40 @@ void OlaRenderCore::pushRender(ola::IPrimitive* r)
 	mRender->pushToRender(impl->mPrimitive);
 }
 
-void OlaRenderCore::pushRender(ola::IStaticModel* r)
-{
-	OlaStaticModelImpl* impl = static_cast<OlaStaticModelImpl*>(r);
-	mRender->pushToRender(impl->mGeometry->mModel);
-}
+//void OlaRenderCore::pushRender(ola::IStaticModel* r)
+//{
+//	OlaStaticModelImpl* impl = static_cast<OlaStaticModelImpl*>(r);
+//	//mRender->pushToRender(impl->mGeometry->mModel);
+//}
 
-void OlaRenderCore::pushRender( ola::IRenderable* r )
+//void OlaRenderCore::pushRender( ola::IRenderable* r )
+//{
+//	OlaRenderableImpl* impl = static_cast<OlaRenderableImpl*>(r);
+//	
+//	OlaRenderableImpl::RenderOpList& op_list = impl->mRenderOps;
+//	OlaRenderableImpl::RenderOpList::iterator op_i = op_list.begin();
+//	while(op_i != op_list.end())
+//	{
+//		OlaRenderOp* op = (*op_i);
+//
+//		op->worldtrans.Identity();
+//
+//		mRender->pushToRender(op);
+//		
+//		op_i++;
+//	}
+//}
+
+void OlaRenderCore::pushRender( ola::IGeometry* g )
 {
-	OlaRenderableImpl* impl = static_cast<OlaRenderableImpl*>(r);
+	OlaGeometryImpl* impl = static_cast<OlaGeometryImpl*>(g);
 	
-	OlaRenderableImpl::RenderOpList& op_list = impl->mRenderOps;
-	OlaRenderableImpl::RenderOpList::iterator op_i = op_list.begin();
-	while(op_i != op_list.end())
+	OlaArray<OlaRenderOp*>& op_list = impl->renderOps();
+	for (unsigned int i = 0 ; i < op_list.size() ; i++)
 	{
-		OlaRenderOp* op = (*op_i);
-
-		op->worldtrans.Identity();
+		OlaRenderOp* op = op_list[i];			
 
 		mRender->pushToRender(op);
-		
-		op_i++;
 	}
 }
 

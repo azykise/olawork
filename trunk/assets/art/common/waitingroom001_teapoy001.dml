@@ -1,6 +1,7 @@
 <ola_model>
 	<geometry resource="art\common\waitingroom001_teapoy001.ase"/>
-	<material num="1">
+	<material num="2">
 		<submat index="0" name="waitingroom001_teapoy001" resource="art\common\waitingroom001_teapoy001.mat"/>
+		<submat index="1" name="waitingroom001_teapoy001" resource="art\common\waitingroom001_teapoy001.mat"/>
 	</material>
 </ola_model>

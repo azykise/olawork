@@ -9,6 +9,7 @@
 #include "../ola_sklmodel.h"
 #include "../ola_action.h"
 #include "../ola_action_res.h"
+#include "../ola_model.h"
 
 OlaBoneImpl::OlaBoneImpl( OlaBone* bone ,OlaSkeletonImpl* skl):
 mBone(bone),
@@ -136,7 +137,7 @@ ola::aabb* OlaStaticModelImpl::aabb()
 	mAABB.minv.x = mAABB.minv.y = mAABB.minv.z = olaMath::INFINITY;
 	mAABB.maxv.x = mAABB.maxv.y = mAABB.maxv.z = -1.0f * olaMath::INFINITY;
 
-	OlaMesh* mesh = mGeometry->mModel->mesh();
+	OlaMesh* mesh = mGeometry->mesh();
 
 	OlaMesh::SubMeshList& submeshs = mesh->submeshs();
 	OlaMesh::SubMeshList::iterator i = submeshs.begin();
@@ -163,17 +164,16 @@ ola::aabb* OlaStaticModelImpl::aabb()
 
 void OlaMaterialImpl::reload()
 {
-	mResourceMng->reloadMaterial(mMaterial->filename().c_str(),mMaterial->name().c_str());		
+	//mResourceMng->reloadMaterial(mMaterial->filename().c_str(),mMaterial->name().c_str());		
 }
 
-OlaGeometryImpl::OlaGeometryImpl(CModel* model,OlaResourceMng* res_mng):
-mModel(model),
-mResourceMng(res_mng)
+OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model):
+mModel(model)
 {
 	for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
 	{
-		OlaMaterial* material = mModel->mesh()->submeshs()[i]->material();
-		OlaMaterialImpl* impl = new OlaMaterialImpl(material,mResourceMng);
+		OlaMaterial* material = mModel->material(i);
+		OlaMaterialImpl* impl = new OlaMaterialImpl(material);
 		mSubMaterials.push_back(impl);
 	}
 }
@@ -194,6 +194,18 @@ OlaGeometryImpl::~OlaGeometryImpl()
 	}
 
 }
+
+OlaMesh* OlaGeometryImpl::mesh()
+{
+	return mModel->mesh();
+}
+
+
+OlaArray<OlaRenderOp*>& OlaGeometryImpl::renderOps()
+{
+	return mModel->updateRenderOps();
+}
+
 
 OlaCharacterImpl::OlaCharacterImpl( OlaSkeletonModel* model ):
 mSkeletonModel(model),

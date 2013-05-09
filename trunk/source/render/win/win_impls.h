@@ -54,9 +54,8 @@ public:
 class OlaMaterialImpl : public ola::IMaterial
 {
 public:
-	OlaMaterialImpl(OlaMaterial* mat,OlaResourceMng* res_mng):
-	mMaterial(mat),
-	mResourceMng(res_mng)
+	OlaMaterialImpl(OlaMaterial* mat):
+	mMaterial(mat)
 	{
 		mMaterial->addRef();
 	}
@@ -72,14 +71,13 @@ public:
 
 	virtual void reload();
 
-	OlaResourceMng* mResourceMng;
 	OlaMaterial* mMaterial;
 };
 
 class OlaGeometryImpl : public ola::IGeometry
 {
 public:
-	OlaGeometryImpl(CModel* model,OlaResourceMng* res_mng);
+	OlaGeometryImpl(OlaMeshRenderer* model);
 	virtual ~OlaGeometryImpl();
 
 	virtual int submeshNum(){ return mSubMaterials.size(); };
@@ -88,10 +86,15 @@ public:
 
 	virtual void reload(){};
 
-	virtual const char* getResourceFilename(){return mModel->name();}
+	virtual const char* getResourceFilename(){return "";}	
 
-	OlaResourceMng* mResourceMng;
-	CModel* mModel;
+	virtual OlaMesh* mesh();
+
+	virtual OlaArray<OlaRenderOp*>& renderOps();
+
+protected:
+
+	OlaMeshRenderer* mModel;
 	std::vector<OlaMaterialImpl*> mSubMaterials;
 };
 
@@ -181,11 +184,10 @@ protected:
 class OlaStaticModelImpl : public ola::IStaticModel
 {
 public:
-	OlaStaticModelImpl(CModel* model,OlaResourceMng* res_mng):
-	mGeometry(0),
-	mResourceMng(res_mng)
+	OlaStaticModelImpl(OlaMeshRenderer* model):
+	mGeometry(0)
 	{
-		mGeometry = new OlaGeometryImpl(model,res_mng);
+		mGeometry = new OlaGeometryImpl(model);
 	}
 
 	virtual ~OlaStaticModelImpl()
@@ -200,7 +202,6 @@ public:
 	virtual ola::aabb* aabb();	
 
 	OlaGeometryImpl* mGeometry;
-	OlaResourceMng* mResourceMng;
 
 	ola::aabb mAABB;
 };

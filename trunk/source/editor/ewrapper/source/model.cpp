@@ -61,7 +61,7 @@ namespace Engine
 
 	void StaticModel::render()
 	{
-		RenderSys->RenderCore->pushRender(Model);
+		RenderSys->RenderCore->pushRender(Model->geometry());
 		RenderSys->RenderCore->pushRender(AABB->getPrimitive());
 	}
 
@@ -185,7 +185,7 @@ namespace Engine
 		if (Charactor)
 		{
 			RenderSkeletonLines(RootBone,RenderSys);
-			RenderSys->RenderCore->pushRender(Charactor->renderer());
+			//RenderSys->RenderCore->pushRender(Charactor->renderer());
 		}
 	}
 }

@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_model.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_thread.cpp" />
@@ -267,7 +268,6 @@
     <ClInclude Include="..\..\..\source\render\ola_entity.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\source\render\ola_model.cpp" />
     <None Include="..\..\..\source\render\ola_model.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

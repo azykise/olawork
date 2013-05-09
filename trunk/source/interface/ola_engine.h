@@ -250,8 +250,9 @@ namespace ola
 		virtual void setWindow(IRenderWindow* wnd) = 0;
 
 		virtual void pushRender(IPrimitive* r) = 0;
-		virtual void pushRender(IStaticModel* r) = 0;
-		virtual void pushRender(IRenderable* r) = 0;
+		//virtual void pushRender(IStaticModel* r) = 0;
+		//virtual void pushRender(IRenderable* r) = 0;
+		virtual void pushRender(IGeometry* g) = 0;
 
 		virtual void pushHardwareSelect(IPrimitive* primitive,unsigned int sel_id) = 0;
 

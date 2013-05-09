@@ -24,6 +24,8 @@ public:
 	virtual OlaTransformObj* transform();
 	virtual void transform(OlaTransformObj* transobj);
 
+	virtual OlaArray<OlaRenderOp*>& updateRenderOps();
+
 protected:	
 
 	OlaMesh* mMesh;

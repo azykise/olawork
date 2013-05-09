@@ -32,11 +32,10 @@ drawmode(OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST)
 OlaRenderOp::OlaRenderOp(OlaSubMesh* _sm):
 vb(_sm->vb()),
 ib(_sm->ib()),
-mMat(_sm->material()),
+mMat(0),
 selectionID(0),
 drawmode(OlaRenderParam::DRAWCALL_PRIM_MODE::PRIM_TRILIST)
 {
-	mMat->addRef();
 	worldtrans.Identity();
 }
 

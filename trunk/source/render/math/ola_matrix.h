@@ -258,7 +258,7 @@ public:
 	void			Multiply(const olaMat4& left, const olaMat4& right);
 
 	void			CopyToFloatArrayColumn(float* m44);
-	void			FromFloatsColumnMajor(float* pOut);
+	void			FromFloatsColumnMajor(const float* pOut);
 private:
 	olaVec4			mat[ 4 ];
 };

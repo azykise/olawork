@@ -250,6 +250,9 @@
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp">
       <Filter>base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_model.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h">
@@ -459,9 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\source\render\ola_model.h">
-      <Filter>entity</Filter>
-    </None>
-    <None Include="..\..\..\source\render\ola_model.cpp">
       <Filter>entity</Filter>
     </None>
   </ItemGroup>
