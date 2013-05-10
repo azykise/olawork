@@ -18,8 +18,12 @@ public:
 
 	OlaShader* seek(const char* fxfilename);	
 
+	OlaShader* defshader();
+
 protected:
 	ShaderPool mShaderPool;
+
+	OlaShader* mDefaultShader;
 };
 
 #endif

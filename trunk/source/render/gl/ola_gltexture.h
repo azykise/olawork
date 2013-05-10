@@ -10,7 +10,7 @@ public:
 
 	virtual void release();
 
-	virtual bool fill( unsigned char* rgba,int w,int h,int bpp );
+	virtual bool fill( const unsigned char* rgba,int w,int h,int bpp );
 
 	virtual void* handle();
 

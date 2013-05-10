@@ -1,9 +1,7 @@
 #ifndef _OLA_RESOURCE_MANAGER_H__
 #define _OLA_RESOURCE_MANAGER_H__
 
-#include <vector>
-#include <map>
-
+#include "ola_util.h"
 #include "ola_string.h"
 #include "ola_resource.h"
 

@@ -23,7 +23,7 @@ public:
 
 	virtual int	 readTga(char* data,int len);
 	virtual int  readTga(OlaAsset* asset);
-	virtual bool fill(unsigned char* rgba,int w,int h,int bpp) = 0;
+	virtual bool fill(const unsigned char* rgba,int w,int h,int bpp) = 0;
 	virtual bool filltest();
 
 	virtual void* handle() = 0;

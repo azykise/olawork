@@ -63,7 +63,8 @@ bool OlaMATParser::parseMATFromData( const char* data,int len,tMatFileInfo* outM
 
 bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 {
-	OlaShader* shader = mPools->ShaderPool->seek(matInfo->ShaderFullname.c_str());
+	OlaShader* shader = 0;
+	shader = mPools->ShaderPool->seek(matInfo->ShaderFullname.c_str());
 	if(shader == 0)
 	{
 		shader = new OlaShader();
@@ -83,21 +84,27 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 		if(strcmp(var.Type.c_str(),TYPE_TEXTURE) != 0)				
 			continue;
 
-		OlaTexture* texture = mPools->TexturePool->seek(var.Value.c_str());
+		OlaTexture* texture = 0;
+
+		texture = mPools->TexturePool->seek(var.Value.c_str());
 		if(!texture)	
 		{
-			texture = GetRenderDevice()->spawnTexture();
-
 			OlaAsset* asset = new OlaAsset();
-			LoadAssetFile(var.Value.c_str(),asset);
+			if(LoadAssetFile(var.Value.c_str(),asset))
+			{
+				texture = GetRenderDevice()->spawnTexture();
 
-			texture->readTga(asset->data,asset->length);			
+				texture->readTga(asset->data,asset->length);
+			}
+			else
+				texture = mPools->TexturePool->deftexture();
 
 			delete asset;
 
 			mPools->TexturePool->enPool(var.Value.c_str(),texture);
 		}
 
+		//fixme: 纹理的引用计数怎么搞？
 		material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_TEXTURE,texture);
 	}
 

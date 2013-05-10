@@ -14,6 +14,9 @@
 #include "ola_materialpool.h"
 #include "ola_meshpool.h"
 
+#include "parser/ola_mat.h"
+#include "parser/ola_dml.h"
+
 const char TYPE_STRING[] = "string";
 const char TYPE_FLOAT[] = "float";
 const char TYPE_INT[] = "int";
@@ -55,6 +58,9 @@ mDevice(device)
 	mPools->TexturePool = new OlaTexturePool();
 	mPools->MaterialPool = new OlaMaterialPool();
 	mPools->MeshPool = new OlaMeshPool();	
+
+
+
 }
 
 OlaResourceMng::~OlaResourceMng()

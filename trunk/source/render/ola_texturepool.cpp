@@ -1,14 +1,22 @@
 #include "ola_texturepool.h"
 #include "ola_texture.h"
 
-OlaTexturePool::OlaTexturePool()
-{
+#include "ola_device.h"
 
+OlaTexturePool::OlaTexturePool():
+mDefaultTexture(0)
+{
+	mDefaultTexture = GetRenderDevice()->spawnTexture();
+	mDefaultTexture->fill(DEFAULT_TEXTURE_DATA,2,2,24);
 }
 
 OlaTexturePool::~OlaTexturePool()
 {
-
+	if (mDefaultTexture)
+	{
+		delete mDefaultTexture;
+		mDefaultTexture = 0;
+	}
 }
 
 void OlaTexturePool::enPool( const char* texlassetpath, OlaTexture* texture )

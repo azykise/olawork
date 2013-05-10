@@ -32,7 +32,7 @@ void OlaGLTexture::release()
 	}
 }
 
-bool OlaGLTexture::fill( unsigned char* rgba,int w,int h,int bpp )
+bool OlaGLTexture::fill( const unsigned char* rgba,int w,int h,int bpp )
 {
 	release();
 

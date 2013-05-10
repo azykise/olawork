@@ -12,7 +12,7 @@ public:
 	OlaShaderFX(){};
 	virtual ~OlaShaderFX(){};
 
-	virtual bool load(const char* file_name) = 0;	
+	virtual bool load(const char* file_name, bool file = true) = 0;	
 	virtual unsigned int handleByName(const char* name,void* p0 = 0) = 0;
 	virtual void* program() = 0;
 

@@ -33,7 +33,7 @@ public:
 	virtual bool initialize(int w ,int h) = 0;	
 
 	virtual int  readTga(OlaAsset* asset){return 0;}
-	virtual bool fill(unsigned char* rgba,int w,int h,int bpp){return false;}
+	virtual bool fill(const unsigned char* rgba,int w,int h,int bpp){return false;}
 	virtual bool filltest(){return false;}
 
 	void resize(int w,int h);

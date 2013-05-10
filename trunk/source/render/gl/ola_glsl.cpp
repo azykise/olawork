@@ -112,15 +112,27 @@ bool GetProgramString(OlaArray<olastring>& lines,olastring& outProgStr,const cha
 	return start;
 }
 
-bool OlaGLSL::load( const char* file_name )
+bool OlaGLSL::load( const char* file_name , bool file )
 {
 	_clear();
 
-	mFilename = olastring(file_name);
+	olastring _data;
 
-	OlaAsset* asset = OlaAssetLoader::instance()->load(file_name,false);
+	if (file)
+	{
+		mFilename = olastring(file_name);
+		OlaAsset* asset = OlaAssetLoader::instance()->load(file_name,false);
+		olastring fdata(asset->data);
+		delete asset;
 
-	olastring _data(asset->data);
+		_data = fdata;
+	}
+	else
+	{
+		olastring fdata(file_name);
+		_data = fdata;
+	}
+
 	OlaArray<olastring> outlines;
 
 	int n = OlaUtility::readStringLines(_data,outlines);
@@ -139,7 +151,7 @@ bool OlaGLSL::load( const char* file_name )
 	fstrs[0] = frag_program.c_str();
 	mFragHandle = _loadShader(fstrs,GL_FRAGMENT_SHADER);
 
-	delete asset;
+	
 
 	mProgHandle = glCreateProgram();
 	glAttachShader(mProgHandle,mVertHandle);

@@ -3,14 +3,25 @@
 #include "ola_shaderpool.h"
 #include "ola_device.h"
 #include "ola_material.h"
+#include "ola_resource.h"
+
+#include "ola_shaderfx.h"
 
 OlaShaderPool::OlaShaderPool()
 {
-
+	mDefaultShader = new OlaShader();
+	OlaShaderFX* fx = GetRenderDevice()->spawnShaderFX();
+	fx->load(DEFAULT_SHADER_DATA,false);
+	mDefaultShader->reset(fx);
 }
 
 OlaShaderPool::~OlaShaderPool()
 {
+	if (mDefaultShader)
+	{
+		delete mDefaultShader;
+		mDefaultShader = 0;
+	}
 	//assert(mShaderPool.size() == 0 && "Shader Pool is not clean!");
 }
 
@@ -53,4 +64,9 @@ void OlaShaderPool::dePool( const char* fxassetpath )
 			delete shader;
 		}
 	}
+}
+
+OlaShader* OlaShaderPool::defshader()
+{
+	return mDefaultShader;
 }

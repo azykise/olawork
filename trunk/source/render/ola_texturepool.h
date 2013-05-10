@@ -18,8 +18,12 @@ public:
 
 	OlaTexture* seek(const char* texlassetpath);	
 
+	OlaTexture* deftexture(){return mDefaultTexture;};
+
 protected:
 	TexturePool mTexturePool;
+
+	OlaTexture* mDefaultTexture;
 };
 
 #endif

@@ -315,43 +315,6 @@ void OlaRenderCore::pushRender(ola::IPrimitive* r)
 	mRender->pushToRender(impl->mPrimitive);
 }
 
-//void OlaRenderCore::pushRender(ola::IStaticModel* r)
-//{
-//	OlaStaticModelImpl* impl = static_cast<OlaStaticModelImpl*>(r);
-//	//mRender->pushToRender(impl->mGeometry->mModel);
-//}
-
-//void OlaRenderCore::pushRender( ola::IRenderable* r )
-//{
-//	OlaRenderableImpl* impl = static_cast<OlaRenderableImpl*>(r);
-//	
-//	OlaRenderableImpl::RenderOpList& op_list = impl->mRenderOps;
-//	OlaRenderableImpl::RenderOpList::iterator op_i = op_list.begin();
-//	while(op_i != op_list.end())
-//	{
-//		OlaRenderOp* op = (*op_i);
-//
-//		op->worldtrans.Identity();
-//
-//		mRender->pushToRender(op);
-//		
-//		op_i++;
-//	}
-//}
-
-//void OlaRenderCore::pushRender( ola::IGeometry* g )
-//{
-//	OlaGeometryImpl* impl = static_cast<OlaGeometryImpl*>(g);
-//	
-//	OlaArray<OlaRenderOp*>& op_list = impl->renderOps();
-//	for (unsigned int i = 0 ; i < op_list.size() ; i++)
-//	{
-//		OlaRenderOp* op = op_list[i];			
-//
-//		mRender->pushToRender(op);
-//	}
-//}
-
 ola::ICharacter* OlaRenderCore::createCharacter( const char* chr_filename )
 {
 	OlaSkeletonModel* skel_model = mSceneMng->loadSkeletonModelFromCHR(chr_filename);
