@@ -1,6 +1,8 @@
 #include "ola_smallscene.h"
 #include "../ola_light.h"
 
+#include "../ola_camera.h"
+
 OlaRenderScene* newSmallScene(const char* name,OlaRenderSceneMng* mng)
 {
 	return new OlaSmallScene(name,mng);
@@ -19,35 +21,17 @@ OlaSmallScene::~OlaSmallScene()
 
 void OlaSmallScene::attachObj( OlaTransformObj* obj )
 {
-	unsigned int f = obj->flags();
-
-	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
+	if (!mTransformObjs.contains(obj))
 	{
-		OlaLight* l = dynamic_cast<OlaLight*>(obj);
-		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
-		OlaRenderScene* ls = l->scene();
-		if (ls && ls != this)
-		{
-			ls->detachObj(l);
-		}
-		l->scene(this);
-		mLights.add(l);
-	}		
+		mTransformObjs.push_back(obj);
+	}
 }
 
 void OlaSmallScene::detachObj( OlaTransformObj* obj )
 {
-	unsigned int f = obj->flags();
-
-	if (f & TRANSFORM_OBJPARAM::OBJFLAG_LIGHT)
+	if (mTransformObjs.contains(obj))
 	{
-		OlaLight* l = dynamic_cast<OlaLight*>(obj);
-		assert( l && "OlaLight* l = dynamic_cast<OlaLight*>(obj)");
-		if (mLights.contains(l))
-		{
-			l->scene(0);
-			mLights.remove(l);
-		}
+		mTransformObjs.remove(obj);
 	}
 }
 
@@ -66,4 +50,17 @@ void OlaSmallScene::release()
 const OlaRenderScene::LightList* OlaSmallScene::lights( bool all /*= false */ )
 {
 	return &mLights;
+}
+
+OlaArray<OlaTransformObj*>& OlaSmallScene::activedObjs()
+{
+	return mTransformObjs;
+}
+
+void OlaSmallScene::updateScene( OlaVFrustum* view )
+{
+	for (unsigned int i = 0 ; i < mTransformObjs.size() ; i++)
+	{
+		mTransformObjs[i]->visiable(TRANSFORM_OBJPARAM::OBJVIS_ALL);
+	}
 }

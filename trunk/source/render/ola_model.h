@@ -26,17 +26,11 @@ public:
 
 	virtual void material(int index,OlaMaterial* mat);
 
-	virtual OlaTransformObj* transform();
-
-	virtual void transform(OlaTransformObj* transobj);
-
-	virtual OlaArray<OlaRenderOp*>& updateRenderOps();
-
 	virtual const char* kernelID();
 
 	virtual ENABLE_STATE enabled();
 
-	virtual void updateInternal( float elasped );
+	virtual void updateInternal( float elasped , OlaTransformObj* transObj );
 
 	virtual void renderInternal( OlaRender* r );
 
@@ -45,8 +39,6 @@ protected:
 	olastring mDMLAssetpath;
 
 	OlaMesh* mMesh;
-
-	OlaTransformObj* mTranform;
 
 	OlaArray<OlaMaterial*> mMaterials;
 

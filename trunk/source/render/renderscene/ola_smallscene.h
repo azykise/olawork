@@ -18,7 +18,13 @@ public:
 
 	virtual const LightList* lights( bool all = false );
 
+	virtual OlaArray<OlaTransformObj*>& activedObjs();
+
+	virtual void updateScene( OlaVFrustum* view );
+
 protected:
+
+	OlaArray<OlaTransformObj*> mTransformObjs;
 
 	LightList mLights;
 };

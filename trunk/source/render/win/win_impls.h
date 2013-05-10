@@ -139,28 +139,6 @@ public:
 	RenderOpList mRenderOps;
 };
 
-class OlaSceneImpl;
-class OlaSceneEntryImpl : public ola::ISceneEntry
-{
-public:
-	enum ENTRY_TYPE
-	{
-		ENTRY_LIGHT = 0,
-		ENTRY_MODEL,
-		ENTRY_TYPE_END,
-	};
-public:
-	OlaSceneEntryImpl(){};
-	virtual ~OlaSceneEntryImpl(){};
-
-	virtual ENTRY_TYPE type() = 0;
-
-	virtual void setScene(OlaSceneImpl* scene){mScene = scene;}
-	virtual ola::IScene* scene();
-protected:
-	OlaSceneImpl* mScene;
-};
-
 class OlaStaticModelImpl : public ola::IStaticModel
 {
 public:
@@ -213,8 +191,6 @@ public:
 	OlaSkeletonImpl* mSkeleton;
 };
 
-class OlaLightTransform;
-class OlaSceneEntryLight;
 class OlaLightImpl : public ola::ILight
 {
 public:
@@ -229,11 +205,9 @@ public:
 	virtual void setTargetPos(float x,float y,float z);
 	virtual void getTargetPos(ola::vec3* out_pos);
 
-	virtual ola::ISceneEntry* entry();
-
+protected:
 	OlaLight* mLight;
-	OlaLightTransform* mTransform;
-	OlaSceneEntryLight* mSceneEntry;
+	OlaTransformImpl* mTransform;
 };
 
 class OlaSceneImpl : public ola::IScene
@@ -243,7 +217,8 @@ public:
 	virtual ~OlaSceneImpl();
 
 	virtual const char* name();
-	virtual void attachEntry(ola::ISceneEntry* entry);
+
+	virtual void attach( ola::ITransform* transform );
 
 	OlaRenderSceneMng* mSceneMng;
 	OlaRenderScene* mScene;

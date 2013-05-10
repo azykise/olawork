@@ -1,5 +1,7 @@
 #include "ola_light.h"
 
+#include "ola_render.h"
+
 OlaLight::OlaLight(LIGHT_TYPE t):
 mPosition(0,1000,0),
 mLookAtPT(0,0,0),
@@ -30,10 +32,22 @@ const olaVec3* OlaLight:: position()
 	return &mPosition;
 }
 
-unsigned int OlaLight::flags()
+const char* OlaLight::kernelID()
 {
-	unsigned int f = 0;
-	f |= TRANSFORM_OBJPARAM::OBJFLAG_LIGHT;
-	f |= TRANSFORM_OBJPARAM::OBJFLAG_DYNAMIC;
-	return f;
+	return "_LIGHT_";
+}
+
+OlaKernelObj::ENABLE_STATE OlaLight::enabled()
+{
+	return OlaKernelObj::ES_ENABLE_ALL;
+}
+
+void OlaLight::updateInternal( float elasped,OlaTransformObj* transObj )
+{
+	
+}
+
+void OlaLight::renderInternal( OlaRender* r )
+{
+	r->pushLight(this);
 }

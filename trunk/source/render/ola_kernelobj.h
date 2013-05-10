@@ -5,6 +5,8 @@
 #include "ola_refobj.h"
 
 class OlaRender;
+class OlaTransformObj;
+
 class OlaKernelObj : public IRefCounter
 {
 public:
@@ -22,7 +24,7 @@ public:
 
 	virtual ENABLE_STATE enabled() {return ES_ENABLE_ALL;}
 
-	virtual void updateInternal(float elasped){}
+	virtual void updateInternal(float elasped,OlaTransformObj* transObj){}
 
 	virtual void renderInternal(OlaRender* r){}
 };

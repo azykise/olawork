@@ -97,14 +97,13 @@ void OlaForwardPipeline::execute()
 
 	mGlobalShaderConst.EyePos.Set(mGlobalShaderConst.ViewMat[0][3],mGlobalShaderConst.ViewMat[1][3],mGlobalShaderConst.ViewMat[2][3]);
 
-	const OlaRenderScene::LightList& dir_lights = *(mCurrentScene->lights());
-
-	mGlobalShaderConst.LightNum = dir_lights.size();
-	for(int i = 0 ; i < dir_lights.size() ; i++)
+	mGlobalShaderConst.LightNum = mLights.size();
+	for(unsigned int i = 0 ; i < mLights.size() ; i++)
 	{
-		mGlobalShaderConst.LightParam[i].pos.Set(dir_lights[i]->position()->x,dir_lights[i]->position()->y,dir_lights[i]->position()->z);
-		mGlobalShaderConst.LightParam[i].dst.Set(dir_lights[i]->lookatPT()->x,dir_lights[i]->lookatPT()->y,dir_lights[i]->lookatPT()->z);
+		mGlobalShaderConst.LightParam[i].pos.Set(mLights[i]->position()->x,mLights[i]->position()->y,mLights[i]->position()->z);
+		mGlobalShaderConst.LightParam[i].dst.Set(mLights[i]->lookatPT()->x,mLights[i]->lookatPT()->y,mLights[i]->lookatPT()->z);
 	}
+	mLights.clear();
 
 	_renderGroupedModels();
 

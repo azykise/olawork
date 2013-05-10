@@ -6,7 +6,6 @@
 
 OlaMeshRenderer::OlaMeshRenderer(const char* dmlassetpath):
 mMesh(0),
-mTranform(0),
 mDMLAssetpath(dmlassetpath)
 {
 	
@@ -37,8 +36,6 @@ OlaMeshRenderer::~OlaMeshRenderer()
 		}
 	}
 	mRenderOps.clear();
-
-	mTranform = 0;
 }
 
 OlaMesh* OlaMeshRenderer::mesh()
@@ -129,25 +126,25 @@ void OlaMeshRenderer::material( int index,OlaMaterial* mat )
 	mRenderOps[index]->material(mat);
 }
 
-OlaTransformObj* OlaMeshRenderer::transform()
+const char* OlaMeshRenderer::kernelID()
 {
-	return mTranform;
+	return mDMLAssetpath.c_str();
 }
 
-void OlaMeshRenderer::transform( OlaTransformObj* transobj )
+OlaKernelObj::ENABLE_STATE OlaMeshRenderer::enabled()
 {
-	mTranform = transobj;
+	return ES_ENABLE_ALL;
 }
 
-OlaArray<OlaRenderOp*>& OlaMeshRenderer::updateRenderOps()
+void OlaMeshRenderer::updateInternal( float elasped , OlaTransformObj* transObj)
 {
 	for (unsigned int i = 0; i < mRenderOps.size() ; i++)
 	{
 		OlaRenderOp* op = mRenderOps[i];
 
-		if (mTranform)
+		if (transObj)
 		{
-			const float* f44 = mTranform->transform()->ToFloatPtr();
+			const float* f44 = transObj->transform()->ToFloatPtr();
 			op->worldtrans.FromFloatsColumnMajor(f44);
 		}
 		else
@@ -156,27 +153,6 @@ OlaArray<OlaRenderOp*>& OlaMeshRenderer::updateRenderOps()
 		}
 
 	}
-
-	return mRenderOps;
-}
-
-const char* OlaMeshRenderer::kernelID()
-{
-	return mDMLAssetpath.c_str();
-}
-
-OlaKernelObj::ENABLE_STATE OlaMeshRenderer::enabled()
-{
-	if (mTranform)
-	{
-		return mTranform->visiable() != TRANSFORM_OBJPARAM::OBJVIS_NONE ? ES_ENABLE_ALL : ES_DISABLE;
-	}
-	return ES_DISABLE;
-}
-
-void OlaMeshRenderer::updateInternal( float elasped )
-{
-	updateRenderOps();
 }
 
 void OlaMeshRenderer::renderInternal( OlaRender* r )

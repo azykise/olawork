@@ -88,10 +88,6 @@ bool OlaRenderCore::initialize(unsigned int hwnd)
 
 	mRender->getViewFrustum(0)->fromViewParam(&vp);
 
-    olaVec3 light0_lookatpt(0.0f,0.0f,0.0f);
-	olaVec3 light0_position(200.0f,200.0f,200.0f);
-	mRender->setDirLight(0,light0_position,light0_lookatpt);
-
 	return true;
 }
 
@@ -151,23 +147,34 @@ void OlaRenderCore::drawSceneActors()
 {
 	if(mRender)
 	{
-		unsigned int kernel_num = mKernelObjs->kernelObjCount();
-		for(unsigned int i = 0 ; i < kernel_num ; i++)
-		{
-			OlaKernelObj* ko = mKernelObjs->kernelObj(i);
+		OlaRenderScene* current_scene = mSceneMng->scene();
 
-			switch (ko->enabled())
+		current_scene->updateScene(mRender->getViewFrustum(0));
+
+		OlaArray<OlaTransformObj*>& actived_tobjs = current_scene->activedObjs();
+		unsigned int tobj_num = actived_tobjs.size();
+
+		for (unsigned int i = 0 ; i < tobj_num ; i++)
+		{
+			OlaTransformObj* tobj = actived_tobjs[i];
+			unsigned int kernel_num = tobj->kernelObjCount();
+
+			for (unsigned int n = 0 ; n < kernel_num ; n++)
 			{
-			case OlaKernelObj::ES_ENABLE_ALL:
-				ko->updateInternal(0.0f);
-				ko->renderInternal(mRender);
-				break;
-			case OlaKernelObj::ES_ENABLE_UPDATE:
-				ko->updateInternal(0.0f);
-				break;
-			case OlaKernelObj::ES_ENABLE_RENDER:
-				ko->renderInternal(mRender);
-				break;								
+				OlaKernelObj* kobj = tobj->kernelObj(n);
+				switch (kobj->enabled())
+				{
+				case OlaKernelObj::ES_ENABLE_ALL:
+					kobj->updateInternal(0.0f,tobj);
+					kobj->renderInternal(mRender);
+					break;
+				case OlaKernelObj::ES_ENABLE_UPDATE:
+					kobj->updateInternal(0.0f,tobj);
+					break;
+				case OlaKernelObj::ES_ENABLE_RENDER:
+					kobj->renderInternal(mRender);
+					break;								
+				}
 			}
 		}
 
@@ -357,6 +364,8 @@ ola::ICharacter* OlaRenderCore::createCharacter( const char* chr_filename )
 ola::ILight* OlaRenderCore::createLight( const char* name )
 {	
 	OlaLight* l = new OlaLight();
+	mKernelObjs->enTrunk(l);
+
 	OlaLightImpl* impl = new OlaLightImpl(l);
 	return impl;
 }

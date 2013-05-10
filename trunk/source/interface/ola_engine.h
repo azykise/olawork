@@ -134,9 +134,13 @@ namespace ola
 		virtual IBone* root() = 0;
 	};
 
+	class IScene;
 	class ITransform
 	{
 	public:
+		virtual IScene* scene() = 0;
+		virtual void detachScene() = 0;	
+
 		virtual void getPosition(vec3* out_pos) = 0;
 		virtual void setPosition(float x,float y,float z) = 0;
 
@@ -144,20 +148,10 @@ namespace ola
 		virtual void setRotation(float axisx,float axisy,float axisz,float degree) = 0;
 	};
 
-	class IScene;
-	class ISceneEntry
-	{
-	public:
-		virtual IScene* scene() = 0;
-		virtual void detachScene() = 0;		
-	};
-
 	class ILight : public IObject
 	{
 	public:
 		virtual ITransform* transform() = 0;
-
-		virtual ISceneEntry* entry() = 0;
 
 		virtual void setTargetPos(float x,float y,float z) = 0;
 		virtual void getTargetPos(vec3* out_pos) = 0;
@@ -226,7 +220,8 @@ namespace ola
 		};
 	public:
 		virtual const char* name() = 0;
-		virtual void attachEntry(ISceneEntry* entry) = 0;
+
+		virtual void attach(ITransform* transform) = 0;
 	};
 
 	class IRenderCore

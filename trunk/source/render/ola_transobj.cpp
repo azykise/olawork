@@ -1,6 +1,7 @@
 #include "ola_transobj.h"
 
 #include "ola_scene.h"
+#include "ola_kernelobj.h"
 
 OlaTransformObj::OlaTransformObj():
 mScene(0),
@@ -12,6 +13,12 @@ mVisiable(TRANSFORM_OBJPARAM::OBJVIS_NONE)
 
 OlaTransformObj::~OlaTransformObj()
 {
+	for (unsigned int i = 0 ; i < mKernelObjs.size() ; i++)
+	{
+		mKernelObjs[i]->delRef();
+	}
+	mKernelObjs.clear();
+
 	if (mScene)
 	{
 		mScene->detachObj(this);
@@ -62,7 +69,7 @@ void OlaTransformObj::rotation( float x,float y,float z,float w )
 
 const olaMat4* OlaTransformObj::transform()
 {
-	return 0;
+	return &mWorldTransform;
 }
 
 void OlaTransformObj::transform( const olaMat4& trans )
@@ -133,4 +140,45 @@ void OlaTransformObj::localTransform( const olaMat4& ltrans )
 void OlaTransformObj::localTransform( float* lf44 )
 {
 
+}
+
+unsigned int OlaTransformObj::kernelObjCount()
+{
+	return mKernelObjs.size();
+}
+
+OlaKernelObj* OlaTransformObj::kernelObj( unsigned int index )
+{
+	if (index >= mKernelObjs.size())
+	{
+		return 0;
+	}
+	return mKernelObjs[index];
+}
+
+void OlaTransformObj::pushKernelObj( OlaKernelObj* obj )
+{
+	if (!mKernelObjs.contains(obj))
+	{
+		obj->addRef();
+		mKernelObjs.push_back(obj);
+	}
+}
+
+void OlaTransformObj::popKernelObj( OlaKernelObj* obj )
+{
+	if (mKernelObjs.contains(obj))
+	{
+		obj->delRef();
+		mKernelObjs.remove(obj);
+	}
+}
+
+void OlaTransformObj::clearKernelObjs()
+{
+	for (unsigned int i = 0 ; i < mKernelObjs.size() ; i++)
+	{
+		mKernelObjs[i]->delRef();
+	}
+	mKernelObjs.clear();
 }

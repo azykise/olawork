@@ -1,10 +1,14 @@
 #ifndef _OLA_INCLUDE_OLA_LIGHT_H__
 #define _OLA_INCLUDE_OLA_LIGHT_H__
 
+#include "ola_util.h"
+
 #include "math/ola_math.h"
+
+#include "ola_kernelobj.h"
 #include "ola_transobj.h"
 
-class OlaLight : public OlaTransformObj
+class OlaLight : public OlaKernelObj
 {
 public:
 	enum LIGHT_TYPE
@@ -16,8 +20,6 @@ public:
 	};
 public:
 	OlaLight(LIGHT_TYPE t = TYPE_DIR);
-
-	virtual unsigned int flags();
 
 	virtual void setLookAtPT(const olaVec3& dir);
 	virtual void position(const olaVec3& pos);
@@ -32,7 +34,16 @@ public:
 	virtual const olaVec3* position();
 
 	virtual olaAABB* aabb(){return 0;}
-	
+
+	virtual const char* kernelID();
+
+	virtual ENABLE_STATE enabled();
+
+	virtual void updateInternal( float elasped,OlaTransformObj* transObj );
+
+	virtual void renderInternal( OlaRender* r );
+
+
 protected:
 	
 	olaVec3 mLookAtPT;

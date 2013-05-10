@@ -104,6 +104,7 @@ namespace modelview
 
                     CurrentDynamicModel = null;
                     CurrentStaticModel = Domain.getViewManager().RenderSystem.createStaticModel(s);
+                    CurrentStaticModel.attach(CurrentScene);
                     b = true;
                     break;
                 case Tool.SUFFIX_CHR:

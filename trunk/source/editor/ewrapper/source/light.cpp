@@ -39,12 +39,12 @@ namespace Engine
 
 	void Light::attach( Scene^ scene )
 	{
-		scene->scene()->attachEntry(mLight->entry());
+		scene->scene()->attach(mLight->transform());
 	}
 
 	void Light::detach()
 	{
-		mLight->entry()->detachScene();
+		mLight->transform()->detachScene();
 	}
 
 }

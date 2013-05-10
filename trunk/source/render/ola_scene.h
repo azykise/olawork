@@ -16,6 +16,7 @@ class OlaRender;
 class OlaSkeletonModel;
 class OlaLight;
 class OlaRenderSceneMng;
+class OlaVFrustum;
 
 class OlaSceneNode
 {
@@ -69,6 +70,8 @@ public:
 	virtual void initialize();
 	virtual void release();
 	
+	virtual void updateScene(OlaVFrustum* view) = 0;
+
 	virtual void attachObj(OlaTransformObj* obj) = 0;
 	virtual void detachObj(OlaTransformObj* obj) = 0;	
 
@@ -76,6 +79,8 @@ public:
 	virtual OlaSceneNode* findNode(const char* name);
 
 	virtual const LightList* lights(bool all = false);
+
+	virtual OlaArray<OlaTransformObj*>& activedObjs() = 0;
 
 	olastring& name(){return mName;}
 

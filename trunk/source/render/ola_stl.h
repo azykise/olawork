@@ -9,6 +9,7 @@
 #include <map>
 #include <queue>
 #include <set>
+#include <stack>
 #include <hash_map>
 
 template <class T>

@@ -7,6 +7,7 @@ namespace Engine
 	ref class RenderSystem;
 	ref class PrimitiveBorderCube;
 	ref class PrimitiveLine;
+	ref class Scene;
 
 	public ref class StaticModel
 	{
@@ -18,6 +19,9 @@ namespace Engine
 		void reloadMaterials();
 
 		void render();
+
+		void attach(Scene^ scene);
+		void detachScene();
 
 		System::String^ Name;
 		RenderSystem^ RenderSys;

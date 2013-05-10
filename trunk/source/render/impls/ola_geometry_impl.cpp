@@ -35,14 +35,9 @@ OlaGeometryImpl::~OlaGeometryImpl()
 
 }
 
-OlaMesh* OlaGeometryImpl::mesh()
+OlaMeshRenderer* OlaGeometryImpl::meshrender()
 {
-	return mModel->mesh();
-}
-
-OlaArray<OlaRenderOp*>& OlaGeometryImpl::renderOps()
-{
-	return mModel->updateRenderOps();
+	return mModel;
 }
 
 ola::IMaterial* OlaGeometryImpl::submeshMaterial(int idx)

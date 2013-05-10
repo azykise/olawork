@@ -74,6 +74,12 @@ public:
 	virtual TRANSFORM_OBJPARAM::OBJ_VISIABLE visiable();
 	virtual void visiable(TRANSFORM_OBJPARAM::OBJ_VISIABLE vis);
 
+	virtual unsigned int kernelObjCount();
+	virtual OlaKernelObj* kernelObj(unsigned int index);
+	virtual void pushKernelObj(OlaKernelObj* obj);
+	virtual void popKernelObj(OlaKernelObj* obj);
+	virtual void clearKernelObjs();
+
 protected:
 	OlaRenderScene* mScene;
 
@@ -89,6 +95,8 @@ protected:
 	olaVec3 mLocalTransform;
 
 	TRANSFORM_OBJPARAM::OBJ_VISIABLE mVisiable;
+
+	OlaArray<OlaKernelObj*> mKernelObjs;
 };
 
 #endif

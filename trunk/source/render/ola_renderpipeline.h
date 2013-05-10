@@ -12,17 +12,15 @@ class OlaRender;
 class OlaLight;
 class OlaScreenQuad;
 class OlaRenderTarget;
+class OlaRenderScene;
+class OlaLight;
 class OlaVFrustum;
 class CModel;
 
-#include <vector>
-#include <stack>
-
+#include "ola_util.h"
 #include "math/ola_math.h"
 #include "ola_renderqueue.h"
 #include "ola_fxconst.h"
-
-class OlaRenderScene;
 
 class OlaPipeLineParam
 {
@@ -58,6 +56,8 @@ public:
 	virtual void pushToRender(OlaRenderOp* op);
 	virtual void pushToRender(OlaPrimitive* pri);
 
+	virtual void pushLight(OlaLight* l);
+
 	virtual void execute(){};
 
 	virtual void resize(int w,int h){};
@@ -86,6 +86,8 @@ protected:
 
 	OlaRenderScene* mCurrentScene;
 	OlaRenderTarget* mGLOrgRT;
+
+	OlaArray<OlaLight*> mLights;
 };
 
 #endif

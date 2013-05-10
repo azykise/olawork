@@ -4,6 +4,7 @@
 #include "../ola_util.h"
 #include "../../interface/ola_engine.h"
 
+class OlaSceneImpl;
 class OlaTransformObj;
 
 class OlaTransformImpl : public ola::ITransform
@@ -19,6 +20,12 @@ public:
 
 	virtual void getRotation(ola::quat* out_rot);
 	virtual void setRotation(float axisx,float axisy,float axisz,float degree);
+
+	virtual ola::IScene* scene();
+
+	virtual void detachScene();
+
+	OlaSceneImpl* mSceneImpl;
 
 protected:
 	OlaTransformObj* mTransform;

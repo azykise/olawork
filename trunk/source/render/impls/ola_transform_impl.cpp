@@ -1,10 +1,12 @@
 #include "ola_transform_impl.h"
 
+#include "../win/win_impls.h"
 #include "../ola_transobj.h"
 
 
 OlaTransformImpl::OlaTransformImpl():
-mTransform(0)
+mTransform(0),
+mSceneImpl(0)
 {
 	mTransform = new OlaTransformObj();
 }
@@ -16,6 +18,7 @@ OlaTransformImpl::~OlaTransformImpl()
 		delete mTransform;
 		mTransform = 0;
 	}
+	mSceneImpl = 0;
 }
 
 OlaTransformObj* OlaTransformImpl::transform()
@@ -41,4 +44,15 @@ void OlaTransformImpl::getRotation( ola::quat* out_rot )
 void OlaTransformImpl::setRotation( float axisx,float axisy,float axisz,float degree )
 {
 
+}
+
+ola::IScene* OlaTransformImpl::scene()
+{
+	return mSceneImpl;
+}
+
+void OlaTransformImpl::detachScene()
+{
+	mSceneImpl->mScene->detachObj(mTransform);
+	mSceneImpl = 0;
 }

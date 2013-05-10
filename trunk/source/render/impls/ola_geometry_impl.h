@@ -23,9 +23,7 @@ public:
 
 	virtual const char* getResourceFilename(){return "";}	
 
-	virtual OlaMesh* mesh();
-
-	virtual OlaArray<OlaRenderOp*>& renderOps();
+	virtual OlaMeshRenderer* meshrender();
 
 protected:
 

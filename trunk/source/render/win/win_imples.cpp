@@ -52,10 +52,13 @@ mTransform(0)
 {
 	mTransform = new OlaTransformImpl();
 	mGeometry = new OlaGeometryImpl(model);	
+
+	mTransform->transform()->pushKernelObj(model);
 }
 
 OlaStaticModelImpl::~OlaStaticModelImpl()
 {	
+	mTransform->transform()->popKernelObj(mGeometry->meshrender());
 	delete mGeometry;
 	delete mTransform;
 }
@@ -165,7 +168,7 @@ ola::aabb* OlaStaticModelImpl::aabb()
 	mAABB.minv.x = mAABB.minv.y = mAABB.minv.z = olaMath::INFINITY;
 	mAABB.maxv.x = mAABB.maxv.y = mAABB.maxv.z = -1.0f * olaMath::INFINITY;
 
-	OlaMesh* mesh = mGeometry->mesh();
+	OlaMesh* mesh = mGeometry->meshrender()->mesh();
 
 	OlaMesh::SubMeshList& submeshs = mesh->submeshs();
 	OlaMesh::SubMeshList::iterator i = submeshs.begin();
@@ -283,86 +286,20 @@ const char* OlaCharacterImpl::getActionName( int channel )
 	return 0;
 }
 
-class OlaLightTransform : public ola::ITransform
-{
-public:
-	OlaLightTransform(OlaLight* l):mLight(l)	 
-	{
-
-	}	
-
-	virtual void getPosition(ola::vec3* out_pos) 
-	{
-		out_pos->x = mLight->position()->x;
-		out_pos->y = mLight->position()->y;
-		out_pos->z = mLight->position()->z;
-	}
-
-	virtual void setPosition( float x,float y,float z ) 
-	{
-		olaVec3 p(x,y,z);
-		mLight->position(p);
-	}
-
-	virtual void getRotation(ola::quat* out_rot) 
-	{
-		
-	}
-
-	virtual void setRotation( float axisx,float axisy,float axisz,float degree ) 
-	{
-		olaQuat q(axisx,axisy,axisz,olaMath::M_DEG2RAD * degree);
-	}
-
-	OlaLight* mLight;
-};
-
-
-ola::IScene* OlaSceneEntryImpl::scene()
-{
-	return mScene;
-}
-
-
-class OlaSceneEntryLight : public OlaSceneEntryImpl
-{
-public:
-	OlaSceneEntryLight(OlaLight* l):mLight(l){}	 
-	virtual ~OlaSceneEntryLight()
-	{
-		if (mScene)
-		{
-			mScene->mScene->detachObj(mLight);
-			mScene = 0;
-		}
-	}
-	virtual OlaSceneEntryImpl::ENTRY_TYPE type(){return OlaSceneEntryImpl::ENTRY_LIGHT;}
-	virtual void detachScene()
-	{
-		if (mScene)
-		{
-			mScene->mScene->detachObj(mLight);
-			mScene = 0;
-		}		
-	}
-	
-	OlaLight* mLight;
-};
-
 OlaLightImpl::OlaLightImpl( OlaLight* l):
 mLight(l),
-mTransform(0),
-mSceneEntry(0)
+mTransform(0)
 {
-	mTransform = new OlaLightTransform(l);
-	mSceneEntry = new OlaSceneEntryLight(l);
+	mLight->addRef();
+	mTransform = new OlaTransformImpl();
+	mTransform->transform()->pushKernelObj(mLight);
 }
 
 OlaLightImpl::~OlaLightImpl()
 {
+	mTransform->transform()->popKernelObj(mLight);
 	delete mTransform;
-	delete mSceneEntry;
-	delete mLight;
+	mLight->delRef();
 }
 
 ola::ITransform* OlaLightImpl::transform()
@@ -382,12 +319,6 @@ void OlaLightImpl::getTargetPos( ola::vec3* out_pos )
 	out_pos->y = mLight->lookatPT()->y;
 	out_pos->z = mLight->lookatPT()->z;
 }
-
-ola::ISceneEntry* OlaLightImpl::entry()
-{
-	return mSceneEntry;
-}
-
 
 OlaSceneImpl::OlaSceneImpl( OlaRenderScene* scene,OlaRenderSceneMng* mng ):
 mScene(scene),
@@ -416,20 +347,9 @@ const char* OlaSceneImpl::name()
 	return mScene->name().c_str();
 }
 
-void OlaSceneImpl::attachEntry( ola::ISceneEntry* entry )
+void OlaSceneImpl::attach( ola::ITransform* transform )
 {
-	if(!entry)
-		return;	
-
-	OlaSceneEntryImpl* impl = dynamic_cast<OlaSceneEntryImpl*>(entry);
-	switch(impl->type())
-	{
-	case OlaSceneEntryImpl::ENTRY_LIGHT:
-		{
-			OlaSceneEntryLight* lentry = dynamic_cast<OlaSceneEntryLight*>(impl);
-			lentry->setScene(this);
-			mScene->attachObj(lentry->mLight);
-		}
-		break;
-	}
+	OlaTransformImpl* impl = static_cast<OlaTransformImpl*>(transform);
+	impl->mSceneImpl = this;
+	mScene->attachObj(impl->transform());
 }

@@ -82,7 +82,6 @@ class OlaRender
 {
 public:
 	typedef std::map<olastring,OlaRenderTarget*> RenderTargetTable;
-	typedef std::vector<OlaLight*> DirectionLightList;
 
 public:
 	OlaRender();
@@ -99,11 +98,12 @@ public:
 	void onRender(float elapse);	
 
 	void setRenderScene(OlaRenderScene* scene);
-	void setDirLight(int idx,olaVec3& pos,olaVec3& lookat);
 
 	void pushToRender(CModel* model);
 	void pushToRender(OlaRenderOp* op);
 	void pushToRender(OlaPrimitive* pri);
+
+	void pushLight(OlaLight* l);
 
 	OlaMesh* getMesh(const char* name);
 	OlaMaterial* getMaterial(const char* filename,const char* name);
@@ -130,8 +130,6 @@ protected:
 	OlaResourceMng* mResourceMng;
 
 	OlaVFrustum* mCurrentFrustum;
-	
-	DirectionLightList mDirLights;
 
 	int mScreenW;
 	int mScreenH;

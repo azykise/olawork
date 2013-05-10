@@ -3,6 +3,7 @@
 #include "primitive.h"
 #include "render_system.h"
 #include "tool.h"
+#include "scene.h"
 
 namespace Engine
 {
@@ -33,6 +34,7 @@ namespace Engine
 	{
 		if(Model)
 		{
+			Model->transform()->detachScene();
 			RenderSys->RenderCore->releaseObject(Model);
 			Model = 0;
 		}
@@ -63,6 +65,16 @@ namespace Engine
 	{
 		//RenderSys->RenderCore->pushRender(Model->geometry());
 		RenderSys->RenderCore->pushRender(AABB->getPrimitive());
+	}
+
+	void StaticModel::attach( Scene^ scene )
+	{
+		scene->scene()->attach(Model->transform());
+	}
+
+	void StaticModel::detachScene()
+	{
+		Model->transform()->detachScene();
 	}
 
 	Bone::Bone(ola::IBone* bonePtr)	

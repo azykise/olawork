@@ -93,6 +93,11 @@ void OlaRenderPipeLine::popMatrix(OlaRenderPipeLine::MATRIX_TYPE type)
 	}
 }
 
+void OlaRenderPipeLine::pushLight( OlaLight* l )
+{
+	mLights.push_back(l);
+}
+
 
 
 

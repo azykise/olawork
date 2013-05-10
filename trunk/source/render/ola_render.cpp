@@ -92,8 +92,6 @@ void OlaRender::onInitRender(int w,int h,OlaRenderDevice* device)
     //mPipeline = new OlaPerLightPipeline(this);
 	mPipeline->initialize();
 
-	mDirLights.push_back(new OlaLight());
-
 	mDeviceLost = false;
 
 //	mPipeline->pushLights(mDirLights[0]);
@@ -127,14 +125,6 @@ void OlaRender::onRelease()
 		delete mCurrentFrustum;
 		mCurrentFrustum = 0;
 	}
-
-	DirectionLightList::iterator light_i = mDirLights.begin();
-	while(light_i != mDirLights.end())
-	{
-		delete *light_i;
-		light_i++;
-	}
-	mDirLights.clear();
 	
 	lg("OlaRender Released !!!!.............................. \n");
 }
@@ -154,15 +144,6 @@ void OlaRender::getCamera(int index,olaVec3& pos,olaVec3& target)
 OlaVFrustum* OlaRender::getViewFrustum(int index)
 {
 	return mCurrentFrustum;
-}
-
-void OlaRender::setDirLight(int idx,olaVec3& pos,olaVec3& lookat)
-{
-	if(idx >= mDirLights.size())
-		return;
-
-	mDirLights[idx]->setLookAtPT(lookat);
-	mDirLights[idx]->position(pos);
 }
 
 void OlaRender::onResize(int w,int h)
@@ -239,6 +220,11 @@ void OlaRender::pushToRender(OlaPrimitive* pri)
 void OlaRender::setRenderScene( OlaRenderScene* scene )
 {
 	mPipeline->setCurrentScene(scene);
+}
+
+void OlaRender::pushLight( OlaLight* l )
+{
+	mPipeline->pushLight(l);
 }
 
 

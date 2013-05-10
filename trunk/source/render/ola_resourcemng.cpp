@@ -516,10 +516,11 @@ olastring OlaResourceMng::FilePathToAssetPath( const olastring& _filepath )
 {
 	olastring filepath = _filepath;
 	filepath = olastring::toLower(filepath.accessData());
-
+	filepath.replace("\\","/");
+	
 	olastring assetpath = "";
 
-	int asset_idx = olastring::findText(filepath.c_str(),"/assets/");
+	int asset_idx = olastring::findText(filepath.c_str(),"assets/");
 	if (asset_idx != -1)
 	{
 		assetpath = filepath.mid(asset_idx,filepath.length() - asset_idx);
