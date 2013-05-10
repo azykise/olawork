@@ -11,6 +11,8 @@
 #include "../ola_mesh.h"
 #include "../ola_skin.h"
 
+#include "../ola_kernelobj.h"
+
 #include "../parser/ola_dml.h"
 
 #include "win_impls.h"
@@ -27,6 +29,7 @@
 OlaRenderCore::OlaRenderCore():
 mRender(0),
 mSceneMng(0),
+mKernelObjs(0),
 mCurrentWindow(0)
 {
 	
@@ -55,6 +58,8 @@ bool OlaRenderCore::initialize(unsigned int hwnd)
 
 	gDevice = mDevice;
 
+	mKernelObjs = CreateSmallKernelObjTrunk();
+
 	mRender = new OlaRender();
 	mRender->onInitRender(w,h,mDevice);
 
@@ -62,9 +67,6 @@ bool OlaRenderCore::initialize(unsigned int hwnd)
 	mSceneMng->initialize();
 
 	mRender->setRenderScene(mSceneMng->scene());
-
-	//mSceneMng->loadScene("level/beach001_simple.xml",mRender);
-	//mSceneMng->loadModelFromDML("art/common/waitingroom001_teapoy001.dml",mRender);
 
 	olaVec3 cam_pos(0,-5,0);	
 	olaVec3 cam_tag(0,0,0);
@@ -95,6 +97,13 @@ bool OlaRenderCore::initialize(unsigned int hwnd)
 
 void OlaRenderCore::release()
 {
+	if(mKernelObjs)
+	{
+		mKernelObjs->removeUnusedObj();
+		delete mKernelObjs;
+		mKernelObjs = 0;
+	}
+
 	if (mRender)
 	{
 		mRender->onRelease();
@@ -142,17 +151,26 @@ void OlaRenderCore::drawSceneActors()
 {
 	if(mRender)
 	{
-		//if(mSceneMng->draw_all)
-		//{
-		//	OlaRenderSceneMng::ModelList& model_list = mSceneMng->models();
+		unsigned int kernel_num = mKernelObjs->kernelObjCount();
+		for(unsigned int i = 0 ; i < kernel_num ; i++)
+		{
+			OlaKernelObj* ko = mKernelObjs->kernelObj(i);
 
-		//	for (int i = 0 ; i != model_list.size() ; i++)
-		//	{
-		//		CModel* m = model_list[i];
-		//		mRender->pushToRender(m);
-		//	}
-		//}
-		
+			switch (ko->enabled())
+			{
+			case OlaKernelObj::ES_ENABLE_ALL:
+				ko->updateInternal(0.0f);
+				ko->renderInternal(mRender);
+				break;
+			case OlaKernelObj::ES_ENABLE_UPDATE:
+				ko->updateInternal(0.0f);
+				break;
+			case OlaKernelObj::ES_ENABLE_RENDER:
+				ko->renderInternal(mRender);
+				break;								
+			}
+		}
+
 		mRender->onRender(0.0f);
 	}
 }
@@ -255,14 +273,26 @@ ola::IStaticModel* OlaRenderCore::createStaticModel(const char* filename)
 	olastring dml_filename(filename);
 
 	tDmlFileInfo dmlInfo;
-	OlaMeshRenderer* dml = new OlaMeshRenderer();
+	dmlInfo.DMLAssetpath = OlaResourceMng::FilePathToAssetPath(dml_filename);
+
+	OlaMeshRenderer* dml = 0;
 
 	OlaDMLParser parser(res_mng->pools());
 	parser.parseDMLInfoFromData(xml_asset->data,xml_asset->length,&dmlInfo);
-	parser.fillDML(&dmlInfo,dml);
+	delete xml_asset;
 
-	//CModel* model = mSceneMng->loadModelFromDML(filename);
-	
+	OlaKernelObj* dml_kobj = mKernelObjs->kernelObj(dmlInfo.DMLAssetpath.c_str());
+	if (dml_kobj == 0)
+	{
+		dml = new OlaMeshRenderer(dmlInfo.DMLAssetpath.c_str());
+		parser.fillDML(&dmlInfo,dml);
+		mKernelObjs->enTrunk(dml);
+	}
+	else
+	{
+		dml = static_cast<OlaMeshRenderer*>(dml_kobj);
+	}		
+
 	OlaStaticModelImpl* impl = new OlaStaticModelImpl(dml);
 	return impl;
 }
@@ -302,48 +332,18 @@ void OlaRenderCore::pushRender(ola::IPrimitive* r)
 //	}
 //}
 
-void OlaRenderCore::pushRender( ola::IGeometry* g )
-{
-	OlaGeometryImpl* impl = static_cast<OlaGeometryImpl*>(g);
-	
-	OlaArray<OlaRenderOp*>& op_list = impl->renderOps();
-	for (unsigned int i = 0 ; i < op_list.size() ; i++)
-	{
-		OlaRenderOp* op = op_list[i];			
-
-		mRender->pushToRender(op);
-	}
-}
-
-int OlaRenderCore::loadActionResourceFromASE( const char* act_name,const char* ase_filename )
-{
-	return -1;
-}
-
-int OlaRenderCore::removeActionResource( const char* act_name )
-{
-	return -1;
-}
-
-int OlaRenderCore::loadBodyPartResourceFromBPT( const char* bpt_name,const char* bpt_filename )
-{
-	return -1;
-}
-
-int OlaRenderCore::removeBodyPartResource( const char* bpt_name )
-{
-	return -1;
-}
-
-int OlaRenderCore::loadSkeletonResourceFromASE( const char* name,const char* filename )
-{
-	return -1;
-}
-
-int OlaRenderCore::removeSkeletonResource( const char* name )
-{
-	return -1;
-}
+//void OlaRenderCore::pushRender( ola::IGeometry* g )
+//{
+//	OlaGeometryImpl* impl = static_cast<OlaGeometryImpl*>(g);
+//	
+//	OlaArray<OlaRenderOp*>& op_list = impl->renderOps();
+//	for (unsigned int i = 0 ; i < op_list.size() ; i++)
+//	{
+//		OlaRenderOp* op = op_list[i];			
+//
+//		mRender->pushToRender(op);
+//	}
+//}
 
 ola::ICharacter* OlaRenderCore::createCharacter( const char* chr_filename )
 {

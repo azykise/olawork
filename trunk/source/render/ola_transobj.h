@@ -6,6 +6,7 @@
 #include "ola_bounding.h"
 
 class OlaRenderScene;
+class OlaKernelObj;
 
 struct TRANSFORM_OBJPARAM
 {

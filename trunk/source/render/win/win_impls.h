@@ -18,6 +18,8 @@
 #include "../ola_light.h"
 #include "../ola_scene.h"
 
+class OlaTransformImpl;
+
 class OlaPrimitiveImpl : public ola::IPrimitive
 {
 public:
@@ -168,11 +170,12 @@ public:
 
 	virtual ola::IGeometry* geometry();
 
-	virtual ola::ITransform* transform(){return 0;}
+	virtual ola::ITransform* transform();
 
 	virtual ola::aabb* aabb();	
 
 	OlaGeometryImpl* mGeometry;
+	OlaTransformImpl* mTransform;
 
 	ola::aabb mAABB;
 };

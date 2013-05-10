@@ -28,8 +28,8 @@ struct tMatFileInfo
 
 struct tDmlFileInfo
 {
-	olastring DmlFullname;
-	olastring ASEFullname;
+	olastring DMLAssetpath;
+	olastring ASEAssetpath;
 	OlaArray<tMatFileInfo> MeshMatsInfo;
 };
 

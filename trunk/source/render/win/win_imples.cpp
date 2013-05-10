@@ -11,7 +11,7 @@
 #include "../ola_model.h"
 
 #include "../impls/ola_geometry_impl.h"
-//#include "../impls/ola_transform_impl.h"
+#include "../impls/ola_transform_impl.h"
 
 OlaBoneImpl::OlaBoneImpl( OlaBone* bone ,OlaSkeletonImpl* skl):
 mBone(bone),
@@ -47,20 +47,30 @@ ola::IBone* OlaBoneImpl::sub( int idx )
 }
 
 OlaStaticModelImpl::OlaStaticModelImpl(OlaMeshRenderer* model):
-mGeometry(0)
+mGeometry(0),
+mTransform(0)
 {
-	mGeometry = new OlaGeometryImpl(model);
+	mTransform = new OlaTransformImpl();
+	mGeometry = new OlaGeometryImpl(model);	
 }
 
 OlaStaticModelImpl::~OlaStaticModelImpl()
-{
+{	
 	delete mGeometry;
+	delete mTransform;
 }
 
 ola::IGeometry* OlaStaticModelImpl::geometry()
 {
 	return mGeometry;
 }
+
+
+ola::ITransform* OlaStaticModelImpl::transform()
+{
+	return mTransform;
+}
+
 
 OlaSkeletonImpl::OlaSkeletonImpl( OlaSkeletonModel* skl ):
 mParent(skl),

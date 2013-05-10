@@ -53,6 +53,9 @@
     <Filter Include="resources\parser">
       <UniqueIdentifier>{151c410f-c3a5-4bd0-b61a-6c944c94ec8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{ec5493c7-ad24-4321-b2ca-74eb99eccdf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp">
@@ -259,8 +262,14 @@
     <ClCompile Include="..\..\..\source\render\ola_transobj.cpp">
       <Filter>entity</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\render\ola_refobj.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\source\render\ola_kernelobj.cpp">
-      <Filter>entity</Filter>
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\render\impls\ola_transform_impl.cpp">
+      <Filter>impls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -471,8 +480,14 @@
     <ClInclude Include="..\..\..\source\render\ola_transobj.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\render\ola_refobj.h">
+      <Filter>base</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\source\render\ola_kernelobj.h">
-      <Filter>entity</Filter>
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\impls\ola_transform_impl.h">
+      <Filter>impls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

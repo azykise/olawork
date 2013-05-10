@@ -252,7 +252,7 @@ namespace ola
 		virtual void pushRender(IPrimitive* r) = 0;
 		//virtual void pushRender(IStaticModel* r) = 0;
 		//virtual void pushRender(IRenderable* r) = 0;
-		virtual void pushRender(IGeometry* g) = 0;
+		//virtual void pushRender(IGeometry* g) = 0;
 
 		virtual void pushHardwareSelect(IPrimitive* primitive,unsigned int sel_id) = 0;
 
@@ -272,13 +272,6 @@ namespace ola
 
 		virtual void clearResourceCache(const char* res_name) = 0;
 		virtual int getResourceNum(const char* res_name) = 0;
-
-		virtual int loadSkeletonResourceFromASE(const char* name,const char* filename) = 0;
-		virtual int removeSkeletonResource(const char* name) = 0;
-		virtual int loadActionResourceFromASE(const char* act_name,const char* ase_filename) = 0;
-		virtual int removeActionResource(const char* act_name) = 0;
-		virtual int loadBodyPartResourceFromBPT(const char* bpt_name,const char* bpt_filename) = 0;
-		virtual int removeBodyPartResource(const char* bpt_name) = 0;
 	};
 }
 

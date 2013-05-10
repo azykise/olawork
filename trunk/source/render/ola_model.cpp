@@ -4,9 +4,10 @@
 #include "ola_render.h"
 #include "ola_transobj.h"
 
-OlaMeshRenderer::OlaMeshRenderer():
+OlaMeshRenderer::OlaMeshRenderer(const char* dmlassetpath):
 mMesh(0),
-mTranform(0)
+mTranform(0),
+mDMLAssetpath(dmlassetpath)
 {
 	
 }
@@ -157,5 +158,34 @@ OlaArray<OlaRenderOp*>& OlaMeshRenderer::updateRenderOps()
 	}
 
 	return mRenderOps;
+}
+
+const char* OlaMeshRenderer::kernelID()
+{
+	return mDMLAssetpath.c_str();
+}
+
+OlaKernelObj::ENABLE_STATE OlaMeshRenderer::enabled()
+{
+	if (mTranform)
+	{
+		return mTranform->visiable() != TRANSFORM_OBJPARAM::OBJVIS_NONE ? ES_ENABLE_ALL : ES_DISABLE;
+	}
+	return ES_DISABLE;
+}
+
+void OlaMeshRenderer::updateInternal( float elasped )
+{
+	updateRenderOps();
+}
+
+void OlaMeshRenderer::renderInternal( OlaRender* r )
+{
+	for (unsigned int i = 0 ; i < mRenderOps.size() ; i++)
+	{
+		OlaRenderOp* op = mRenderOps[i];			
+
+		r->pushToRender(op);
+	}
 }
 

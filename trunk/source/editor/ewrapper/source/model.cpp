@@ -61,7 +61,7 @@ namespace Engine
 
 	void StaticModel::render()
 	{
-		RenderSys->RenderCore->pushRender(Model->geometry());
+		//RenderSys->RenderCore->pushRender(Model->geometry());
 		RenderSys->RenderCore->pushRender(AABB->getPrimitive());
 	}
 

@@ -131,10 +131,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\render\impls\ola_geometry_impl.cpp" />
     <ClCompile Include="..\..\..\source\render\impls\ola_light_impl.cpp" />
+    <ClCompile Include="..\..\..\source\render\impls\ola_transform_impl.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_kernelobj.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_materialpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_meshpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_model.cpp" />
+    <ClCompile Include="..\..\..\source\render\ola_refobj.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_shaderpool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_texturepool.cpp" />
     <ClCompile Include="..\..\..\source\render\ola_thread.cpp" />
@@ -203,9 +205,11 @@
     <ClInclude Include="..\..\..\source\interface\ola_engine.h" />
     <ClInclude Include="..\..\..\source\render\impls\ola_geometry_impl.h" />
     <ClInclude Include="..\..\..\source\render\impls\ola_light_impl.h" />
+    <ClInclude Include="..\..\..\source\render\impls\ola_transform_impl.h" />
     <ClInclude Include="..\..\..\source\render\ola_kernelobj.h" />
     <ClInclude Include="..\..\..\source\render\ola_materialpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_meshpool.h" />
+    <ClInclude Include="..\..\..\source\render\ola_refobj.h" />
     <ClInclude Include="..\..\..\source\render\ola_shaderpool.h" />
     <ClInclude Include="..\..\..\source\render\ola_texturepool.h" />
     <ClInclude Include="..\..\..\source\render\ola_thread.h" />

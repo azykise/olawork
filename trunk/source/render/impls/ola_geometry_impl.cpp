@@ -8,6 +8,8 @@
 OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model):
 mModel(model)
 {
+	mModel->addRef();
+
 	for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
 	{
 		OlaMaterial* material = mModel->material(i);
@@ -27,7 +29,7 @@ OlaGeometryImpl::~OlaGeometryImpl()
 
 	if (mModel)
 	{
-		delete mModel;
+		mModel->delRef();
 		mModel = 0;
 	}
 
@@ -37,7 +39,6 @@ OlaMesh* OlaGeometryImpl::mesh()
 {
 	return mModel->mesh();
 }
-
 
 OlaArray<OlaRenderOp*>& OlaGeometryImpl::renderOps()
 {

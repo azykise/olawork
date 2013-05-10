@@ -17,20 +17,6 @@ class OlaSkeletonModel;
 class OlaLight;
 class OlaRenderSceneMng;
 
-class OlaSceneTrunk
-{
-public:
-	
-	virtual unsigned int kernelObjCount() = 0;
-
-	virtual OlaKernelObj* kernalObj(int index) = 0;
-
-	virtual void enScene(OlaKernelObj* obj) = 0;
-
-	virtual void deScene(OlaKernelObj* obj) = 0;
-
-};
-
 class OlaSceneNode
 {
 public:
@@ -93,8 +79,6 @@ public:
 
 	olastring& name(){return mName;}
 
-	virtual OlaSceneTrunk* trunk();
-
 protected:
 
 	OlaRenderSceneMng* mParent;
@@ -102,8 +86,6 @@ protected:
 	olastring mName;
 
 	OlaSceneNode* mRoot;
-
-	OlaSceneTrunk* mTrunk;
 };
 
 extern OlaRenderScene* newSmallScene(const char* name,OlaRenderSceneMng* mng);

@@ -23,7 +23,7 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 	OlaXmlNode* geom_node = model_node->selectFirst("geometry");
 	assert(geom_node && "no geom_node!");
 	const char* mesh_name = geom_node->attribute("resource");
-	outDmlInfo->ASEFullname = mesh_name;
+	outDmlInfo->ASEAssetpath = mesh_name;
 
 	OlaXmlNode* mat_node = model_node->selectFirst("material");
 	assert(geom_node && "no mat_node!");
@@ -60,19 +60,19 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 
 bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml )
 {
-	OlaMesh* mesh = mPools->MeshPool->seek(dmlInfo->ASEFullname.c_str());
+	OlaMesh* mesh = mPools->MeshPool->seek(dmlInfo->ASEAssetpath.c_str());
 	if ( !mesh )
 	{
-		mesh = new OlaMesh(dmlInfo->ASEFullname.c_str()); 
+		mesh = new OlaMesh(dmlInfo->ASEAssetpath.c_str()); 
 
-		OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEFullname.c_str(),false);
+		OlaAsset* asset = OlaAssetLoader::instance()->load(dmlInfo->ASEAssetpath.c_str(),false);
 
 		OlaMeshParser parser;
 		parser.parseMeshFromData(asset->data,asset->length,mesh);
 
 		delete asset;
 
-		mPools->MeshPool->enPool(dmlInfo->ASEFullname.c_str(),mesh);
+		mPools->MeshPool->enPool(dmlInfo->ASEAssetpath.c_str(),mesh);
 	}
 	
 	dml->mesh(mesh);

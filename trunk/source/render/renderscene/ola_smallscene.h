@@ -4,7 +4,6 @@
 #include "../ola_scenemng.h"
 #include "../ola_scene.h"
 
-
 class OlaSmallScene : public OlaRenderScene
 {
 public:

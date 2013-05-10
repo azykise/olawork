@@ -8,6 +8,9 @@
 
 class OlaRenderWindow;
 class OlaRenderDevice;
+class OlaKernelObj;
+class OlaKernelObjTrunk;
+
 class OlaRenderCore : public ola::IRenderCore
 {
 	typedef std::map<int,OlaRenderWindow*> RenderWindowTable;
@@ -37,7 +40,7 @@ public:
 	virtual void pushRender(ola::IPrimitive* r);
 //	virtual void pushRender(ola::IStaticModel* r);
 //	virtual void pushRender(ola::IRenderable* r);
-	virtual void pushRender(ola::IGeometry* g);
+//	virtual void pushRender(ola::IGeometry* g);
 
 	virtual void pushHardwareSelect(ola::IPrimitive* primitive,unsigned int sel_id){};
 
@@ -54,14 +57,6 @@ public:
 	virtual void clearResourceCache(const char* res_name);
 	virtual int getResourceNum(const char* res_name);
 
-	virtual int loadSkeletonResourceFromASE(const char* name,const char* filename);
-	virtual int removeSkeletonResource(const char* name);
-
-	virtual int loadActionResourceFromASE(const char* act_name,const char* ase_filename);
-	virtual int removeActionResource(const char* act_name);
-	virtual int loadBodyPartResourceFromBPT(const char* bpt_name,const char* bpt_filename);
-	virtual int removeBodyPartResource(const char* bpt_name);
-
 	virtual ola::IScene* createScene( const char* name ,ola::IScene::SCENE_TYPE t = ola::IScene::SCENE_SMALL);
 	virtual void setRenderingScene(ola::IScene* scene);
 
@@ -70,6 +65,8 @@ public:
 protected:
 	OlaRender* mRender;
 	OlaRenderSceneMng* mSceneMng;
+
+	OlaKernelObjTrunk* mKernelObjs;
 
 	OlaRenderWindow* mCurrentWindow;
 	RenderWindowTable mWindows;

@@ -11,8 +11,7 @@ OlaRenderScene* OlaRenderSceneMng::scene( const char* name )
 OlaRenderScene::OlaRenderScene( const char* name, OlaRenderSceneMng* mng ):
 mName(name),
 mParent(mng),
-mRoot(0),
-mTrunk(0)
+mRoot(0)
 {
 	
 }
@@ -47,9 +46,4 @@ OlaSceneNode* OlaRenderScene::findNode( const char* name )
 		return mRoot;	
 	else
 		return mRoot->findSubNode(name);
-}
-
-OlaSceneTrunk* OlaRenderScene::trunk()
-{
-	return mTrunk;
 }
