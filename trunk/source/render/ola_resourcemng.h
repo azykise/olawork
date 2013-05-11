@@ -43,8 +43,6 @@ public:
 
 	static OlaResourceMng* instance();
 
-	static olastring FilePathToAssetPath(const olastring& filepath);
-
 	void clear();
 
 	OlaMesh* getMesh(const char* filename);

@@ -2,6 +2,7 @@
 #define _OLA_MATERIAL_POOL_H__
 
 #include "ola_util.h"
+struct tResourcePools;
 
 class OlaMaterial;
 class OlaMaterialPool
@@ -9,7 +10,7 @@ class OlaMaterialPool
 public:
 	typedef OlaMap<olastring,OlaMaterial*> MaterialPool;
 public:
-	OlaMaterialPool();
+	OlaMaterialPool(tResourcePools* ps);
 
 	virtual ~OlaMaterialPool();
 
@@ -20,6 +21,8 @@ public:
 
 protected:
 	MaterialPool mMaterialPool;
+
+	OlaMaterial* mDefaultMaterial;
 };
 
 #endif

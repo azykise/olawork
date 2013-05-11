@@ -1,6 +1,6 @@
 #include "ola_texturepool.h"
 #include "ola_texture.h"
-
+#include "ola_resource.h"
 #include "ola_device.h"
 
 OlaTexturePool::OlaTexturePool():
@@ -48,6 +48,11 @@ void OlaTexturePool::dePool( const char* texlassetpath )
 
 OlaTexture* OlaTexturePool::seek( const char* texlfilename )
 {
+	if (!strcmp(texlfilename,DEFAULT_TEXTURE_NAME))
+	{
+		return mDefaultTexture;
+	}
+
 	olastring _texlfilename(texlfilename);
 
 	TexturePool::iterator i = mTexturePool.find(_texlfilename);

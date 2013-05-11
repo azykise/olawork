@@ -125,7 +125,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="C:\Program Files\Autodesk\3ds Max 2010\stdplugs"
+			OutputDirectory="d:\Program Files\Autodesk\3ds Max 2010\stdplugs"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -189,7 +189,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions=" "
 				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib core.lib geom.lib maxutil.lib mesh.lib igame.lib"
-				OutputFile="C:\Program Files\Autodesk\3ds Max 2010\stdplugs\ola_asciiexp.dle"
+				OutputFile="d:\Program Files\Autodesk\3ds Max 2010\stdplugs\ola_asciiexp.dle"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\max2010sdk\lib"

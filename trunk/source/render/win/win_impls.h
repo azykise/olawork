@@ -191,25 +191,6 @@ public:
 	OlaSkeletonImpl* mSkeleton;
 };
 
-class OlaLightImpl : public ola::ILight
-{
-public:
-	OlaLightImpl(OlaLight* l);
-
-	virtual ~OlaLightImpl();
-
-	virtual ola::aabb* aabb() {return 0;}
-
-	virtual ola::ITransform* transform();
-
-	virtual void setTargetPos(float x,float y,float z);
-	virtual void getTargetPos(ola::vec3* out_pos);
-
-protected:
-	OlaLight* mLight;
-	OlaTransformImpl* mTransform;
-};
-
 class OlaSceneImpl : public ola::IScene
 {
 public:

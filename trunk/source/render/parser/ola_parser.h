@@ -33,16 +33,16 @@ struct tDmlFileInfo
 	OlaArray<tMatFileInfo> MeshMatsInfo;
 };
 
-struct tMatResult
-{
-	OlaMaterial* Material;
-};
-
-struct tDmlResult
-{
-	OlaMesh* Mesh;
-	OlaArray<OlaMaterial*> MeshMats;
-};
+//struct tMatResult
+//{
+//	OlaMaterial* Material;
+//};
+//
+//struct tDmlResult
+//{
+//	OlaMesh* Mesh;
+//	OlaArray<OlaMaterial*> MeshMats;
+//};
 
 struct tResourcePools
 {

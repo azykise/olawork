@@ -23,6 +23,7 @@
 #include "../ola_model.h"
 
 #include "../impls/ola_geometry_impl.h"
+#include "../impls/ola_light_impl.h"
 
 #define  lg(...) printf(__VA_ARGS__)
 
@@ -280,7 +281,7 @@ ola::IStaticModel* OlaRenderCore::createStaticModel(const char* filename)
 	olastring dml_filename(filename);
 
 	tDmlFileInfo dmlInfo;
-	dmlInfo.DMLAssetpath = OlaResourceMng::FilePathToAssetPath(dml_filename);
+	dmlInfo.DMLAssetpath = OlaUtility::FilePathToAssetPath(dml_filename);
 
 	OlaMeshRenderer* dml = 0;
 

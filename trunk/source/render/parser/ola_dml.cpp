@@ -6,7 +6,9 @@
 #include "../ola_model.h"
 #include "../ola_assetmng.h"
 #include "../ola_material.h"
+#include "../ola_resource.h"
 
+#include "../ola_util.h"
 #include "../ola_meshpool.h"
 #include "../ola_materialpool.h"
 
@@ -23,7 +25,8 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 	OlaXmlNode* geom_node = model_node->selectFirst("geometry");
 	assert(geom_node && "no geom_node!");
 	const char* mesh_name = geom_node->attribute("resource");
-	outDmlInfo->ASEAssetpath = mesh_name;
+
+	outDmlInfo->ASEAssetpath = OlaUtility::FileFolder(outDmlInfo->DMLAssetpath) + mesh_name;	
 
 	OlaXmlNode* mat_node = model_node->selectFirst("material");
 	assert(geom_node && "no mat_node!");
@@ -40,17 +43,26 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 
 		olastring submat_res = submat_node->attribute("resource");
 
-		OlaAsset* matfile = new OlaAsset;
+		if (submat_res == DEFAULT_MATERIAL_NAME)
+		{
+			tMatFileInfo matinfo;
+			matinfo.MatFullname = submat_res;
+			outDmlInfo->MeshMatsInfo[idx] = matinfo;
+		}
+		else
+		{
+			OlaAsset* matfile = new OlaAsset;
 
-		LoadAssetFile(submat_res.c_str(),matfile);
+			LoadAssetFile(submat_res.c_str(),matfile);
 
-		tMatFileInfo matinfo;
-		matinfo.MatFullname = submat_res;
+			tMatFileInfo matinfo;
+			matinfo.MatFullname = submat_res;
 
-		mMATParser->parseMATFromData(matfile->data,matfile->length,&matinfo);
-		outDmlInfo->MeshMatsInfo[idx] = matinfo;
+			mMATParser->parseMATFromData(matfile->data,matfile->length,&matinfo);
+			outDmlInfo->MeshMatsInfo[idx] = matinfo;
 
-		delete matfile;				
+			delete matfile;	
+		}			
 
 		submat_node = submat_node->nextSibling("submat");
 	}	

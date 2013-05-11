@@ -56,7 +56,7 @@ mDevice(device)
 	mPools = new tResourcePools();
 	mPools->ShaderPool = new OlaShaderPool();
 	mPools->TexturePool = new OlaTexturePool();
-	mPools->MaterialPool = new OlaMaterialPool();
+	mPools->MaterialPool = new OlaMaterialPool(mPools);
 	mPools->MeshPool = new OlaMeshPool();	
 
 
@@ -518,19 +518,3 @@ int OlaResourceMng::getResourceNum( const char* res_type )
 	return num;		
 }
 
-olastring OlaResourceMng::FilePathToAssetPath( const olastring& _filepath )
-{
-	olastring filepath = _filepath;
-	filepath = olastring::toLower(filepath.accessData());
-	filepath.replace("\\","/");
-	
-	olastring assetpath = "";
-
-	int asset_idx = olastring::findText(filepath.c_str(),"assets/");
-	if (asset_idx != -1)
-	{
-		assetpath = filepath.mid(asset_idx,filepath.length() - asset_idx);
-	}
-
-	return assetpath;
-}

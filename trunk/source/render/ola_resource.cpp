@@ -3,11 +3,13 @@
 const char DEFAULT_MATERIAL_NAME[] = "default.mat";
 const char DEFAULT_MATERIAL_DATA[] = 
 "<ola_material version=\"1.0\">"
-"	<technique type=\"forward\" source_s=\"default.glsl\"/>"
-"	<var name=\"diffuse_map\" type=\"texture\" value=\"default.tga\"/>"
+"	<instance name=\"default\">"
+"		<technique type=\"forward\" source_s=\"default.shader\"/>"
+"		<var name=\"diffuse_map\" type=\"texture\" value=\"default.tga\"/>"
+"  </instance>"
 "</ola_material>";
 
-const char DEFAULT_SHADER_NAME[] = "defalut.shader";
+const char DEFAULT_SHADER_NAME[] = "default.shader";
 const char DEFAULT_SHADER_DATA[] = 
 "#program vert \n"
 "	 \n"

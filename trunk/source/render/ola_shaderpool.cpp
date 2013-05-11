@@ -27,6 +27,10 @@ OlaShaderPool::~OlaShaderPool()
 
 OlaShader* OlaShaderPool::seek( const char* fxfilename )
 {
+	if (!strcmp(fxfilename,DEFAULT_SHADER_NAME))
+	{
+		return mDefaultShader;
+	}
 	olastring _fxfilename(fxfilename);
 
 	ShaderPool::iterator i = mShaderPool.find(_fxfilename);

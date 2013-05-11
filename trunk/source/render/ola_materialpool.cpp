@@ -1,14 +1,28 @@
 #include "ola_materialpool.h"
 #include "ola_material.h"
+#include "ola_resource.h"
+#include "parser/ola_mat.h"
 
-OlaMaterialPool::OlaMaterialPool()
+OlaMaterialPool::OlaMaterialPool(tResourcePools* ps):
+mDefaultMaterial(0)
 {
+	OlaMATParser parser(ps);
 
+	tMatFileInfo  matinfo;
+	parser.parseMATFromData(DEFAULT_MATERIAL_DATA,strlen(DEFAULT_MATERIAL_DATA),&matinfo);
+
+	parser.fillMAT(&matinfo,mDefaultMaterial);
+
+	mDefaultMaterial->addRef();
 }
 
 OlaMaterialPool::~OlaMaterialPool()
 {
-
+	if (mDefaultMaterial)
+	{
+		delete mDefaultMaterial;
+		mDefaultMaterial = 0;
+	}
 }
 
 void OlaMaterialPool::enPool( const char* matassetpath , OlaMaterial* mat )
@@ -40,6 +54,11 @@ void OlaMaterialPool::dePool( const char* matassetpath )
 
 OlaMaterial* OlaMaterialPool::seek( const char* matassetpath )
 {
+	if (!strcmp(matassetpath,DEFAULT_MATERIAL_NAME))
+	{
+		return mDefaultMaterial;
+	}
+
 	olastring _matassetpath(matassetpath);
 
 	MaterialPool::iterator i = mMaterialPool.find(_matassetpath);

@@ -33,6 +33,12 @@ class OlaUtility
 {
 public:
 	static int readStringLines(olastring& s,OlaArray<olastring>& outLines);
+
+	static bool FileExist(const char* fullname);
+
+	static olastring FileFolder(const char* fullname);
+
+	static olastring FilePathToAssetPath(const olastring& filepath);
 };
 
 #endif
