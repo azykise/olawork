@@ -121,11 +121,13 @@ AsciiExp::AsciiExp()
 	bIncludeObjLight = TRUE;
 	bIncludeObjHelper = TRUE;
 	bAlwaysSample = FALSE;
+	bFlipYZAxis = FALSE;
 	nKeyFrameStep = 5;
 	nMeshFrameStep = 5;
 	nPrecision = 4;
 	nStaticFrame = 0;
 	mIGame = 0;
+	fMeshScale = 0.0f;
 }
 
 AsciiExp::~AsciiExp()
@@ -247,6 +249,7 @@ static INT_PTR CALLBACK ExportDlgProc(HWND hWnd, UINT msg,
 		CheckDlgButton(hWnd, IDC_OBJ_CAMERA,exp->GetIncludeObjCamera()); 
 		CheckDlgButton(hWnd, IDC_OBJ_LIGHT,exp->GetIncludeObjLight()); 
 		CheckDlgButton(hWnd, IDC_OBJ_HELPER,exp->GetIncludeObjHelper());
+		CheckDlgButton(hWnd, IDC_FLIPYZ,exp->GetFlipYZAxis()); 
 
 		CheckRadioButton(hWnd, IDC_RADIO_USEKEYS, IDC_RADIO_SAMPLE, 
 			exp->GetAlwaysSample() ? IDC_RADIO_SAMPLE : IDC_RADIO_USEKEYS);
@@ -265,6 +268,14 @@ static INT_PTR CALLBACK ExportDlgProc(HWND hWnd, UINT msg,
 		spin->SetLimits(1, 100, TRUE); 
 		spin->SetScale(1.0f);
 		spin->SetValue(exp->GetMeshFrameStep() ,FALSE);
+		ReleaseISpinner(spin);
+
+		// Setup the spinner controls for the mesh scale 
+		spin = GetISpinner(GetDlgItem(hWnd, IDC_MESHSCALE_SPIN)); 
+		spin->LinkToEdit(GetDlgItem(hWnd,IDC_MESHSCALE), EDITTYPE_FLOAT ); 
+		spin->SetLimits(0.0f, 1000.0f, TRUE); 
+		spin->SetScale(0.1f);
+		spin->SetValue(exp->GetMeshScale() ,FALSE);
 		ReleaseISpinner(spin);
 
 		// Setup the spinner controls for the floating point precision 
@@ -325,6 +336,7 @@ static INT_PTR CALLBACK ExportDlgProc(HWND hWnd, UINT msg,
 #endif // !DESIGN_VER
 			exp->SetIncludeNormals(IsDlgButtonChecked(hWnd, IDC_NORMALS));
 			exp->SetIncludeTangent(IsDlgButtonChecked(hWnd, IDC_TANGENTS));
+			exp->SetFlipAxis(IsDlgButtonChecked(hWnd, IDC_FLIPYZ));
 			exp->SetIncludeTextureCoords(IsDlgButtonChecked(hWnd, IDC_TEXCOORDS)); 
 			exp->SetIncludeVertexColors(IsDlgButtonChecked(hWnd, IDC_VERTEXCOLORS)); 
 			exp->SetIncludeObjGeom(IsDlgButtonChecked(hWnd, IDC_OBJ_GEOM)); 
@@ -339,7 +351,11 @@ static INT_PTR CALLBACK ExportDlgProc(HWND hWnd, UINT msg,
 			ReleaseISpinner(spin);
 
 			spin = GetISpinner(GetDlgItem(hWnd, IDC_MESH_STEP_SPIN)); 
-			exp->SetMeshFrameStep(spin->GetIVal());
+			exp->SetMeshFrameStep(spin->GetFVal());
+			ReleaseISpinner(spin);
+
+			spin = GetISpinner(GetDlgItem(hWnd, IDC_MESHSCALE_SPIN)); 
+			exp->SetMeshScale(spin->GetFVal());
 			ReleaseISpinner(spin);
 
 			spin = GetISpinner(GetDlgItem(hWnd, IDC_PREC_SPIN)); 
@@ -622,6 +638,8 @@ BOOL AsciiExp::ReadConfig()
 		SetPrecision(_getw(cfgStream));
 	}
 
+	SetIncludeTangent(fgetc(cfgStream));
+
 	fclose(cfgStream);
 
 	return TRUE;
@@ -657,6 +675,8 @@ void AsciiExp::WriteConfig()
 	_putw(GetKeyFrameStep(),		cfgStream);
 	fputc(GetIncludeVertexColors(),	cfgStream);
 	_putw(GetPrecision(),			cfgStream);
+
+	fputc(GetIncludeTangents(),		cfgStream);
 
 	fclose(cfgStream);
 }

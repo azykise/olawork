@@ -233,9 +233,7 @@
 #define IDC_SCALEWEIGHT_BUTTON2         1417
 #define IDC_SCALEWEIGHT_BUTTON          1417
 #define IDC_SHOWOPTIONSUI               1418
-#define IDC_SCALE                       1418
 #define IDC_SETS                        1419
-#define IDC_SCALESPIN                   1419
 #define IDC_SHOWMENU                    1420
 #define IDC_COPY_BUTTON                 1420
 #define IDC_DRAGMODE                    1421

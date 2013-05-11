@@ -700,6 +700,20 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 		return;
 	}
 	
+	Matrix3 m;
+	if (GetMeshScale() != 1.0f)
+	{
+		m.SetScale(Point3(fMeshScale,fMeshScale,fMeshScale));
+	}
+
+	m.IdentityMatrix();
+	if (GetFlipYZAxis())
+	{
+		m.SetRotateX(90.0f);
+	}
+	
+	tm = m * tm;
+
 	Mesh* mesh = &tri->GetMesh();
 	
 	mesh->buildNormals();
@@ -713,6 +727,7 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 	fprintf(pStream,"%s\t%s {\n",indent.data(), ID_MESH_VERTEX_LIST);
 	for (i=0; i<mesh->getNumVerts(); i++) {
 		Point3 v = tm * mesh->verts[i];
+		//v = v * m;
 		fprintf(pStream, "%s\t\t%s %4d\t%s\n",indent.data(), ID_MESH_VERTEX, i, Format(v));
 	}
 	fprintf(pStream,"%s\t}\n",indent.data()); // End vertex list

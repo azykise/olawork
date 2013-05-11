@@ -194,9 +194,11 @@ public:
 	inline BOOL	GetIncludeObjLight()		{ return bIncludeObjLight; }
 	inline BOOL	GetIncludeObjHelper()		{ return bIncludeObjHelper; }
 	inline BOOL	GetAlwaysSample()			{ return bAlwaysSample; }
+	inline BOOL GetFlipYZAxis()				{ return bFlipYZAxis;}
 	inline int	GetMeshFrameStep()			{ return nMeshFrameStep; }
 	inline int	GetKeyFrameStep()			{ return nKeyFrameStep; }
 	inline int	GetPrecision()				{ return nPrecision; }
+	inline float GetMeshScale()					{ return fMeshScale;}
 	inline TimeValue GetStaticFrame()		{ return nStaticFrame; }
 	inline Interface*	GetInterface()		{ return ip; }
 
@@ -223,6 +225,8 @@ public:
 	inline void SetKeyFrameStep(int val)			{ nKeyFrameStep = val; }
 	inline void SetPrecision(int val)				{ nPrecision = val; }
 	inline void SetStaticFrame(TimeValue val)		{ nStaticFrame = val; }
+	inline void SetFlipAxis(BOOL val)				{ bFlipYZAxis = val; }
+	inline void SetMeshScale(float val)				{ fMeshScale = val;}
 
 private:
 	BOOL	bIncludeMesh;
@@ -243,6 +247,9 @@ private:
 	BOOL	bIncludeSkinInfo;
 	BOOL	bIncludeSkeletonInfo;
 	BOOL    bIncludeTangents;
+	BOOL	bFlipYZAxis;
+
+	float   fMeshScale;
 	int		nMeshFrameStep;
 	int		nKeyFrameStep;
 	int		nPrecision;

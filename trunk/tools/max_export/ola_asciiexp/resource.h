@@ -38,14 +38,19 @@
 #define IDC_SKELETONINFO                1023
 #define IDC_CHECK1                      1024
 #define IDC_TANGENTS                    1024
+#define IDC_FLIPYZ                      1025
 #define IDC_CONT_STEP                   1155
 #define IDC_CONT_STEP_SPIN              1156
 #define IDC_MESH_STEP                   1157
 #define IDC_MESH_STEP_SPIN              1158
+#define IDC_MESH_STEP2                  1159
+#define IDC_MESH_STEP_SPIN2             1160
 #define IDC_STATIC_FRAME                1161
 #define IDC_STATIC_FRAME_SPIN           1162
 #define IDC_PREC                        1163
 #define IDC_PREC_SPIN                   1164
+#define IDC_MESHSCALE                   1434
+#define IDC_MESHSCALE_SPIN              1435
 
 // Next default values for new objects
 // 
@@ -53,7 +58,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        105
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1025
-#define _APS_NEXT_SYMED_VALUE           101
+#define _APS_NEXT_CONTROL_VALUE         1027
+#define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif
