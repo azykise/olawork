@@ -32,7 +32,6 @@ OlaShader* OlaShaderPool::seek( const char* fxfilename )
 	ShaderPool::iterator i = mShaderPool.find(_fxfilename);
 	if (i != mShaderPool.end())
 	{
-		i->second->addRef();
 		return i->second;
 	}
 

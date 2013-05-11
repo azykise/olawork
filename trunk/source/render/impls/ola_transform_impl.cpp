@@ -28,22 +28,28 @@ OlaTransformObj* OlaTransformImpl::transform()
 
 void OlaTransformImpl::getPosition( ola::vec3* out_pos )
 {
+	out_pos->x = mTransform->position().x;
+	out_pos->y = mTransform->position().y;
+	out_pos->z = mTransform->position().z;
 
 }
 
 void OlaTransformImpl::setPosition( float x,float y,float z )
 {
-
+	mTransform->position(x,y,z);
 }
 
 void OlaTransformImpl::getRotation( ola::quat* out_rot )
 {
-
+	out_rot->x = mTransform->rotation().x;
+	out_rot->y = mTransform->rotation().y;
+	out_rot->z = mTransform->rotation().z;
+	out_rot->w = mTransform->rotation().w;
 }
 
-void OlaTransformImpl::setRotation( float axisx,float axisy,float axisz,float degree )
+void OlaTransformImpl::setRotation( float x,float y,float z,float w )
 {
-
+	mTransform->rotation(x,y,z,w);
 }
 
 ola::IScene* OlaTransformImpl::scene()

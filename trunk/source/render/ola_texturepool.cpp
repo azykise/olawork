@@ -53,7 +53,6 @@ OlaTexture* OlaTexturePool::seek( const char* texlfilename )
 	TexturePool::iterator i = mTexturePool.find(_texlfilename);
 	if (i != mTexturePool.end())
 	{
-		i->second->addRef();
 		return i->second;
 	}
 

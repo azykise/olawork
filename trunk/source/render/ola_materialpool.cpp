@@ -45,7 +45,6 @@ OlaMaterial* OlaMaterialPool::seek( const char* matassetpath )
 	MaterialPool::iterator i = mMaterialPool.find(_matassetpath);
 	if (i != mMaterialPool.end())
 	{
-		i->second->addRef();
 		return i->second;
 	}
 

@@ -45,7 +45,6 @@ OlaMesh* OlaMeshPool::seek( const char* aseassetpath )
 	MeshPool::iterator i = mMeshPool.find(_aseassetpath);
 	if (i != mMeshPool.end())
 	{
-		i->second->addRef();
 		return i->second;
 	}
 

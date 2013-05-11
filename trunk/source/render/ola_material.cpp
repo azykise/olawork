@@ -6,6 +6,7 @@
 #endif
 
 #include "ola_shaderfx.h"
+#include "ola_texture.h"
 
 extern const char gGlobalShaderConstName[OlaMaterialParam::SHADER_VARS_END][MAX_MATERIAL_PARAM_STR_SIZE] = {
 	"a_position",
@@ -138,7 +139,9 @@ data(0)
 			data = _data;
 			break;
 		case VALUE_TYPE_TEXTURE:
-			data = _data;
+			OlaTexture* texl = static_cast<OlaTexture*>(_data);
+			texl->addRef();
+			data = texl;
 			break;
 	}	
 }
@@ -157,6 +160,8 @@ OlaMaterialParam::PARAM_VALUE::~PARAM_VALUE()
 				break;
 			case VALUE_TYPE_BOOL:
 			case VALUE_TYPE_TEXTURE:
+				OlaTexture* texl = static_cast<OlaTexture*>(data);
+				texl->delRef();
 				data = 0;
 				break;
 		}

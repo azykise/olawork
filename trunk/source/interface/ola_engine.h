@@ -145,7 +145,7 @@ namespace ola
 		virtual void setPosition(float x,float y,float z) = 0;
 
 		virtual void getRotation(quat* out_rot) = 0;
-		virtual void setRotation(float axisx,float axisy,float axisz,float degree) = 0;
+		virtual void setRotation(float x,float y,float z,float w) = 0;
 	};
 
 	class ILight : public IObject

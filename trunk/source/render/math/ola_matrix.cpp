@@ -1936,4 +1936,66 @@ void olaMat4::Multiply(const olaMat4& left, const olaMat4& right)
 	}
 }
 
+void olaMat4::GetRotation(olaQuat & outQ)
+{
+	olaQuat q = ToMatrix3().ToQuat();
+	outQ.Set(q.x,q.y,q.z,q.w);
+}
+
+void olaMat4::SetRotation( const olaQuat& q )
+{
+	// NOTE: olaMat3 is transposed because it is column-major
+	olaMat3 rotation = q.ToMat3();
+	mat[ 0 ][ 0 ] = rotation[0][0];
+	mat[ 0 ][ 1 ] = rotation[1][0];
+	mat[ 0 ][ 2 ] = rotation[2][0];
+	mat[ 1 ][ 0 ] = rotation[0][1];
+	mat[ 1 ][ 1 ] = rotation[1][1];
+	mat[ 1 ][ 2 ] = rotation[2][1];
+	mat[ 2 ][ 0 ] = rotation[0][2];
+	mat[ 2 ][ 1 ] = rotation[1][2];
+	mat[ 2 ][ 2 ] = rotation[2][2];
+}
+
+void olaMat4::GetTranslate(olaVec3& outT)
+{
+	outT[0] = mat[ 0 ][ 3 ];
+	outT[1] = mat[ 1 ][ 3 ];
+	outT[2] = mat[ 2 ][ 3 ];
+}
+
+void olaMat4::SetTranslate( const olaVec3& T )
+{
+	mat[ 0 ][ 3 ] = T[0];
+	mat[ 1 ][ 3 ] = T[1];
+	mat[ 2 ][ 3 ] = T[2];
+	mat[ 3 ][ 3 ] = 1.0f;
+}
+
+void olaMat4::SetQT( olaQuat& q,olaVec4& t )
+{
+
+}
+
+void olaMat4::FromRotationTransform( const olaMat3 &rotation, const olaVec4& translation )
+{
+	// NOTE: olaMat3 is transposed because it is column-major
+	mat[ 0 ][ 0 ] = rotation[0][0];
+	mat[ 0 ][ 1 ] = rotation[1][0];
+	mat[ 0 ][ 2 ] = rotation[2][0];
+	mat[ 0 ][ 3 ] = translation[0];
+	mat[ 1 ][ 0 ] = rotation[0][1];
+	mat[ 1 ][ 1 ] = rotation[1][1];
+	mat[ 1 ][ 2 ] = rotation[2][1];
+	mat[ 1 ][ 3 ] = translation[1];
+	mat[ 2 ][ 0 ] = rotation[0][2];
+	mat[ 2 ][ 1 ] = rotation[1][2];
+	mat[ 2 ][ 2 ] = rotation[2][2];
+	mat[ 2 ][ 3 ] = translation[2];
+	mat[ 3 ][ 0 ] = 0.0f;
+	mat[ 3 ][ 1 ] = 0.0f;
+	mat[ 3 ][ 2 ] = 0.0f;
+	mat[ 3 ][ 3 ] = translation[3];
+}
+
 #pragma warning (pop)

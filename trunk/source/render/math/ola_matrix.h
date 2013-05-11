@@ -222,6 +222,14 @@ public:
 	bool			operator==( const olaMat4 &a ) const;					// exact compare, no epsilon
 	bool			operator!=( const olaMat4 &a ) const;					// exact compare, no epsilon
 
+	void			GetRotation(olaQuat & outQ);
+	void			SetRotation(const olaQuat& q);
+
+	void			GetTranslate(olaVec3& outT);
+	void			SetTranslate(const olaVec3& t);
+
+	void			SetQT(olaQuat& q,olaVec4& t);
+
 	void			Zero( void );
 	void			Identity( void );
 	bool			IsIdentity( const float epsilon = MATRIX_EPSILON ) const;
@@ -259,6 +267,8 @@ public:
 
 	void			CopyToFloatArrayColumn(float* m44);
 	void			FromFloatsColumnMajor(const float* pOut);
+
+	void			FromRotationTransform(const olaMat3 &rotation, const olaVec4& translation);
 private:
 	olaVec4			mat[ 4 ];
 };

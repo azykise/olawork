@@ -144,7 +144,7 @@ void OlaMeshRenderer::updateInternal( float elasped , OlaTransformObj* transObj)
 
 		if (transObj)
 		{
-			const float* f44 = transObj->transform()->ToFloatPtr();
+			const float* f44 = transObj->transform().ToFloatPtr();
 			op->worldtrans.FromFloatsColumnMajor(f44);
 		}
 		else

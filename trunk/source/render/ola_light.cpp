@@ -44,7 +44,14 @@ OlaKernelObj::ENABLE_STATE OlaLight::enabled()
 
 void OlaLight::updateInternal( float elasped,OlaTransformObj* transObj )
 {
-	
+	if (transObj)
+	{
+		mPosition = transObj->position();
+	}
+	else
+	{
+		mPosition.Set(0.0f,0.0f,0.0f);
+	}
 }
 
 void OlaLight::renderInternal( OlaRender* r )
