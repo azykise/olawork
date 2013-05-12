@@ -700,19 +700,32 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 		return;
 	}
 	
-	Matrix3 m;
+	Matrix3 ms;
+	ms.IdentityMatrix();
+
 	if (GetMeshScale() != 1.0f)
 	{
-		m.SetScale(Point3(fMeshScale,fMeshScale,fMeshScale));
-	}
-
-	m.IdentityMatrix();
-	if (GetFlipYZAxis())
-	{
-		m.SetRotateX(90.0f);
+		ms.SetScale(Point3(fMeshScale,fMeshScale,fMeshScale));
 	}
 	
-	tm = m * tm;
+	Matrix3 mr;
+	mr.IdentityMatrix();
+	if (GetFlipYZAxis())
+	{
+		mr.SetRotateX(1.5708f);
+	}
+	
+	tm = mr * ms * tm;
+
+	Matrix3 tminv = tm;
+	tminv.Invert();
+	Matrix3 tmtinv;
+	tmtinv.IdentityMatrix();
+
+	//tmtinv[0][0] = tminv[0][0]; tmtinv[0][1] = tminv[1][0]; tmtinv[0][2] = tminv[2][0];
+	//tmtinv[1][0] = tminv[0][1]; tmtinv[1][1] = tminv[1][1]; tmtinv[1][2] = tminv[2][1];
+	//tmtinv[2][0] = tminv[0][2]; tmtinv[2][1] = tminv[1][2]; tmtinv[2][2] = tminv[2][2];
+	//tmtinv[3][0] = tmtinv[3][1] = tmtinv[3][2] = 0.0f;
 
 	Mesh* mesh = &tri->GetMesh();
 	
@@ -883,14 +896,17 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 			
 			vert = f->getVert(vx1);
 			vn = GetVertexNormal(mesh, i, mesh->getRVertPtr(vert));
+			vn = tmtinv.VectorTransform(vn);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXNORMAL, vert, Format(vn));
 			
 			vert = f->getVert(vx2);
 			vn = GetVertexNormal(mesh, i, mesh->getRVertPtr(vert));
+			vn = tmtinv.VectorTransform(vn);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXNORMAL, vert, Format(vn));
 			
 			vert = f->getVert(vx3);
 			vn = GetVertexNormal(mesh, i, mesh->getRVertPtr(vert));
+			vn = tmtinv.VectorTransform(vn);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXNORMAL, vert, Format(vn));
 		}
 		
@@ -934,18 +950,24 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 			vert = f->getVert(vx1);
 			vt = i_mesh->GetTangent(i_mesh->GetFaceVertexTangentBinormal(i, 0 )); vt.FNormalize();
 			vb = i_mesh->GetBinormal(i_mesh->GetFaceVertexTangentBinormal(i, 0 ));vb.FNormalize();
+			vt = tmtinv.VectorTransform(vt);
+			vb = tmtinv.VectorTransform(vb);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXTANGENT, vert, Format(vt));
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXBNORMAL, vert, Format(vb));
 			
 			vert = f->getVert(vx2);
 			vt = i_mesh->GetTangent(i_mesh->GetFaceVertexTangentBinormal(i, 1 )); vt.FNormalize();
 			vb = i_mesh->GetBinormal(i_mesh->GetFaceVertexTangentBinormal(i, 1 ));vb.FNormalize();
+			vt = tmtinv.VectorTransform(vt);
+			vb = tmtinv.VectorTransform(vb);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXTANGENT, vert, Format(vt));
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXBNORMAL, vert, Format(vb));
 			
 			vert = f->getVert(vx3);
 			vt = i_mesh->GetTangent(i_mesh->GetFaceVertexTangentBinormal(i, 2 )); vt.FNormalize();
 			vb = i_mesh->GetBinormal(i_mesh->GetFaceVertexTangentBinormal(i, 2 ));vb.FNormalize();
+			vt = tmtinv.VectorTransform(vt);
+			vb = tmtinv.VectorTransform(vb);
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXTANGENT, vert, Format(vt));
 			fprintf(pStream,"%s\t\t\t%s %d\t%s\n",indent.data(), ID_MESH_VERTEXBNORMAL, vert, Format(vb));
 		}

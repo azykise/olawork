@@ -127,7 +127,7 @@ AsciiExp::AsciiExp()
 	nPrecision = 4;
 	nStaticFrame = 0;
 	mIGame = 0;
-	fMeshScale = 0.0f;
+	fMeshScale = 1.0f;
 }
 
 AsciiExp::~AsciiExp()
