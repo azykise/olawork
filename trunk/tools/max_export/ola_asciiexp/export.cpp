@@ -702,7 +702,6 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 	
 	Matrix3 ms;
 	ms.IdentityMatrix();
-
 	if (GetMeshScale() != 1.0f)
 	{
 		ms.SetScale(Point3(fMeshScale,fMeshScale,fMeshScale));
@@ -722,10 +721,14 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 	Matrix3 tmtinv;
 	tmtinv.IdentityMatrix();
 
-	//tmtinv[0][0] = tminv[0][0]; tmtinv[0][1] = tminv[1][0]; tmtinv[0][2] = tminv[2][0];
-	//tmtinv[1][0] = tminv[0][1]; tmtinv[1][1] = tminv[1][1]; tmtinv[1][2] = tminv[2][1];
-	//tmtinv[2][0] = tminv[0][2]; tmtinv[2][1] = tminv[1][2]; tmtinv[2][2] = tminv[2][2];
-	//tmtinv[3][0] = tmtinv[3][1] = tmtinv[3][2] = 0.0f;
+	Point3 r0 = tminv.GetRow(0);
+	Point3 r1 = tminv.GetRow(1);
+	Point3 r2 = tminv.GetRow(2);
+
+	tmtinv.SetRow(0 , Point3(r0.x , r1.x , r2.x));
+	tmtinv.SetRow(1 , Point3(r0.y , r1.y , r2.y));
+	tmtinv.SetRow(2 , Point3(r0.z , r1.z , r2.z));
+	tmtinv.SetRow(3 , Point3(0 , 0, 0));
 
 	Mesh* mesh = &tri->GetMesh();
 	
