@@ -1,0 +1,7 @@
+<ola_material version="1.0">
+  <instance name="phoenix_palm1-bark1">
+    <technique type="shader" source_s="art/smallplants/ats_softocc_bark.glsl"/>
+    <var name="diffuse_map" type="texture" value="art/smallplants/phoenix_palm_bark1.tga" />
+    <var name="normal_map" type="texture" value="art/smallplants/phoenix_palm_bark1_nmp.tga" />
+  </instance>
+</ola_material>

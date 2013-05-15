@@ -106,7 +106,7 @@ bool GetProgramString(OlaArray<olastring>& lines,olastring& outProgStr,const cha
 				break;
 			}
 
-			outProgStr.append(s);
+			outProgStr.append(s + "\n");
 		}
 	}	
 	return start;

@@ -1,0 +1,6 @@
+<ola_model>
+	<geometry resource="ground_cover1.ase"/>
+	<material num="1">
+		<submat index="0" name="groundcover1" resource="default.mat"/>
+	</material>
+</ola_model>

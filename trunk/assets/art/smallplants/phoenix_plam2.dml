@@ -1,0 +1,8 @@
+<ola_model>
+	<geometry resource="phoenix_plam2.ase"/>
+	<material num="3">
+		<submat index="0" name="leafs" resource="art/smallplants/phoenix_palm_leaf.mat"/>
+		<submat index="1" name="Bark1" resource="art/smallplants/phoenix_palm1-bark1.mat"/>
+		<submat index="2" name="bark2" resource="art/smallplants/phoenix_palm1-bark2.mat"/>
+	</material>
+</ola_model>
