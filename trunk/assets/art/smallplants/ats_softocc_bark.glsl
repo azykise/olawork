@@ -3,7 +3,7 @@
 
 attribute highp 	vec4 a_position;
 attribute highp 	vec3 a_normal;
-attribute mediump 	vec2 a_uv0;
+attribute highp 	vec2 a_uv0;
 attribute highp 	vec3 a_tangent;
 attribute highp 	vec3 a_binormal;
 
@@ -18,25 +18,34 @@ uniform highp vec3 u_lightpos0;
 uniform highp vec3 u_lightdir0;
 uniform highp vec3 u_lightcol0;
 
-varying mediump vec2 v_uv;
+varying highp vec2 v_uv;
 
-varying lowp vec3  v_lightdir;
-varying lowp vec3  v_viewdir;
+varying highp vec3  v_lightdir;
+varying highp vec3  v_viewdir;
 
 void main() {	
 	
 	highp vec3 ws_normal = vec3(normalize(u_model_invtrans * vec4(a_normal,0.0)));
 	highp vec3 ws_tangent = vec3(normalize(u_model_invtrans * vec4(a_tangent,0.0)));
-	highp vec3 ws_binormal = vec3(normalize(u_model_invtrans * vec4(a_binormal,0.0)));	
+	highp vec3 ws_binormal = vec3(normalize(u_model_invtrans * vec4(a_binormal,0.0)));								
 					
 	highp vec3 ws_position = (u_model * a_position).xyz;
 	
-	highp mat3 TBN = mat3(ws_tangent, ws_binormal, ws_normal);				 
+	highp mat3 TBN;
+  	TBN[0].x = ws_tangent.x;
+ 	TBN[0].y = ws_binormal.x;
+  	TBN[0].z = ws_normal.x;
+  	TBN[1].x = ws_tangent.y;
+  	TBN[1].y = ws_binormal.y;
+  	TBN[1].z = ws_normal.y;
+  	TBN[2].x = ws_tangent.z;
+  	TBN[2].y = ws_binormal.z;
+  	TBN[2].z = ws_normal.z;				 
 	
 	v_uv = a_uv0;
 	
-	v_lightdir = normalize(u_lightpos0 - ws_position) * TBN;
-	v_viewdir = normalize(u_eyepos - ws_position) * TBN;	
+	v_lightdir = TBN * normalize(u_lightpos0 - ws_position);
+	v_viewdir = TBN * normalize(u_eyepos - ws_position);	
 	
 	gl_Position = u_mvp * a_position;
 }
@@ -51,27 +60,31 @@ uniform sampler2D s_diffuse;
 uniform sampler2D s_normal;
 uniform sampler2D s_specular;
 
-varying mediump vec2 v_uv;
+varying highp vec2 v_uv;
 
-varying lowp vec3  v_lightdir;
-varying lowp vec3  v_viewdir;
+varying highp vec3  v_lightdir;
+varying highp vec3  v_viewdir;
 
 void main() {
 		
-	lowp vec4 tc = texture2D(s_diffuse,v_uv);
-	lowp vec4 nc = texture2D(s_normal,v_uv);
+	highp vec4 tc = texture2D(s_diffuse,v_uv);
+	highp vec4 nc = texture2D(s_normal,v_uv);
 	
-	mediump vec3 normal = nc.rgb * 2.0 - 1.0;
-	normal.y *= -1.0;
+	highp vec3 normal;
+	normal.xy = nc.rg * 2 - 1;
+	normal.z = sqrt(1 - normal.x*normal.x - normal.y * normal.y);			
 	
-	lowp float dnl = max(dot(normal,v_lightdir),0.0);
+	highp float dnl = max(dot(normal,v_lightdir),0.0);
 	
-	lowp vec3 vh = normalize( (v_lightdir + v_viewdir) * 0.5 );
-	lowp float sp = pow(max(dot(normal,vh),0.0), 2.3) * 1.0;
-	
-	lowp vec3 fc = tc.rgb * dnl + vec3(1,1,1) * sp;	
+	highp vec3 fc = tc.rgb * dnl;	
 
-	gl_FragColor = vec4(fc.rgb,tc.a);
+	highp vec4 c_final;
+	c_final.rgb = fc.rgb;
+	c_final.rgb = tc.rgb;
+
+	//gl_FragColor = vec4(fc.rgb,tc.a);		
+	
+	gl_FragColor = vec4(c_final.rgb,tc.a);		
 }
 
 #end

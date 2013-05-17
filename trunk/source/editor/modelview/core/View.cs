@@ -18,8 +18,8 @@ namespace modelview
             m_camera.Direction = new Vector3F(0, 0, 2);
             m_camera.Focus = true;
             Camera3DController camera_contrlooer = new Camera3DController("cam");
-            camera_contrlooer.MoveSpeed = 1.0f;
-            camera_contrlooer.WheelSpeed = 0.01f;
+            camera_contrlooer.MoveSpeed = 0.2f;
+            camera_contrlooer.WheelSpeed = 0.1f;
             BaseController = camera_contrlooer;
 
             mLightCtrl = new LightingController(doc);

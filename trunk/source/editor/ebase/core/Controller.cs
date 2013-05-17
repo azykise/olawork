@@ -307,7 +307,14 @@ namespace editor
         {
             Vector3F lookatpt = m_current_view.getCamera().Direction;
             Vector3F postiton = m_current_view.getCamera().Position;
-            Vector3F dv = new Vector3F(0, 0, delta * m_wheel_speed * -1.0f);
+
+            float df = 0.0f;
+            if (delta > 0)
+                df = 1.0f;
+            else if (delta < 0)
+                df = -1.0f;
+
+            Vector3F dv = new Vector3F(0, 0, df * m_wheel_speed * -1.0f);
             m_current_view.getCamera().Position = postiton + dv;
             m_current_view.getCamera().Direction = lookatpt + dv;
             return HandleResult.Done;
@@ -367,7 +374,13 @@ namespace editor
             if (delta > 0 && length <= 1.0f)
                 return HandleResult.Done;
 
-            m_current_view.getCamera().Position = postiton + dist * m_wheel_speed * delta;
+            float df = 0.0f;
+            if (delta > 0)
+                df = 1.0f;
+            else if (delta < 0)
+                df = -1.0f;
+
+            m_current_view.getCamera().Position = postiton + dist * m_wheel_speed * df;
             return HandleResult.Done;
         }
 
@@ -460,7 +473,9 @@ namespace editor
         public virtual float WheelSpeed 
         {
             get { return m_wheel_speed; }
-            set { m_wheel_speed = value; }
+            set { 
+                m_wheel_speed = value;
+            }
         }
 
         public virtual float MoveSpeed
@@ -469,8 +484,8 @@ namespace editor
             set { m_move_speed = value; }
         }
 
-        protected float m_wheel_speed = 0.04f;
-        protected float m_move_speed = 2.0f;
+        protected float m_wheel_speed = 1.0f;
+        protected float m_move_speed = 1.0f;
         protected float m_rotate_speed = 0.001f;
         protected bool m_focus = false;
     }

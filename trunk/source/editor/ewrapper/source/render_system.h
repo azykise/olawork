@@ -43,7 +43,7 @@ namespace Engine
 
 			Aspect = 4.0f/3.0f;
 			Fovy = (float)(System::Math::PI/4);
-			NearDist = 1.0f;
+			NearDist = 0.3f;
 			FarDist = 1001.0f;
 		}
 		array<float>^ Position;

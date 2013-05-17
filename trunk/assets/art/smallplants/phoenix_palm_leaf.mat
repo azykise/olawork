@@ -2,5 +2,6 @@
   <instance name="phoenix_palm_leaf">
     <technique type="shader" source_s="art/smallplants/tree_softocc_leaves.glsl"/>
     <var name="diffuse_map" type="texture" value="art/smallplants/phoenix_palm_leaf.tga" />
+    <var name="no_cullface" type="bool" value="true" />
   </instance>
 </ola_material>
