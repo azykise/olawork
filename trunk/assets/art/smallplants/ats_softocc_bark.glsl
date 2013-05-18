@@ -78,13 +78,7 @@ void main() {
 	
 	highp vec3 fc = tc.rgb * dnl;	
 
-	highp vec4 c_final;
-	c_final.rgb = fc.rgb;
-	c_final.rgb = tc.rgb;
-
-	//gl_FragColor = vec4(fc.rgb,tc.a);		
-	
-	gl_FragColor = vec4(c_final.rgb,tc.a);		
+	gl_FragColor = vec4(fc.rgb,tc.a);				
 }
 
 #end

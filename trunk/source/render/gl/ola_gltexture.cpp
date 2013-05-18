@@ -73,6 +73,10 @@ bool OlaGLTexture::fill( const unsigned char* rgba,int w,int h,int bpp )
 		lg("glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mWidth, mHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, mRGBA);\n");
 	}
 	glGenerateMipmap(GL_TEXTURE_2D);
+	if(glGetError() != GL_NO_ERROR)
+	{
+		lg("glGenerateMipmap(GL_TEXTURE_2D);; \n");
+	}
     glBindTexture(GL_TEXTURE_2D, 0);
 
 	return true;

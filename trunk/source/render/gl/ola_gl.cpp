@@ -164,15 +164,6 @@ void OlaGLDevice::bindRenderState( OlaShader* shader , OlaGlobalFXConst* shaderc
 
 	glUseProgram(program);	
 
-	if(sample0_handle != -1)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR ); // GL_LINEAR GL_NEAREST GL_NEAREST_MIPMAP_NEAREST
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); //GL_CLAMP_TO_EDGE GL_REPEAT
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	}
-
 	if(pos_handle != -1)
 	{
 		glEnableVertexAttribArray(pos_handle);
@@ -310,6 +301,13 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 	{
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D,diffuse_handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR ); // GL_LINEAR GL_NEAREST GL_NEAREST_MIPMAP_NEAREST
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); //GL_CLAMP_TO_EDGE GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 		lgGLError("glBindTexture(GL_TEXTURE_2D,diffuse_handle); \n");
 	}
 
@@ -323,6 +321,13 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 	{
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D,normal_handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR ); // GL_LINEAR GL_NEAREST GL_NEAREST_MIPMAP_NEAREST
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); //GL_CLAMP_TO_EDGE GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 		lgGLError("glBindTexture(GL_TEXTURE_2D,normal_handle); \n");
 	}
 
@@ -336,6 +341,13 @@ void OlaGLDevice::flushMaterialInfo( OlaMaterial* material )
 	{
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D,specular_handle);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR ); // GL_LINEAR GL_NEAREST GL_NEAREST_MIPMAP_NEAREST
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); //GL_CLAMP_TO_EDGE GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 		lgGLError("glBindTexture(GL_TEXTURE_2D,specular_handle); \n");
 	}
 }
