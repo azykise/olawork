@@ -122,7 +122,7 @@ public:
 	void	ExportCameraSettings(CameraState* cs, CameraObject* cam, TimeValue t, int indentLevel);
 	void	ExportLightSettings(LightState* ls, GenLight* light, TimeValue t, int indentLevel);
 
-	void	ExportDmlFile(INode* node);
+	void	ExportDmlFile(const char* ase_fullname,const char* dml_fullname,INode* node);
 
 	// Low level export
 	void	DumpPoly(PolyLine* line, Matrix3 tm, int indentLevel);
@@ -152,6 +152,7 @@ public:
 	BOOL	CheckForAnimation(INode* node, BOOL& pos, BOOL& rot, BOOL& scale);
 	TriObject*	GetTriObjectFromNode(INode *node, TimeValue t, int &deleteIt);
 	BOOL	IsKnownController(Control* cont);
+	BOOL	FileExist(const char* filename);
 	BoneModData* GetBoneModeData(INode* node);
 	ISkin*	GetSelectedSkinModify(INode* node);
 	void	GetVertexBoneInfo(VertexBoneInfo* out,int skined_vid,BoneModData* bone_mod,ISkin* skin);

@@ -1,37 +1,46 @@
 #include "ola_material_impl.h"
 
+#include "../ola_render.h"
 #include "../ola_material.h"
+#include "../win/win_impls.h"
+#include "../parser/ola_mat.h"
+#include "../ola_render.h"
 #include "../ola_resourcemng.h"
+#include "../ola_assetmng.h"
 
-OlaMaterialImpl::OlaMaterialImpl( OlaMaterialReference* matref):
-mMatRef(matref)
+OlaMaterialImpl::OlaMaterialImpl( OlaMaterial* mat , OlaRender* render):
+mMaterial(mat),
+mRender(render)
 {
-	if(mMatRef)
-		mMatRef->addRef();
+	mMaterial->addRef();
+}
+
+OlaMaterialImpl::~OlaMaterialImpl()
+{
+	mMaterial->delRef();
 }
 
 const char* OlaMaterialImpl::name()
 {
-	if (mMatRef)
-	{
-		return mMatRef->material()->name();
-	}
-	else
-		return 0;
+	return mMaterial->name().c_str();
 }
 
-
-OlaMaterialImpl::~OlaMaterialImpl()
+const char* OlaMaterialImpl::filename()
 {
-	if(mMatRef)
-	{
-		mMatRef->delRef();
-		mMatRef = 0;
-	}
-	
+	return mMaterial->filename().c_str();
 }
 
-int OlaMaterialImpl::deserialize( const ola::byte* data,int len )
+void OlaMaterialImpl::reload()
 {
-	return -1;
+	tResourcePools* pools = mRender->getResourceMng()->pools();
+	OlaMATParser parser(pools);
+
+	tMatFileInfo matinfo;
+	matinfo.MatFullname = mMaterial->filename();
+
+	OlaAsset* asset = new OlaAsset();
+	LoadAssetFile(matinfo.MatFullname.c_str(),asset);
+
+	parser.parseMATFromData(asset->data,asset->length,&matinfo);
+	parser.fillMAT(&matinfo,mMaterial,OlaMATParser::RELOAD_FILLMAT);		
 }

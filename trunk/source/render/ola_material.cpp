@@ -159,6 +159,7 @@ OlaMaterialParam::PARAM_VALUE::~PARAM_VALUE()
 				data = 0;
 				break;
 			case VALUE_TYPE_BOOL:
+				break;
 			case VALUE_TYPE_TEXTURE:
 				OlaTexture* texl = static_cast<OlaTexture*>(data);
 				texl->delRef();

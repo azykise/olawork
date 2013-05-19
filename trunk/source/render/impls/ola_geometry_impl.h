@@ -7,12 +7,12 @@
 class OlaMeshRenderer;
 class OlaMaterialImpl;
 class OlaMesh;
-class OlaRenderOp;
+class OlaRender;
 
 class OlaGeometryImpl : public ola::IGeometry
 {
 public:
-	OlaGeometryImpl(OlaMeshRenderer* model);
+	OlaGeometryImpl(OlaMeshRenderer* model,OlaRender* render);
 	virtual ~OlaGeometryImpl();
 
 	virtual int submeshNum(){ return mSubMaterials.size(); };
@@ -21,7 +21,7 @@ public:
 
 	virtual void reload(){};
 
-	virtual const char* getResourceFilename(){return "";}	
+	virtual const char* filename(){return "";}	
 
 	virtual OlaMeshRenderer* meshrender();
 

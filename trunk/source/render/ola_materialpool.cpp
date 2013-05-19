@@ -11,6 +11,7 @@ mDefaultMaterial(0)
 	tMatFileInfo  matinfo;
 	parser.parseMATFromData(DEFAULT_MATERIAL_DATA,strlen(DEFAULT_MATERIAL_DATA),&matinfo);
 
+	mDefaultMaterial = new OlaMaterial("default.mat");
 	parser.fillMAT(&matinfo,mDefaultMaterial);
 
 	mDefaultMaterial->addRef();
