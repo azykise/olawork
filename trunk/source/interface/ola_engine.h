@@ -85,6 +85,7 @@ namespace ola
 
 		virtual void reload() = 0;
 
+		virtual bool deserialize(const char* data,int len) = 0;
 	};
 
 	class IRenderable

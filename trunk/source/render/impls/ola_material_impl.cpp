@@ -44,3 +44,8 @@ void OlaMaterialImpl::reload()
 	parser.parseMATFromData(asset->data,asset->length,&matinfo);
 	parser.fillMAT(&matinfo,mMaterial,OlaMATParser::RELOAD_FILLMAT);		
 }
+
+bool OlaMaterialImpl::deserialize( const char* data,int len )
+{
+	return false;
+}

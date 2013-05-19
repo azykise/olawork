@@ -97,6 +97,8 @@ public:
 
 	virtual ola::IBone* root();
 
+	virtual bool deserialize(const char* data,int len){return false;}
+
 	void _buildSkeleton();
 
 	OlaSkeletonModel* mParent;

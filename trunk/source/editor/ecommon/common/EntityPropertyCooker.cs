@@ -16,7 +16,7 @@ namespace editor
     {
         public PropertyExample()
         {
-            mSerializer["固有色"] = new PropertySerializer("固有色", mColor, delegate(object value) { mColor = (Color)value; });
+            mSerializer["固有色"] = new PropertySerializer("固有色", mColor, delegate(string name,object value) { mColor = (Color)value; });
         }
         public void toPropertyGrid(PropertyGrid grid)
         {
@@ -68,7 +68,7 @@ namespace editor
                 else if (typeof(string) == desc.Value.GetType())
                 {
                     string s = (string)desc.Value;
-                    if (s.Contains(":") && s.Contains("\\") && s.Contains("."))
+                    if ((s.Contains("\\") || s.Contains("/")) && s.Contains("."))
                     {
                         desc.Editor = sFileEditor;
                     }

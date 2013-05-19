@@ -21,6 +21,8 @@ public:
 
 	virtual void reload(){};
 
+	virtual bool deserialize(const char* data,int len){return false;}
+
 	virtual const char* filename(){return "";}	
 
 	virtual OlaMeshRenderer* meshrender();

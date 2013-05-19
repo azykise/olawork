@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActionTimeLine));
             this.buttonPause = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonPlay = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolPlayMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.toolButtonPlayMode = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonLabel = new System.Windows.Forms.Button();
             this.trackBarAction = new System.Windows.Forms.TrackBar();
-            this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAction)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +57,20 @@
             this.buttonPause.UseVisualStyleBackColor = true;
             this.buttonPause.Visible = false;
             this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolPlayMode});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
+            // 
+            // toolPlayMode
+            // 
+            this.toolPlayMode.Name = "toolPlayMode";
+            this.toolPlayMode.Size = new System.Drawing.Size(148, 22);
+            this.toolPlayMode.Text = "循环播放模式";
+            this.toolPlayMode.Click += new System.EventHandler(this.toolPlayMode_Click);
             // 
             // panel1
             // 
@@ -78,20 +92,6 @@
             this.buttonPlay.TabIndex = 1;
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolPlayMode});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
-            // 
-            // toolPlayMode
-            // 
-            this.toolPlayMode.Name = "toolPlayMode";
-            this.toolPlayMode.Size = new System.Drawing.Size(148, 22);
-            this.toolPlayMode.Text = "循环播放模式";
-            this.toolPlayMode.Click += new System.EventHandler(this.toolPlayMode_Click);
             // 
             // toolButtonPlayMode
             // 
@@ -146,8 +146,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "ActionTimeLine";
             this.Size = new System.Drawing.Size(576, 55);
-            this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAction)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

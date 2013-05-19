@@ -15,6 +15,7 @@ namespace modelview
         public const string DOCK_TYPE_BUTTOM = "DOCK_TYPE_BUTTOM";
         public const string DOCK_TYPE_RIGHT_TAB1 = "DOCK_TYPE_RIGHT_TAB1";
         public const string DOCK_TYPE_RIGHT_TAB2 = "DOCK_TYPE_RIGHT_TAB2";
+        public const string DOCK_TYPE_RIGHT_TAB3 = "DOCK_TYPE_RIGHT_TAB3";
 
         public ModelView_Form()
         {
@@ -50,6 +51,12 @@ namespace modelview
                     this.tabPage2.Controls.Clear();
                     this.tabPage2.Controls.Add(c);
                     this.tabPage2.Text = tab_name;
+                    c.Dock = DockStyle.Fill;
+                    break;
+                case DOCK_TYPE_RIGHT_TAB3:
+                    this.tabPage3.Controls.Clear();
+                    this.tabPage3.Controls.Add(c);
+                    this.tabPage3.Text = tab_name;
                     c.Dock = DockStyle.Fill;
                     break;
             }

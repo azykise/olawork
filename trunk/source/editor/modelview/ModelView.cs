@@ -51,8 +51,12 @@ namespace modelview
             m_modelview_form.insertDockControl(ModelView_Form.DOCK_TYPE_BUTTOM, "",actiontimeline_comp.ActionTimeLineUI);
             EditorGraph.registerComponent(this, actiontimeline_comp);
 
+            MaterialListComponent materiallist_comp = new MaterialListComponent(mdoc);
+            m_modelview_form.insertDockControl(ModelView_Form.DOCK_TYPE_RIGHT_TAB1, "材质",materiallist_comp.MaterialListUI);
+            EditorGraph.registerComponent(this, materiallist_comp);
+
             BoneListComponent bonelist_comp = new BoneListComponent(mdoc);
-            m_modelview_form.insertDockControl(ModelView_Form.DOCK_TYPE_RIGHT_TAB1,"骨架",bonelist_comp.BoneListUI);
+            m_modelview_form.insertDockControl(ModelView_Form.DOCK_TYPE_RIGHT_TAB3,"骨架",bonelist_comp.BoneListUI);
             EditorGraph.registerComponent(this, bonelist_comp);
 
             ActionListComponent actionlist_comp = new ActionListComponent(mdoc);

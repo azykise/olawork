@@ -22,6 +22,8 @@ public:
 
 	virtual void reload();
 
+	virtual bool deserialize(const char* data,int len);
+
 protected:
 	OlaMaterial* mMaterial;
 	OlaRender* mRender;
