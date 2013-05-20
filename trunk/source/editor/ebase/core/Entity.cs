@@ -11,7 +11,7 @@ namespace editor
     //一个属性的描述类 用来将这个属性序列化
     public class PropertySerializer
     {
-        public delegate void ValueChanged(object value);
+        public delegate void ValueChanged(string name , object value);
         public PropertySerializer(string name, object value, ValueChanged handler)
         {
             Name = name;
@@ -48,7 +48,7 @@ namespace editor
         public object Value
         {
             get { return mValue; }
-            set { mValue = value; if (Handle != null) Handle(mValue); }
+            set { mValue = value; if (Handle != null) Handle(Name, mValue); }
         }
 
         public string Name = "";

@@ -1,11 +1,12 @@
 #include "ola_geometry_impl.h"
+#include "ola_material_impl.h"
 
 #include "../ola_render.h"
 #include "../ola_model.h"
 #include "../win/win_impls.h"
 
 
-OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model):
+OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model,OlaRender* render):
 mModel(model)
 {
 	mModel->addRef();
@@ -13,7 +14,7 @@ mModel(model)
 	for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
 	{
 		OlaMaterial* material = mModel->material(i);
-		OlaMaterialImpl* impl = new OlaMaterialImpl(material);
+		OlaMaterialImpl* impl = new OlaMaterialImpl(material,render);
 		mSubMaterials.push_back(impl);
 	}
 }

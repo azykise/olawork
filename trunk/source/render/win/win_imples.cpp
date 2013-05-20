@@ -46,12 +46,12 @@ ola::IBone* OlaBoneImpl::sub( int idx )
 	return (mChildren[idx]);
 }
 
-OlaStaticModelImpl::OlaStaticModelImpl(OlaMeshRenderer* model):
+OlaStaticModelImpl::OlaStaticModelImpl(OlaMeshRenderer* model,OlaRender* render):
 mGeometry(0),
 mTransform(0)
 {
 	mTransform = new OlaTransformImpl();
-	mGeometry = new OlaGeometryImpl(model);	
+	mGeometry = new OlaGeometryImpl(model,render);	
 
 	mTransform->transform()->pushKernelObj(model);
 }
@@ -122,7 +122,7 @@ void OlaSkeletonImpl::_buildSkeleton()
 	}
 }
 
-const char* OlaSkeletonImpl::getResourceFilename()
+const char* OlaSkeletonImpl::filename()
 {
 	return 0;
 }
@@ -191,11 +191,6 @@ ola::aabb* OlaStaticModelImpl::aabb()
 	}
 
 	return &mAABB;
-}
-
-void OlaMaterialImpl::reload()
-{
-	//mResourceMng->reloadMaterial(mMaterial->filename().c_str(),mMaterial->name().c_str());		
 }
 
 OlaCharacterImpl::OlaCharacterImpl( OlaSkeletonModel* model ):

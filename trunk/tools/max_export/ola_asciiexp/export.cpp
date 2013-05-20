@@ -162,7 +162,11 @@ void AsciiExp::ExportGeomObject(INode* node, int indentLevel)
 	
 	fprintf(pStream,"%s}\n", indent.data());
 
-	ExportDmlFile(node);
+	std::string dmlfile = ReplaceAll(sFilename,".ase",".dml");
+	if (!FileExist(dmlfile.c_str()))
+	{
+		ExportDmlFile(sFilename.c_str(),dmlfile.c_str(),node);
+	}
 }
 
 /****************************************************************************
@@ -1221,11 +1225,12 @@ void AsciiExp::ExportMaterial(INode* node, int indentLevel)
 	}
 }
 
-void AsciiExp::ExportDmlFile(INode* node)
+void AsciiExp::ExportDmlFile(const char* ase_fullname,const char* dml_fullname, INode* node)
 {
-	std::string dmlfile = ReplaceAll(sFilename,".ase",".dml");
-	std::string asename = GetFilename(sFilename);
-
+	std::string asefullname(ase_fullname);
+	std::string dmlfile(dml_fullname);
+	std::string asename = GetFilename(asefullname);
+	
 	std::vector<std::string> submats;
 	Mtl* mtl = node->GetMtl();
 	if (mtl)

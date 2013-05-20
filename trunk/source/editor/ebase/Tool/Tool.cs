@@ -53,6 +53,42 @@ namespace editor
             return o;
         }
 
+        public static string GetFilename(string fullname,bool suffix = true)
+        {
+            string s = fullname.Replace('\\','/');
+            int last_dot = s.LastIndexOf('.');
+            int last_spr = s.LastIndexOf('/');
+
+            if (last_spr == -1)
+            {
+                if (!suffix)
+                {
+                    if (last_dot != -1)
+                    {
+                        string r = s.Substring(0, last_dot);
+                        return r;
+                    }
+                }
+                return s;
+            }
+            else
+            {
+                last_spr += 1;
+                if (!suffix)
+                {
+                    if (last_dot != -1 && last_dot > last_spr)
+                    {
+                        string r = s.Substring(last_spr, last_dot - last_spr);
+                        return r;
+                    }                
+                }
+
+                string _r = s.Substring(last_spr);
+                return _r;
+
+            }
+        }
+
         public static string GetAssetAbsoultFilePath(string rel_path)
         {
             int i = rel_path.IndexOf("..\\");

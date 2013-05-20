@@ -731,6 +731,18 @@ std::string AsciiExp::ToLower( const std::string& str )
 	}
 	return news;
 }
+
+BOOL AsciiExp::FileExist( const char* filename )
+{
+	FILE* f = fopen(filename,"rb");
+	if (f)
+	{
+		fclose(f);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 BOOL MtlKeeper::AddMtl(Mtl* mtl)
 {
 	if (!mtl) {

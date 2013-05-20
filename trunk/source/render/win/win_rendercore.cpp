@@ -301,7 +301,7 @@ ola::IStaticModel* OlaRenderCore::createStaticModel(const char* filename)
 		dml = static_cast<OlaMeshRenderer*>(dml_kobj);
 	}		
 
-	OlaStaticModelImpl* impl = new OlaStaticModelImpl(dml);
+	OlaStaticModelImpl* impl = new OlaStaticModelImpl(dml,mRender);
 	return impl;
 }
 

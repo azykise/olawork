@@ -61,20 +61,36 @@ bool OlaMATParser::parseMATFromData( const char* data,int len,tMatFileInfo* outM
 	return true;
 }
 
-bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
+bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial* outMat, MATFILL_MODE mode )
 {
+	bool loadfx = false;
+
 	OlaShader* shader = 0;
 	shader = mPools->ShaderPool->seek(matInfo->ShaderFullname.c_str());
 	if(shader == 0)
 	{
 		shader = new OlaShader();
+		mPools->ShaderPool->enPool(matInfo->ShaderFullname.c_str(),shader);
+		loadfx = true;
+	}
+
+	switch(mode)
+	{
+	case CACHED_FILLMAT:
+		break;
+	case RELOAD_FILLMAT:
+		loadfx = true;
+		break;;
+	}
+
+	if (loadfx)
+	{
 		OlaShaderFX* fx = GetRenderDevice()->spawnShaderFX();
 		fx->load(matInfo->ShaderFullname.c_str());
 		shader->reset(fx);
-		mPools->ShaderPool->enPool(matInfo->ShaderFullname.c_str(),shader);
 	}
 
-	OlaMaterial* material = new OlaMaterial(matInfo->MatFullname.c_str());
+	OlaMaterial* material = outMat;
 	material->setShader(shader);
 
 	for (unsigned int i = 0 ; i < matInfo->Paraments.size() ; i++)
@@ -84,9 +100,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 		if(strcmp(var.Type.c_str(),TYPE_TEXTURE) != 0)				
 			continue;
 
-		OlaTexture* texture = 0;
-
-		texture = mPools->TexturePool->seek(var.Value.c_str());
+		OlaTexture* texture = mPools->TexturePool->seek(var.Value.c_str());
 		if(!texture)	
 		{
 			OlaAsset* asset = new OlaAsset();
@@ -104,7 +118,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 			mPools->TexturePool->enPool(var.Value.c_str(),texture);
 		}
 
-		//fixme: 纹理的引用计数怎么搞？
+		//fixme: 纹理的引用计数怎么搞？ ---> done:在PARAM_VAR的构造和析构中处理引用计数
 		material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_TEXTURE,texture);
 	}
 
@@ -121,8 +135,6 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial*& outMat )
 			material->setParament(var.Name.c_str(),OlaMaterialParam::VALUE_TYPE_VEC4,var.Value.c_str());
 		}
 	}
-
-	outMat = material;
 
 	return true;
 }

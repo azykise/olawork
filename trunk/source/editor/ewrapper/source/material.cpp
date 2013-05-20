@@ -9,7 +9,7 @@ namespace Engine
 	Material::Material(ola::IMaterial* mat)
 	{
 		MaterialPtr = mat;
-		Filename = gcnew System::String(mat->getResourceFilename());
+		Filename = gcnew System::String(mat->filename());
 		Name = gcnew System::String(mat->name());;
 	}
 

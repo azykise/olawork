@@ -52,29 +52,7 @@ public:
 	OlaRenderSceneMng* mSceneMng;
 };
 
-
-class OlaMaterialImpl : public ola::IMaterial
-{
-public:
-	OlaMaterialImpl(OlaMaterial* mat):
-	mMaterial(mat)
-	{
-		mMaterial->addRef();
-	}
-
-	virtual~ OlaMaterialImpl()
-	{
-		mMaterial->delRef();
-	}
-
-	virtual const char* name() {return mMaterial->name().c_str();}
-
-	virtual const char* getResourceFilename(){return mMaterial->filename().c_str();}
-
-	virtual void reload();
-
-	OlaMaterial* mMaterial;
-};
+class OlaMaterialImpl;
 
 class OlaGeometryImpl;
 
@@ -109,7 +87,7 @@ public:
 	OlaSkeletonImpl(OlaSkeletonModel* skl);
 	virtual ~OlaSkeletonImpl();
 
-	virtual const char* getResourceFilename();	
+	virtual const char* filename();	
 
 	virtual void reload(){};
 
@@ -118,6 +96,8 @@ public:
 	virtual ola::IBone* bone(int id);
 
 	virtual ola::IBone* root();
+
+	virtual bool deserialize(const char* data,int len){return false;}
 
 	void _buildSkeleton();
 
@@ -142,7 +122,7 @@ public:
 class OlaStaticModelImpl : public ola::IStaticModel
 {
 public:
-	OlaStaticModelImpl(OlaMeshRenderer* model);
+	OlaStaticModelImpl(OlaMeshRenderer* model,OlaRender* render);
 
 	virtual ~OlaStaticModelImpl();
 
