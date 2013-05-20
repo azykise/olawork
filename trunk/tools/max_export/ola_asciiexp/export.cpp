@@ -725,9 +725,14 @@ void AsciiExp::ExportMesh(INode* node, TimeValue t, int indentLevel)
 	Point3 r1 = tminv.GetRow(1);
 	Point3 r2 = tminv.GetRow(2);
 
-	tmtinv.SetRow(0 , Point3(r0.x , r1.x , r2.x));
-	tmtinv.SetRow(1 , Point3(r0.y , r1.y , r2.y));
-	tmtinv.SetRow(2 , Point3(r0.z , r1.z , r2.z));
+	//tmtinv.SetRow(0 , Point3(r0.x , r1.x , r2.x));
+	//tmtinv.SetRow(1 , Point3(r0.y , r1.y , r2.y));
+	//tmtinv.SetRow(2 , Point3(r0.z , r1.z , r2.z));
+	//tmtinv.SetRow(3 , Point3(0 , 0, 0));
+
+	tmtinv.SetRow(0 , r0);
+	tmtinv.SetRow(1 , r1);
+	tmtinv.SetRow(2 , r2);
 	tmtinv.SetRow(3 , Point3(0 , 0, 0));
 
 	Mesh* mesh = &tri->GetMesh();
