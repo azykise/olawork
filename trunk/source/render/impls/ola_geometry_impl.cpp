@@ -5,9 +5,13 @@
 #include "../ola_model.h"
 #include "../win/win_impls.h"
 
+#include "../parser/ola_dml.h"
+#include "../ola_resourcemng.h"
+#include "../ola_assetmng.h"
 
 OlaGeometryImpl::OlaGeometryImpl(OlaMeshRenderer* model,OlaRender* render):
-mModel(model)
+mModel(model),
+mRender(render)
 {
 	mModel->addRef();
 
@@ -44,4 +48,36 @@ OlaMeshRenderer* OlaGeometryImpl::meshrender()
 ola::IMaterial* OlaGeometryImpl::submeshMaterial(int idx)
 {
 	 return mSubMaterials[idx];
+}
+
+void OlaGeometryImpl::reload()
+{
+	OlaResourceMng* res_mng = mRender->getResourceMng();
+
+	OlaAsset* xml_asset = res_mng->getLoader()->load(mModel->filename(),false);
+
+	tDmlFileInfo dmlInfo;
+	dmlInfo.DMLAssetpath = mModel->filename();
+
+	OlaDMLParser parser(res_mng->pools());
+	parser.parseDMLInfoFromData(xml_asset->data,xml_asset->length,&dmlInfo);
+	delete xml_asset;
+
+	parser.fillDML(&dmlInfo,mModel);
+
+	for (size_t i = 0 ; i < mModel->mesh()->submeshs().size() ; i++)
+	{
+		OlaMaterial* material = mModel->material(i);
+
+		if (i < mSubMaterials.size())
+		{
+			OlaMaterialImpl* impl = mSubMaterials[i];
+			impl->material(material);
+		}
+		else
+		{
+			OlaMaterialImpl* impl = new OlaMaterialImpl(material,mRender);
+			mSubMaterials.push_back(impl);
+		}
+	}
 }

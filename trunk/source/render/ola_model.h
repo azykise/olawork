@@ -34,6 +34,8 @@ public:
 
 	virtual void renderInternal( OlaRender* r );
 
+	inline const char* filename(){return mDMLAssetpath.c_str();}
+
 protected:	
 
 	olastring mDMLAssetpath;

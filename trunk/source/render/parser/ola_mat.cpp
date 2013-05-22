@@ -72,7 +72,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial* outMat, MATFILL_M
 		shader = new OlaShader();
 		mPools->ShaderPool->enPool(matInfo->ShaderFullname.c_str(),shader);
 		loadfx = true;
-	}
+	}			
 
 	switch(mode)
 	{
@@ -83,7 +83,7 @@ bool OlaMATParser::fillMAT( tMatFileInfo* matInfo,OlaMaterial* outMat, MATFILL_M
 		break;;
 	}
 
-	if (loadfx)
+	if (loadfx && shader != mPools->ShaderPool->defshader())
 	{
 		OlaShaderFX* fx = GetRenderDevice()->spawnShaderFX();
 		fx->load(matInfo->ShaderFullname.c_str());

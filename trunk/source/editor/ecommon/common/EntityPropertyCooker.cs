@@ -83,8 +83,8 @@ namespace editor
             set { base.List[index] = (PropertySerializer)value; }
         }
 
-        static GridPropertyColorEditor sColorEditor = new GridPropertyColorEditor();
-        static GridPropertyFileEditor sFileEditor = new GridPropertyFileEditor();
+        public static GridPropertyColorEditor sColorEditor = new GridPropertyColorEditor();
+        public static GridPropertyFileEditor sFileEditor = new GridPropertyFileEditor();
 
         #region ICustomTypeDescriptor 成员
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes)
@@ -112,7 +112,7 @@ namespace editor
         #endregion
     }
 
-    class GridPropertyColorEditor : UITypeEditor
+    public class GridPropertyColorEditor : UITypeEditor
     {
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
@@ -138,13 +138,13 @@ namespace editor
         }
     }
 
-    class GridPropertyFileEditor : UITypeEditor
+    public class GridPropertyFileEditor : UITypeEditor
     {
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
             return UITypeEditorEditStyle.Modal;
         }
-
+        
         static OpenFileDialog sOpenFileDialog = new OpenFileDialog();
 
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
@@ -152,10 +152,15 @@ namespace editor
             if (sOpenFileDialog == null)
                 sOpenFileDialog = new OpenFileDialog();
 
+            sOpenFileDialog.RestoreDirectory = true;
+            sOpenFileDialog.InitialDirectory = mPathMng.GetAssetFolderDiskPath();
+
             if (sOpenFileDialog.ShowDialog() == DialogResult.OK)
                 return sOpenFileDialog.FileName;
 
             return value;
         }
+
+        protected AssetPathMng mPathMng = new AssetPathMng();
     }
 }

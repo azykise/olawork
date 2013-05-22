@@ -19,7 +19,7 @@ public:
 
 	virtual ola::IMaterial* submeshMaterial(int idx);
 
-	virtual void reload(){};
+	virtual void reload();
 
 	virtual bool deserialize(const char* data,int len){return false;}
 
@@ -28,7 +28,7 @@ public:
 	virtual OlaMeshRenderer* meshrender();
 
 protected:
-
+	OlaRender* mRender;
 	OlaMeshRenderer* mModel;
 	std::vector<OlaMaterialImpl*> mSubMaterials;
 };

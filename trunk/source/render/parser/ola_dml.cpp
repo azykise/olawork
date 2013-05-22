@@ -96,11 +96,10 @@ bool OlaDMLParser::fillDML( tDmlFileInfo* dmlInfo,OlaMeshRenderer* dml )
 		OlaMaterial* mat = mPools->MaterialPool->seek(matinfo.MatFullname);
 		if ( !mat )
 		{
-			mat = new OlaMaterial(matinfo.MatFullname.c_str());
+			mat = new OlaMaterial(matinfo.MatFullname.c_str());			
 			mMATParser->fillMAT(&matinfo,mat);
-
 			mPools->MaterialPool->enPool(matinfo.MatFullname.c_str(),mat);
-		}
+		}		
 
 		dml->material(i,mat);
 	}

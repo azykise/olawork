@@ -49,3 +49,18 @@ bool OlaMaterialImpl::deserialize( const char* data,int len )
 {
 	return false;
 }
+
+OlaMaterial* OlaMaterialImpl::material()
+{
+	return mMaterial;
+}
+
+void OlaMaterialImpl::material( OlaMaterial* mat )
+{
+	if (mMaterial)
+	{
+		mMaterial->delRef();
+	}
+	mMaterial = mat;
+	mMaterial->addRef();
+}

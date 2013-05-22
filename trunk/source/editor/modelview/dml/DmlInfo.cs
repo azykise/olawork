@@ -16,10 +16,13 @@ namespace modelview
 
         public void fromXML(string dmlfilename)
         {
-            mDmlpath = dmlfilename;
+            AssetPathMng path_mng = new AssetPathMng();
 
+            mDmlpath = path_mng.ConvertToAssetPath(dmlfilename);
+
+            string disk_dmlpath = path_mng.ConvertToDiskPath(mDmlpath);
             XmlDocument xml = new XmlDocument();
-            xml.Load(dmlfilename);
+            xml.Load(disk_dmlpath);
 
             XmlNode root = xml.FirstChild;
 
@@ -34,7 +37,7 @@ namespace modelview
                 string[] ss = new string[2];
                 ss[0] = varnode.Attributes["name"].Value;
                 ss[1] = varnode.Attributes["resource"].Value;
-                mSubmeshMats[ss[0]] = "../" + MatTools.ASSET_PATH_MARK + (ss[1]);
+                mSubmeshMats[ss[0]] = ss[1];
             }
         }
 
@@ -43,18 +46,18 @@ namespace modelview
             XmlDocument xml = new XmlDocument();
 
             XmlNode root = xml.CreateNode("element", "ola_model", "");
-
+            xml.AppendChild(root);
             XmlNode geom = xml.CreateNode("element", "geometry", "");
             root.AppendChild(geom);
             XmlAttribute att = xml.CreateAttribute("resource");
             att.Value = mASE;
-            geom.AppendChild(att);
+            geom.Attributes.Append(att);
 
             XmlNode mat = xml.CreateNode("element", "material", "");
             root.AppendChild(mat);
             att = xml.CreateAttribute("num");
             att.Value = mSubmeshMats.Keys.Count.ToString();
-            mat.AppendChild(att);
+            mat.Attributes.Append(att);
 
             int n = 0;
             foreach (KeyValuePair<string, string> kvp in mSubmeshMats)
@@ -63,15 +66,15 @@ namespace modelview
 
                 att = xml.CreateAttribute("index");
                 att.Value = n.ToString();
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 att = xml.CreateAttribute("name");
                 att.Value = kvp.Key;
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 att = xml.CreateAttribute("resource");
                 att.Value = kvp.Value;
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 mat.AppendChild(varnode);
 

@@ -16,7 +16,7 @@ namespace Engine
 		virtual ~StaticModel();
 		!StaticModel();
 
-		void reloadMaterials();
+		void reloadDml();
 
 		void render();
 

@@ -24,6 +24,10 @@ public:
 
 	virtual bool deserialize(const char* data,int len);
 
+	virtual OlaMaterial* material();
+
+	virtual void material(OlaMaterial* mat);
+
 protected:
 	OlaMaterial* mMaterial;
 	OlaRender* mRender;

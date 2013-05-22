@@ -1,6 +1,6 @@
 <ola_model>
-	<geometry resource="plant1.ase"/>
-	<material num="1">
-		<submat index="0" name="lambert2" resource="default.mat"/>
-	</material>
+  <geometry resource="plant1.ase" />
+  <material num="1">
+    <submat index="0" name="lambert2" resource="art/smallplants/lambert2.mat" />
+  </material>
 </ola_model>

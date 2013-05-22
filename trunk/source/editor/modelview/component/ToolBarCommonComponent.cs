@@ -22,7 +22,9 @@ namespace modelview
             if (Doc.CurrentStaticModel == null)
                 return;
 
-            Doc.CurrentStaticModel.reloadMaterials();
+            //Doc.CurrentStaticModel.reloadMaterials();
+
+            Doc.CurrentStaticModel.reloadDml();
         }
 
         public void openCurrentModelFolder()

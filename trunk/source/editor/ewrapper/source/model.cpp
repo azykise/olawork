@@ -46,11 +46,14 @@ namespace Engine
 		}
 	}
 
-	void StaticModel::reloadMaterials()
+
+	void StaticModel::reloadDml()
 	{
 		if(Model)
 		{
 			ola::IGeometry* geo = Model->geometry();
+			geo->reload();
+
 			int num = geo->submeshNum();
 
 			for (int i = 0 ; i < num ; i++)

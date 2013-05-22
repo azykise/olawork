@@ -1,0 +1,5 @@
+<ola_material version="1.0">
+  <instance name="lambert2.mat">
+    <technique type="shader" source_s="art/smallplants/ats_softocc_bark.glsl" />
+  </instance>
+</ola_material>

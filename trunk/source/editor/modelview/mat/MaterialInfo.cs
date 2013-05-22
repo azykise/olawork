@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using editor;
 
 namespace modelview
 {
@@ -33,16 +34,19 @@ namespace modelview
 
         public void fromXML(string matfilename)
         {
-            mMatFilename = matfilename;
+            AssetPathMng path_mng = new AssetPathMng();
 
+            mMatFilename = path_mng.ConvertToAssetPath(matfilename);
+
+            string disk_matpath = path_mng.ConvertToDiskPath(mMatFilename);
             XmlDocument xml = new XmlDocument();
-            xml.Load(matfilename);
+            xml.Load(disk_matpath);
 
             XmlNode root = xml.FirstChild;
             XmlNode inst = root.FirstChild;
 
             XmlNode tech = inst.SelectSingleNode("technique");
-            mShaderFilename = "../asset/" + tech.Attributes["source_s"].Value;
+            mShaderFilename = tech.Attributes["source_s"].Value;
 
             XmlNodeList varNodes = inst.SelectNodes("var");
             List<string[]> vars = new List<string[]>();
@@ -69,22 +73,22 @@ namespace modelview
             xml.AppendChild(root);
             XmlAttribute att = xml.CreateAttribute("version");
             att.Value = "1.0";
-            root.AppendChild(att);
+            root.Attributes.Append(att);
 
             XmlNode inst = xml.CreateNode("element", "instance", "");
             root.AppendChild(inst);
             att = xml.CreateAttribute("name");
             att.Value = editor.Tool.GetFilename(mMatFilename);
-            inst.AppendChild(att);
+            inst.Attributes.Append(att);
 
             XmlNode tech = xml.CreateNode("element", "technique", "");
             inst.AppendChild(tech);
             att = xml.CreateAttribute("type");
             att.Value = "shader";
-            tech.AppendChild(att);
+            tech.Attributes.Append(att);
             att = xml.CreateAttribute("source_s");
-            att.Value = MatTools.GetAssetFilePath(mShaderFilename);
-            tech.AppendChild(att);
+            att.Value = mShaderFilename;
+            tech.Attributes.Append(att);
 
             foreach (MatVarInfo varinfo in mMatVars.Values)
             {
@@ -92,42 +96,20 @@ namespace modelview
 
                 att = xml.CreateAttribute("name");
                 att.Value = varinfo.info[0];
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 att = xml.CreateAttribute("type");
                 att.Value = varinfo.info[1];
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 att = xml.CreateAttribute("value");
                 att.Value = varinfo.info[2];
-                varnode.AppendChild(att);
+                varnode.Attributes.Append(att);
 
                 inst.AppendChild(varnode);
             }
 
             return xml;
-        }
-    }
-
-    class MatTools
-    {
-        public const string ASSET_PATH_MARK = "assets/";
-        public static string GetAssetFilePath(string anypath)
-        {
-            string s = anypath.ToLower();
-            s = s.Replace('\\', '/');
-            
-            int index = s.IndexOf(ASSET_PATH_MARK);
-            if (index == -1)
-            {
-                if (!s.Contains(":"))
-                    return "../" + ASSET_PATH_MARK + anypath;
-                else
-                    return "";
-            }
-
-            string r = s.Substring(index + ASSET_PATH_MARK.Length);
-            return r;
         }
     }
 }

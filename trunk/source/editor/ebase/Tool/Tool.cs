@@ -217,6 +217,64 @@ namespace editor
         public const string SUFFIX_CHR = "chr";
     }
 
+    public class AssetPathMng
+    {
+        public const string ERROR_PATH = "__ERROR_PATH___";
+        public const string ASSET_FLAG = "assets/";
+
+        public AssetPathMng()
+        {
+            string s = Application.ExecutablePath.ToLower();
+            s = s.Replace('\\', '/');
+            int idx = s.LastIndexOf('/');
+            mEditorWorkingPath = s.Substring(0,idx);
+        }
+
+        public string ConvertToAssetPath(string anypath)
+        {
+            string s = anypath.ToLower();
+            s = s.Replace('\\','/');
+
+            if (s.Contains(ASSET_FLAG))
+            {
+                int assets_idx = s.IndexOf(ASSET_FLAG);
+                return s.Substring(assets_idx + ASSET_FLAG.Length);
+            }
+            else if (s.Contains(':'))
+                return ERROR_PATH;
+            else
+                return s;
+        }
+
+        public string ConvertToDiskPath(string anypath)
+        {
+            string s = anypath.ToLower();
+            s = s.Replace('\\', '/');
+
+            if (s.Contains(":"))
+            {
+                return s;
+            }
+
+            if (s.Contains(ASSET_FLAG))
+            {
+                s = ConvertToAssetPath(s);
+            }
+
+            return GetAssetFolderDiskPath() + s;            
+        }
+
+        public string GetAssetFolderDiskPath()
+        {
+            int idx = mEditorWorkingPath.LastIndexOf('/');
+            string working_path = mEditorWorkingPath.Substring(0, idx + 1);
+
+            return working_path + ASSET_FLAG;
+        }
+
+        protected string mEditorWorkingPath = "";
+    }
+
     public class SphereSpace
     {
         public SphereSpace()
@@ -273,3 +331,4 @@ namespace editor
         public float degreeZ = 1.0f;
     }
 }
+
