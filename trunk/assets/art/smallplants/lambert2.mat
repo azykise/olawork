@@ -1,5 +1,7 @@
 <ola_material version="1.0">
   <instance name="lambert2.mat">
-    <technique type="shader" source_s="art/smallplants/ats_softocc_bark.glsl" />
+    <technique type="shader" source_s="art/smallplants/ats_softocc_leaf.glsl" />
+    <var name="diffuse_map" type="texture" value="art/smallplants/plants_a.tga" />
+    <var name="normal_map" type="texture" value="art/smallplants/plants_a_nmp.tga" />
   </instance>
 </ola_material>

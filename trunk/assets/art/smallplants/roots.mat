@@ -1,6 +1,7 @@
 <ola_material version="1.0">
   <instance name="roots.mat">
-    <technique type="shader" source_s="art/smallplants/tree_softocc_leaves.glsl" />
-    <var name="diffuse_map" type="texture" value="art/smallplants/phoenix_palm_bark1.tga" />
+    <technique type="shader" source_s="art/smallplants/bump_specular.glsl" />
+    <var name="diffuse_map" type="texture" value="art/smallplants/roots1.tga" />
+    <var name="normal_map" type="texture" value="art/smallplants/roots1_nmp.tga" />
   </instance>
 </ola_material>
