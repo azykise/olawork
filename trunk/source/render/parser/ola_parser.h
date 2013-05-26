@@ -12,6 +12,29 @@ class OlaShaderPool;
 class OlaTexturePool;
 class OlaMaterialPool;
 
+struct tTplPropertyInfo
+{
+	olastring Name;
+	olastring Type;
+	olastring Value;
+	olastring Bind;
+};
+
+struct tTplRenderStateInfo
+{
+	olastring Name;
+	olastring Value;
+};
+
+struct tTplFileInfo
+{
+	olastring TplFullname;
+	olastring FxType;
+	OlaArray<tTplPropertyInfo>		Propertys;
+	OlaArray<tTplRenderStateInfo>	RenderStates;
+	olastring FXCodes;
+};
+
 struct tMatVarInfo
 {
 	olastring Name;
@@ -32,17 +55,6 @@ struct tDmlFileInfo
 	olastring ASEAssetpath;
 	OlaArray<tMatFileInfo> MeshMatsInfo;
 };
-
-//struct tMatResult
-//{
-//	OlaMaterial* Material;
-//};
-//
-//struct tDmlResult
-//{
-//	OlaMesh* Mesh;
-//	OlaArray<OlaMaterial*> MeshMats;
-//};
 
 struct tResourcePools
 {

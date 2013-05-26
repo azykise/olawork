@@ -67,6 +67,8 @@ bool OlaDMLParser::parseDMLInfoFromData( const char* data,int len,tDmlFileInfo* 
 		submat_node = submat_node->nextSibling("submat");
 	}	
 
+	delete xml;
+
 	return true;
 }
 

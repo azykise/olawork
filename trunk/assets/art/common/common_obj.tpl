@@ -1,12 +1,19 @@
-<OlaShaderRoot>
+<OlaShader>
 	<head name="common_obj" fxtype="glsl"/>
-	<desc>normalmap;phong</desc>
+	<propertys>
+		<MainColor type="vec4" value="1,1,1,1" bind="u_color0"/>
+		<SpecColor type="vec4" value="1,1,1,1" bind="u_color1"/>
+	</propertys>
 	<states>
 		<AlpahTest value="0"/>
 		<Cull value="back"/>
 	</states>
-	<glsl>
-		<attribute contains="pos;nor;uv0;tan;bnr"/>		
+	<fxcodes>
+		<attribute type="vec4" name="a_position"/>	
+		<attribute type="vec3" name="a_normal"/>	
+		<attribute type="vec2" name="a_position"/>	
+		<attribute type="vec3" name="a_tangent"/>	
+		<attribute type="vec3" name="a_binormal"/>		
 		<uniform type="mat4" name="u_mvp"/>
 		<uniform type="mat4" name="u_model_invtrans"/>
 		<uniform type="mat4" name="u_model"/>		
@@ -14,6 +21,8 @@
 		<uniform type="vec3" name="u_eyedir"/>	
 		<uniform type="vec3" name="u_lightpos0"/>
 		<uniform type="vec3" name="u_lightdir0"/>			
+		<uniform type="vec3" name="u_color0"/>	
+		<uniform type="vec3" name="u_color1"/>	
 		<uniform type="sampler2D" name="s_diffuse"/>
 		<uniform type="sampler2D" name="s_normal"/>
 		<uniform type="sampler2D" name="s_specular"/>	
@@ -53,5 +62,5 @@
 		
 			gl_FragColor = vec4(fc.rgb,tc.a);		
 		</frag>
-	</glsl>
-</OlaShaderRoot>
+	</fxcodes>
+</OlaShader>

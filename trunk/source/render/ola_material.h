@@ -117,14 +117,15 @@ public:
 
 	inline olastring& name(){return mName;}
 	inline void* program();
-	inline int handle(OlaMaterialParam::SHADER_VARS type){return type == OlaMaterialParam::SHADER_VARS_END ? -1 : mHandles[type];}
-	inline void setHandle(OlaMaterialParam::SHADER_VARS type,int value){ if(type != OlaMaterialParam::SHADER_ATTRIB_END){mHandles[type] = value;}}
+	inline int handle(OlaMaterialParam::SHADER_VARS type){return type == OlaMaterialParam::SHADER_VARS_END ? -1 : mSystemHandles[type];}
+	inline void setHandle(OlaMaterialParam::SHADER_VARS type,int value){ if(type != OlaMaterialParam::SHADER_ATTRIB_END){mSystemHandles[type] = value;}}
 	inline OlaShaderFX* fx(){return mFX;}
 protected:
 	olastring mName;
 	OlaShaderFX* mFX;
 
-	int mHandles[OlaMaterialParam::SHADER_VARS_END];
+	int				mSystemHandles[OlaMaterialParam::SHADER_VARS_END];
+	OlaArray<int>	mCustomHandles;
 };
 
 class OlaMaterial : public IRefCounter

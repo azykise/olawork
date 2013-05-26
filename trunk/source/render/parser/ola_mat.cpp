@@ -58,6 +58,8 @@ bool OlaMATParser::parseMATFromData( const char* data,int len,tMatFileInfo* outM
 		var_node = var_node->nextSibling("var");
 	}
 
+	delete xml;
+
 	return true;
 }
 

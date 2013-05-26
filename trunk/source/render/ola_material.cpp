@@ -184,7 +184,7 @@ OlaShader::OlaShader():
 mName("default"),
 mFX(0)
 {
-	memset(mHandles,-1,OlaMaterialParam::SHADER_VARS_END * sizeof(int));
+	memset(mSystemHandles,-1,OlaMaterialParam::SHADER_VARS_END * sizeof(int));
 }
 
 void OlaShader::reset(OlaShaderFX* fx)
@@ -199,7 +199,7 @@ void OlaShader::reset(OlaShaderFX* fx)
 
 	mName = mFX->filename();
 
-	memset(mHandles,-1,OlaMaterialParam::SHADER_VARS_END * sizeof(int));
+	memset(mSystemHandles,-1,OlaMaterialParam::SHADER_VARS_END * sizeof(int));
 
 	for(int i = OlaMaterialParam::POSITION ; i < OlaMaterialParam::SHADER_VARS_END ; i++)
 	{

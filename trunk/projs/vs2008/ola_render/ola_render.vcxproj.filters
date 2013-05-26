@@ -274,6 +274,9 @@
     <ClCompile Include="..\..\..\source\render\impls\ola_material_impl.cpp">
       <Filter>impls</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\render\parser\ola_tpl.cpp">
+      <Filter>resources\parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\interface\ola_engine.h">
@@ -494,6 +497,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\render\impls\ola_material_impl.h">
       <Filter>impls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\render\parser\ola_tpl.h">
+      <Filter>resources\parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

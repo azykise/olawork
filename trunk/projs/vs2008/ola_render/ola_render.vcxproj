@@ -144,6 +144,7 @@
     <ClCompile Include="..\..\..\source\render\ola_transobj.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_dml.cpp" />
     <ClCompile Include="..\..\..\source\render\parser\ola_mat.cpp" />
+    <ClCompile Include="..\..\..\source\render\parser\ola_tpl.cpp" />
     <ClCompile Include="..\..\..\source\render\win\dllmain.cpp" />
     <ClCompile Include="..\..\..\source\render\win\win_imples.cpp" />
     <ClCompile Include="..\..\..\source\render\win\win_rendercore.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="..\..\..\source\render\parser\ola_dml.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_mat.h" />
     <ClInclude Include="..\..\..\source\render\parser\ola_parser.h" />
+    <ClInclude Include="..\..\..\source\render\parser\ola_tpl.h" />
     <ClInclude Include="..\..\..\source\render\win\win_impls.h" />
     <ClInclude Include="..\..\..\source\render\win\win_rendercore.h" />
     <ClInclude Include="..\..\..\source\render\win\win_renderwindow.h" />
