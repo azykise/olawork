@@ -10,7 +10,7 @@
 #include "../ola_shaderpool.h"
 #include "../ola_texturepool.h"
 
-olastring ReadFXCodeFromGLSL(OlaXmlNode* GLSLNode);
+bool ReadFXCodeFromGLSL(OlaXmlNode* GLSLNode,olastring& outVert,olastring& outFrag);
 
 OlaTPLParser::OlaTPLParser( tResourcePools* ps ):
 mPools(ps)
@@ -65,8 +65,8 @@ bool OlaTPLParser::parseTPLFromData( const char* data,int len,tTplFileInfo* outT
 	OlaXmlNode* fxcodes_node = shader_node->selectFirst("fxcodes");
 
 	if (strcmp(fx_type,"glsl") == 0)
-	{
-		outTplInfo->FXCodes = ReadFXCodeFromGLSL(fxcodes_node);
+	{		
+		ReadFXCodeFromGLSL(fxcodes_node,outTplInfo->VertCodes,outTplInfo->FragCodes);
 	}
 
 	delete xml;
@@ -80,9 +80,125 @@ bool OlaTPLParser::fillTPL( tTplFileInfo* matInfo,OlaShader* outShader )
 }
 
 
-static olastring ReadFXCodeFromGLSL(OlaXmlNode* GLSLNode)
+static bool ReadFXCodeFromGLSL(OlaXmlNode* GLSLNode,olastring& outVert,olastring& outFrag)
 {
-	olastring glsl_code;
+	const char* NEW_LINE = "/n";
 
-	return glsl_code;
+	OlaArray<olastring> attributes;
+	OlaArray<olastring> uniforms;
+	OlaArray<olastring> varyings;
+	OlaArray<olastring> verts;
+	OlaArray<olastring> frags;
+
+	OlaXmlNode* code_node = GLSLNode->fisrtChild();
+	while(code_node)
+	{
+		const char* node_name = code_node->name();
+
+		if (strcmp(node_name,"attribute") == 0)
+		{
+			const char* type = code_node->attribute("type");
+			const char* name = code_node->attribute("name");
+
+			olastring attri("attribute");
+			attri.append(" ");
+			attri.append(type);
+			attri.append(" ");
+			attri.append(name);
+			attri.append(";");
+			attributes.push_back(attri);
+		}
+		else if(strcmp(node_name,"uniform") == 0)
+		{
+			const char* type = code_node->attribute("type");
+			const char* name = code_node->attribute("name");
+			olastring unif("uniform");
+			unif.append(" ");
+			unif.append(type);
+			unif.append(" ");
+			unif.append(name);
+			unif.append(";");
+			uniforms.push_back(unif);
+		}
+		else if(strcmp(node_name,"varying") == 0)
+		{
+			const char* type = code_node->attribute("type");
+			const char* name = code_node->attribute("name");
+			olastring vary("varying");
+			vary.append(" ");
+			vary.append(type);
+			vary.append(" ");
+			vary.append(name);
+			vary.append(";");
+			varyings.push_back(vary);
+		}
+		else if(strcmp(node_name,"vert") == 0)
+		{
+			const char* value = code_node->innerText();
+			olastring vert_main = "void main(){";
+			vert_main.append(value);
+			vert_main.append("}");
+			verts.push_back(vert_main);
+		}
+		else if(strcmp(node_name,"frag") == 0)
+		{
+			const char* value = code_node->innerText();
+			olastring frag_main = "void main(){";
+			frag_main.append(value);
+			frag_main.append("}");
+			verts.push_back(frag_main);
+		}
+
+		code_node = code_node->nextSibling();
+	}
+
+	for (unsigned int i = 0 ; i < attributes.size(); i++)
+	{
+		outVert.append(attributes[i].accessData());
+		outVert.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < uniforms.size(); i++)
+	{
+		outVert.append(uniforms[i].accessData());
+		outVert.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < attributes.size(); i++)
+	{
+		outVert.append(attributes[i].accessData());
+		outVert.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < varyings.size(); i++)
+	{
+		outVert.append(varyings[i].accessData());
+		outVert.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < verts.size(); i++)
+	{
+		outVert.append(verts[i].accessData());
+		outVert.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < uniforms.size(); i++)
+	{
+		outFrag.append(uniforms[i].accessData());
+		outFrag.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < varyings.size(); i++)
+	{
+		outFrag.append(varyings[i].accessData());
+		outFrag.append(NEW_LINE);
+	}
+
+	for (unsigned int i = 0 ; i < frags.size(); i++)
+	{
+		outFrag.append(frags[i].accessData());
+		outFrag.append(NEW_LINE);
+	}
+
+	return true;
 }

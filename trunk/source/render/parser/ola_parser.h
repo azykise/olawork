@@ -32,7 +32,9 @@ struct tTplFileInfo
 	olastring FxType;
 	OlaArray<tTplPropertyInfo>		Propertys;
 	OlaArray<tTplRenderStateInfo>	RenderStates;
-	olastring FXCodes;
+
+	olastring VertCodes;
+	olastring FragCodes;
 };
 
 struct tMatVarInfo
