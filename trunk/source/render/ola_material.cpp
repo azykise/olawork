@@ -39,7 +39,7 @@ extern const char gGlobalShaderConstName[OlaMaterialParam::SHADER_VARS_END][MAX_
 	"s_shadowmap"
 };
 
-static const char gGlobalMaterialSymbol[OlaMaterialParam::MATERIAL_SYMBOLS_END][MAX_MATERIAL_PARAM_STR_SIZE] = {
+static const char gGlobalMaterialSymbol[OlaMaterialParam::MATERIAL_VARS_END][MAX_MATERIAL_PARAM_STR_SIZE] = {
 	"transparency",
 	"diffuse_map",
 	"normal_map",
@@ -72,7 +72,7 @@ static OlaMaterialParam::PARAM_DESC _GetParamDesc(const char* var_name)
 
 	if(type == OlaMaterialParam::PARAM_UNKNOWN)
 	{
-		for (int i = 0 ; i < OlaMaterialParam::MATERIAL_SYMBOLS_END ; i++)
+		for (int i = 0 ; i < OlaMaterialParam::MATERIAL_VARS_END ; i++)
 		{
 			if(strcmp(var_name,gGlobalMaterialSymbol[i]) == 0)
 			{
@@ -224,16 +224,15 @@ void* OlaShader::program()
 }
 OlaMaterial::OlaMaterial(const char* _filename):
 mShader(0),
-mMetaMaterial(0),
 mFilename(_filename)
 {
-	memset(mParaments,0,OlaMaterialParam::MATERIAL_SYMBOLS_END * sizeof(OlaMaterialParam::PARAM_VALUE*));
+	memset(mParaments,0,OlaMaterialParam::MATERIAL_VARS_END * sizeof(OlaMaterialParam::PARAM_VALUE*));
 }
 
 OlaMaterial::~OlaMaterial()
 {
 	int var = OlaMaterialParam::TRANSPARENCY;
-	while (var != OlaMaterialParam::MATERIAL_SYMBOLS_END)
+	while (var != OlaMaterialParam::MATERIAL_VARS_END)
 	{
 		OlaMaterialParam::PARAM_VALUE* value = mParaments[var];
 		if(value != 0)
@@ -242,12 +241,6 @@ OlaMaterial::~OlaMaterial()
 			mParaments[var] = 0;
 		}
 		var += 1;
-	}
-
-	if(mMetaMaterial)
-	{
-		mMetaMaterial->delRef();
-		mMetaMaterial = 0;
 	}
 
 	if (mShader)
@@ -264,35 +257,6 @@ void OlaMaterial::setShader(OlaShader* shader)
 
 	mShader = shader;
 	mShader->addRef();
-}
-
-void OlaMaterial::setFromMeta(OlaMaterial* meta)
-{
-	if(mMetaMaterial)
-		mMetaMaterial->delRef();
-
-	mMetaMaterial = meta;
-	mMetaMaterial->addRef();
-
-	setShader(meta->shader());
-
-	int var = OlaMaterialParam::TRANSPARENCY;
-	while (var != OlaMaterialParam::MATERIAL_SYMBOLS_END)
-	{
-		OlaMaterialParam::PARAM_VALUE* met_value = meta->mParaments[var];
-		if(met_value != 0)
-		{
-			OlaMaterialParam::PARAM_VALUE* value = new OlaMaterialParam::PARAM_VALUE(met_value->type,met_value->data);
-			if(mParaments[var] == 0)
-				mParaments[var] = value;
-			else
-			{
-				delete mParaments[var];
-				mParaments[var] = value;
-			}
-		}
-		var += 1;
-	}
 }
 
 void OlaMaterial::setParament(const char* name,OlaMaterialParam::VALUE_TYPE _type,const char* value,bool force)
