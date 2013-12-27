@@ -212,6 +212,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\shader_proc.h"
+			>
+		</File>
+		<File
 			RelativePath=".\util.cpp"
 			>
 		</File>
