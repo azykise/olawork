@@ -15,13 +15,25 @@ public:
 		std::string mName;
 		std::string mDesc;
 		std::string mType;
-		std::string mvalue;
+		std::string mValue;
 	};
 
 	struct tRenderState
 	{
 		std::string mName;
 		std::vector<std::string> mValues;
+	};
+
+	struct tTag
+	{
+		std::string mName;
+		std::string mValue;
+	};
+
+	struct tFunc
+	{
+		std::string mName;
+		std::string mFuncStr;
 	};
 
 public:
@@ -33,9 +45,10 @@ public:
 
 protected:
 	std::string mShaderName;
-	std::vector<std::string> mTags;
+	std::vector<tTag> mTags;
 	std::vector<tProperty> mPropertys;
 	std::vector<tRenderState> mRenderStates;
+	std::vector<tFunc> mFuncs;
 };
 
 #endif
