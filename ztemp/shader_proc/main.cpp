@@ -54,10 +54,10 @@ extern "C"
 		return 0;
 	}
 
-	DLLEXPORT int OSS_GetPropertyNum(OlaShaderScript* script)
-	{
+	//DLLEXPORT int OSS_GetPropertyNum(OlaShaderScript* script)
+	//{
 
-	}
+	//}
 
 }
 
