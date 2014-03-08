@@ -371,7 +371,7 @@ OlaMaterial* OlaResourceMng::getMaterial(const char* _filename,const char* mat_i
 			meta_name = meta_name == 0 ? MATERIAL_DEFAULT : meta_name;
 			OlaMaterial* meta_mat = getMaterial(meta_source,meta_name);
 		
-			material->setFromMeta(meta_mat);
+			//material->setFromMeta(meta_mat);
 		}
 		else
 		{

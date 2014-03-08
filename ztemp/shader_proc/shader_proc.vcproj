@@ -152,7 +152,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wininet.lib fbxsdk-2013.1-md.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=".\fbxsdk\lib\vs2008\x86\"
 				GenerateDebugInformation="true"

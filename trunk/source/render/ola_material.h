@@ -60,7 +60,7 @@ public:
 		SHADER_VARS_END,//以上都是shader变量,不会向材质编辑暴露,
 	};
 
-	enum MATERIAL_SYMBOLS
+	enum MATERIAL_VARS
 	{
 		TRANSPARENCY = 0,
 		DIFFUSE0,
@@ -73,7 +73,7 @@ public:
 		NO_DEPTH,
 		USER_COLOR0,
 
-		MATERIAL_SYMBOLS_END,//以上都是渲染方式标记,向材质编辑暴露
+		MATERIAL_VARS_END,//以上都是渲染方式标记,向材质编辑暴露
 	};
 
 	enum VALUE_TYPE
@@ -136,8 +136,6 @@ public:
 
 	~OlaMaterial();	
 
-	void setFromMeta(OlaMaterial* meta);
-
 	void setShader(OlaShader* shader);
 	OlaShader* shader(){return mShader;}
 
@@ -145,7 +143,7 @@ public:
 	void setParament(const char* name,OlaMaterialParam::VALUE_TYPE _type,void* value,bool force=true);
 
 	OlaMaterialParam::PARAM_VALUE* parament(const char* name);
-	OlaMaterialParam::PARAM_VALUE* parament(OlaMaterialParam::MATERIAL_SYMBOLS type) {return mParaments[type];}
+	OlaMaterialParam::PARAM_VALUE* parament(OlaMaterialParam::MATERIAL_VARS type) {return mParaments[type];}
 
 	void setName(olastring& str){mInstancename = str;};
 	olastring& name(){return mInstancename;}
@@ -153,7 +151,7 @@ public:
 	olastring& filename(){return mFilename;}
 
 	template <class T>
-	T paramentValue(OlaMaterialParam::MATERIAL_SYMBOLS type)
+	T paramentValue(OlaMaterialParam::MATERIAL_VARS type)
 	{
 		OlaMaterialParam::PARAM_VALUE* s_v = parament(type);
 		return s_v != 0 ? (T)(s_v->data) : 0 ;
@@ -166,9 +164,7 @@ protected:
 
 	OlaShader* mShader;
 
-	OlaMaterialParam::PARAM_VALUE* mParaments[OlaMaterialParam::MATERIAL_SYMBOLS_END];
-
-	OlaMaterial* mMetaMaterial;
+	OlaMaterialParam::PARAM_VALUE* mParaments[OlaMaterialParam::MATERIAL_VARS_END];
 };
 
 #endif
